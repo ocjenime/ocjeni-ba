@@ -519,7 +519,7 @@ export default function PricingPage() {
                 Odgovara na recenzije
               </h3>
               <p className="text-gray-500 text-sm">
-                Pokažite da vam je stalo do mišljenja kupaca. Tvrtke koje
+                Pokažite da vam je stalo do mišljenja kupaca. Firme koje
                 odgovaraju imaju 4.2x više povjerenja.
               </p>
             </div>
@@ -563,7 +563,7 @@ export default function PricingPage() {
               Šta kažu naši korisnici
             </h2>
             <p className="text-gray-500 mt-2">
-              Tvrtke koje već koriste Ocjeni.ba
+              Firme koje već koriste Ocjeni.ba
             </p>
           </div>
 

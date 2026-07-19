@@ -525,7 +525,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-secondary-900">
-                      Tvrtka {i}
+                      Firma {i}
                     </h3>
                     <div className="flex items-center gap-1 mt-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />

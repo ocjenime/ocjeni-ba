@@ -90,12 +90,12 @@ const steps = [
     number: "04",
     title: "Rastite s nama",
     description:
-      "Više recenzija = više kupaca. Tvrtke s aktivnim profilima na Ocjeni.ba privlače 3x više novih klijenata.",
+      "Više recenzija = više kupaca. Firme s aktivnim profilima na Ocjeni.ba privlače 3x više novih klijenata.",
   },
 ];
 
 const stats = [
-  { value: "3x", label: "Više kupaca", description: "Tvrtke s recenzijama" },
+  { value: "3x", label: "Više kupaca", description: "Firme s recenzijama" },
   { value: "73%", label: "Veće povjerenje", description: "Verificirani bedž" },
   { value: "27%", label: "Veća konverzija", description: "S widgetima" },
   { value: "4.2x", label: "Više lojalnosti", description: "S odgovorima" },
