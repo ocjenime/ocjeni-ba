@@ -354,6 +354,30 @@ const getCategoryBySlug = (slug: string) => {
   return categories[slug] || null;
 };
 
+export function generateStaticParams() {
+  return [
+    { slug: "hrana-i-pice" },
+    { slug: "trgovine" },
+    { slug: "automobilizam" },
+    { slug: "gradjevinarstvo" },
+    { slug: "nekretnine" },
+    { slug: "zdravlje" },
+    { slug: "obrazovanje" },
+    { slug: "usluge" },
+    { slug: "frizerski-saloni" },
+    { slug: "tehnologija" },
+    { slug: "finansije" },
+    { slug: "putovanja" },
+    { slug: "sport-i-rekreacija" },
+    { slug: "kultura-i-zabava" },
+    { slug: "smjestaj" },
+    { slug: "transport" },
+    { slug: "zastita-i-sigurnost" },
+    { slug: "ljubimci" },
+    { slug: "ostalo" },
+  ];
+}
+
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
