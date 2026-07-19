@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # PostgreSQL baza podataka
+  postgres:
+    image: postgres:16-alpine
+    container_name: ocjeni-ba-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ocjeni
+      POSTGRES_PASSWORD: ocjeni123
+      POSTGRES_DB: ocjeni_ba
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ocjeni -d ocjeni_ba"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (za cache)
+  redis:
+    image: redis:7-alpine
+    container_name: ocjeni-ba-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
