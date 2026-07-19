@@ -102,6 +102,26 @@ const featuredBusinesses = [
     verified: true,
     badge: "new",
   },
+  {
+    name: "Arilux D.O.O.",
+    slug: "arilux-doo",
+    rating: 5.0,
+    reviews: 10,
+    category: "Građevinske firme",
+    city: "Velika Kladuša",
+    verified: true,
+    badge: "top-rated",
+  },
+  {
+    name: "Cafe Bar Amor",
+    slug: "cafe-bar-amor",
+    rating: 4.7,
+    reviews: 14,
+    category: "Kafići",
+    city: "Velika Kladuša",
+    verified: true,
+    badge: "verified",
+  },
 ];
 
 const stats = [
