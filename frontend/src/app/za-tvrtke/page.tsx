@@ -1,25 +1,20 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  Shield,
   Star,
   TrendingUp,
-  Users,
   BarChart3,
   MessageSquare,
   Globe,
-  Zap,
-  CheckCircle2,
-  ArrowRight,
-  Building2,
   Mail,
   Bell,
-  Lock,
+  Shield,
   Award,
-  Target,
   Eye,
-  Sparkles,
-  Crown,
+  ArrowRight,
+  Building2,
+  CheckCircle,
+  CheckCircle2,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -31,13 +26,13 @@ export const metadata: Metadata = {
 const features = [
   {
     icon: MessageSquare,
-    title: "Upravljajte recenzijama",
+    title: "Upravljanje recenzijama",
     description:
       "Odgovarajte na recenzije kupaca, pratite trendove i poboljšavajte svoje usluge na temelju povratnih informacija.",
   },
   {
     icon: BarChart3,
-    title: "Napredna analitika",
+    title: "Analitika u realnom vremenu",
     description:
       "Detaljni izvještaji o ocjenama, sentimentu kupaca i usporedba s konkurentima. Donosite odluke na temelju podataka.",
   },
@@ -49,13 +44,13 @@ const features = [
   },
   {
     icon: Globe,
-    title: "Widgeti za web",
+    title: "Widget za web",
     description:
       "Prikažite svoje recenzije na web stranici. Prilagodite dizajn vašem brendu. Povećajte konverziju za 27%.",
   },
   {
     icon: Shield,
-    title: "Verificirani bedž",
+    title: "Verificirani badge",
     description:
       "Dobijte verificirani bedž koji potvrđuje autentičnost vaše tvrtke. Povećajte povjerenje kupaca za 73%.",
   },
@@ -76,170 +71,164 @@ const steps = [
   },
   {
     number: "02",
-    title: "Pozovite kupce",
+    title: "Potvrdite identitet",
     description:
-      "Šaljite pozivnice za recenzije putem emaila, SMS-a ili QR koda. Automatski podsjetnici povećavaju odziv.",
+      "Verificirajte vašu tvrtku putem emaila ili telefona. Dobijte verificirani bedž koji gradi povjerenje.",
   },
   {
     number: "03",
-    title: "Upravljajte reputacijom",
+    title: "Primajte recenzije",
     description:
-      "Odgovarajte na recenzije, pratite analitiku i koristite uvide za poboljšanje usluga.",
+      "Šaljite pozivnice kupcima putem emaila, SMS-a ili QR koda. Automatski podsjetnici povećavaju odziv.",
   },
   {
     number: "04",
-    title: "Rastite s nama",
+    title: "Odgovarajte i rastite",
     description:
-      "Više recenzija = više kupaca. Tvrtke s aktivnim profilima na Ocjeni.ba privlače 3x više novih klijenata.",
+      "Odgovarajte na recenzije, pratite analitiku i koristite uvide za poboljšanje usluga i rast poslovanja.",
   },
 ];
 
 const stats = [
-  { value: "3x", label: "Više kupaca", description: "Tvrtke s recenzijama" },
-  { value: "73%", label: "Veće povjerenje", description: "Verificirani bedž" },
-  { value: "27%", label: "Veća konverzija", description: "S widgetima" },
-  { value: "4.2x", label: "Više lojalnosti", description: "S odgovorima" },
+  { value: "3x", label: "Više kupaca" },
+  { value: "73%", label: "Više povjerenja" },
+  { value: "27%", label: "Više konverzija" },
+  { value: "4.2x", label: "Više lojalnosti" },
+];
+
+const businesses = [
+  "Restoran Stari Most",
+  "Auto Servis Mehmed",
+  "Digital Solutions BiH",
+  "Frizerski Salon Glamour",
 ];
 
 export default function ForBusinessPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500 rounded-full blur-3xl opacity-20" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-500 rounded-full blur-3xl opacity-20" />
-        </div>
-        <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <div className="min-h-screen">
+      {/* ═══════════════════════════════════════════════════════════
+          HERO
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="min-h-[80vh] mesh-gradient flex items-center">
+        <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left column */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-sm font-medium text-emerald-400 mb-6">
-                <Sparkles className="w-4 h-4" />
-                Za tvrtke koje žele rasti
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+              <div className="badge mb-6">Za tvrtke</div>
+              <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
                 Vaša reputacija je
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  vaš najjači alat
-                </span>
+                <span className="gradient-text-hero">najjači alat</span>
               </h1>
-              <p className="text-lg text-gray-300 mb-8 max-w-lg">
+              <p className="text-midnight-300 text-lg mt-6 mb-8 max-w-lg">
                 Pridružite se 10,000+ tvrtki koje već koriste Ocjeni.ba za
                 izgradnju povjerenja, privlačenje kupaca i rast poslovanja.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/tvrtke/prijava"
-                  className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold transition-all inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-                >
-                  Započnite besplatno
+                <Link href="/tvrtke/prijava" className="btn-primary">
+                  Prijavite tvrtku besplatno
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link
-                  href="/cjenik"
-                  className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2 text-lg"
-                >
-                  Pogledajte planove
+                <Link href="/cjenik" className="btn-secondary">
+                  Pogledajte cjenik
                 </Link>
               </div>
-              <div className="flex items-center gap-6 mt-8 text-sm text-gray-400">
+              <div className="flex items-center flex-wrap gap-x-6 gap-y-3 mt-8 text-sm text-midnight-400">
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Bez kreditne kartice
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
                   Bez ugovorne obveze
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Otkazivanje u bilo kojem trenutku
+                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                  Besplatna analitika
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                  Certifikat pouzdanosti
                 </span>
               </div>
             </div>
 
+            {/* Right column */}
             <div className="hidden lg:block">
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-200">
+                {/* Business profile card */}
+                <div className="bg-midnight-900/60 backdrop-blur-xl border border-midnight-700/50 rounded-2xl p-6">
+                  {/* Header */}
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center">
-                      <Building2 className="w-7 h-7 text-white" />
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
+                      <Building2 className="w-7 h-7 text-midnight-950" />
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">
-                        Restoran Stari Most
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-white">
+                          Restoran Stari Most
+                        </span>
+                        <CheckCircle className="w-4 h-4 text-amber-400" />
                       </div>
-                      <div className="flex items-center gap-1 text-sm">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((s) => (
-                            <Star
-                              key={s}
-                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
-                            />
-                          ))}
-                        </div>
-                        <span className="text-gray-600 font-medium">4.9</span>
-                        <span className="text-gray-400">(312)</span>
+                      <div className="text-sm text-midnight-400">
+                        Mostar · Restorani
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-3 mb-4">
-                    <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <Shield className="w-3 h-3" />
-                      Verificirano
-                    </span>
-                    <span className="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <Crown className="w-3 h-3" />
-                      Top Rated
-                    </span>
-                    <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <MessageSquare className="w-3 h-3" />
-                      Aktivno
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center gap-0.5">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star
+                          key={s}
+                          className="w-4 h-4 fill-amber-400 text-amber-400"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-white font-bold">4.8</span>
+                    <span className="text-midnight-400 text-sm">
+                      (234 recenzije)
                     </span>
                   </div>
+
+                  {/* Stats row */}
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-gray-900">312</div>
-                      <div className="text-xs text-gray-500">Recenzija</div>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-gray-900">98%</div>
-                      <div className="text-xs text-gray-500">Preporučuju</div>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-emerald-600">
-                        +42%
+                    <div className="bg-midnight-800/60 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold gradient-text">
+                        4.8
                       </div>
-                      <div className="text-xs text-gray-500">Rast</div>
+                      <div className="text-xs text-midnight-500">Ocjena</div>
                     </div>
-                  </div>
-                </div>
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-4 h-4 text-emerald-600" />
+                    <div className="bg-midnight-800/60 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold gradient-text">
+                        234
+                      </div>
+                      <div className="text-xs text-midnight-500">
+                        Recenzije
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs text-gray-500">Novi kupci</div>
-                      <div className="text-sm font-bold text-emerald-600">
-                        +127 ovaj mjesec
+                    <div className="bg-midnight-800/60 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold gradient-text">
+                        1,247
+                      </div>
+                      <div className="text-xs text-midnight-500">
+                        Pregledi
                       </div>
                     </div>
                   </div>
+
+                  {/* Link */}
+                  <div className="mt-6 pt-4 border-t border-midnight-700/50">
+                    <span className="text-amber-400 text-sm font-medium">
+                      Ocjeni.ba/vasa-tvrtka
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100">
+
+                {/* Floating notification */}
+                <div className="absolute -left-4 top-10 bg-midnight-800 border border-midnight-700 rounded-xl p-3 shadow-xl">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                      <Star className="w-4 h-4 text-amber-600" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-500">Prosjek</div>
-                      <div className="text-sm font-bold text-amber-600">
-                        4.9 ★ (312)
-                      </div>
-                    </div>
+                    <Bell className="w-4 h-4 text-amber-400" />
+                    <span className="text-xs text-white whitespace-nowrap">
+                      Nova recenzija: ★★★★★
+                    </span>
                   </div>
                 </div>
               </div>
@@ -248,138 +237,145 @@ export default function ForBusinessPage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-12 bg-gray-50 border-y border-gray-100">
+      {/* ═══════════════════════════════════════════════════════════
+          STATS BAR
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-y border-midnight-800/30">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-extrabold text-emerald-600">
+                <div className="text-3xl font-black gradient-text">
                   {stat.value}
                 </div>
-                <div className="font-semibold text-gray-900 mt-1">
+                <div className="text-sm text-midnight-400 mt-1">
                   {stat.label}
                 </div>
-                <div className="text-sm text-gray-500">{stat.description}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-20">
+      {/* ═══════════════════════════════════════════════════════════
+          KAKO RADI
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
-              Jednostavno
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              Kako funkcionira?
+            <div className="badge mb-3">Jednostavno</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-3">
+              Kako funkcioniše?
             </h2>
-            <p className="text-gray-500 mt-3 max-w-lg mx-auto">
-              Započnite u 4 jednostavna koraka. Bez komplikacija, bez skrivenih
-              troškova.
-            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step) => (
-              <div key={step.number} className="relative">
-                <div className="text-6xl font-black text-emerald-100 mb-4">
-                  {step.number}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
-              Alati
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              Sve što vam treba na jednom mjestu
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
               <div
-                key={feature.title}
-                className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300"
+                key={step.number}
+                className="bg-midnight-900/40 border border-midnight-800/40 rounded-2xl p-6 relative"
               >
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-emerald-600" />
+                <span className="text-5xl font-black text-amber-500/15 absolute top-4 right-4">
+                  {step.number}
+                </span>
+                <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-4">
+                  <CheckCircle2 className="w-6 h-6 text-amber-500" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{feature.description}</p>
+                <h3 className="font-bold text-white mb-2">{step.title}</h3>
+                <p className="text-sm text-midnight-400">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-20">
+      {/* ═══════════════════════════════════════════════════════════
+          FEATURES GRID
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 section-dark">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Tvrtke koje nam vjeruju
+          <div className="text-center mb-14">
+            <div className="badge mb-3">Značajke</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-3">
+              Sve što vam treba
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {["Restoran Stari Most", "Auto Servis Mehmed", "Digital Solutions BiH", "Frizerski Salon Glamour"].map(
-              (name) => (
-                <div
-                  key={name}
-                  className="flex items-center gap-3 bg-gray-50 rounded-xl p-4"
-                >
-                  <div className="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center">
-                    <Building2 className="w-6 h-6 text-emerald-500" />
-                  </div>
-                  <div className="font-semibold text-gray-900 text-sm">
-                    {name}
-                  </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {features.map((feature) => (
+              <div key={feature.title} className="card glow-border p-6">
+                <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center">
+                  <feature.icon className="w-6 h-6 text-amber-500" />
                 </div>
-              )
-            )}
+                <h3 className="font-bold text-white mt-4">{feature.title}</h3>
+                <p className="text-sm text-midnight-400 mt-2">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-br from-emerald-500 to-teal-500">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Spremni za rast?
+      {/* ═══════════════════════════════════════════════════════════
+          SOCIAL PROOF
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-10">
+            Tvrtke koje nam vjeruju
           </h2>
-          <p className="text-emerald-100 mb-8 text-lg max-w-xl mx-auto">
-            Pridružite se 10,000+ tvrtki koje već grade svoju reputaciju na
-            Ocjeni.ba
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/tvrtke/prijava"
-              className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg"
-            >
-              Započnite besplatno
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/cjenik"
-              className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2 text-lg"
-            >
-              Pogledajte cjenik
-            </Link>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            {businesses.map((name) => (
+              <span
+                key={name}
+                className="text-midnight-600 text-lg font-medium"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          FINAL CTA
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-gradient-to-br from-amber-500/10 via-amber-600/5 to-transparent border border-amber-500/20 rounded-3xl p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+              Započnite besplatno danas
+            </h2>
+            <p className="text-midnight-300 text-lg max-w-xl mx-auto mb-8">
+              Pridružite se 10,000+ tvrtki koje već grade svoju reputaciju na
+              Ocjeni.ba. Bez skrivenih troškova, bez ugovorne obveze.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/tvrtke/prijava" className="btn-primary">
+                Prijavite tvrtku besplatno
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link href="/cjenik" className="btn-secondary">
+                Pogledajte cjenik
+              </Link>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-midnight-400">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-400" />
+                Bez troškova
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-400" />
+                Besplatna analitika
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-400" />
+                Certifikat pouzdanosti
+              </span>
+            </div>
           </div>
         </div>
       </section>

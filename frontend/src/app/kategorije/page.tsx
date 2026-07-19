@@ -1,13 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import {
-  Search,
-  Star,
-  ChevronRight,
-  Building2,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { Search, ChevronDown, ArrowRight } from "lucide-react";
 import { FBIH_CITIES } from "@/lib/constants";
 
 const categories = [
@@ -15,6 +8,7 @@ const categories = [
     name: "Hrana i piće",
     slug: "hrana-i-pice",
     description: "Restorani, kafići, pekare i drugi ugostiteljski objekti",
+    emoji: "\uD83C\uDF5C",
     count: 456,
     subcategories: [
       { name: "Restorani", slug: "restorani", count: 245 },
@@ -32,6 +26,7 @@ const categories = [
     name: "Trgovine",
     slug: "trgovine",
     description: "Supermarketi, tržni centri, specijalizirane trgovine",
+    emoji: "\uD83D\uDED2",
     count: 312,
     subcategories: [
       { name: "Supermarketi", slug: "supermarketi", count: 89 },
@@ -47,6 +42,7 @@ const categories = [
     name: "Automobilizam",
     slug: "automobilizam",
     description: "Automehaničari, autopraonice, auto dijelovi",
+    emoji: "\uD83D\uDE97",
     count: 189,
     subcategories: [
       { name: "Automehaničari", slug: "automehanicari", count: 189 },
@@ -60,6 +56,7 @@ const categories = [
     name: "Građevinarstvo",
     slug: "gradjevinarstvo",
     description: "Građevinske firme, projektanti, nadzor",
+    emoji: "\uD83C\uDFD7\uFE0F",
     count: 156,
     subcategories: [
       { name: "Građevinske firme", slug: "gradjevinske-firme", count: 156 },
@@ -74,6 +71,7 @@ const categories = [
     name: "Nekretnine",
     slug: "nekretnine",
     description: "Agencije za nekretnine, procjena, upravljanje",
+    emoji: "\uD83C\uDFE0",
     count: 112,
     subcategories: [
       { name: "Agencije za nekretnine", slug: "agencije-za-nekretnine", count: 112 },
@@ -85,6 +83,7 @@ const categories = [
     name: "Zdravlje",
     slug: "zdravlje",
     description: "Ljekari, stomatolozi, apoteke, fitness centri",
+    emoji: "\uD83C\uDFE5",
     count: 234,
     subcategories: [
       { name: "Ljekari", slug: "ljekari", count: 189 },
@@ -99,6 +98,7 @@ const categories = [
     name: "Obrazovanje",
     slug: "obrazovanje",
     description: "Škole, fakulteti, kursevi, instruktori",
+    emoji: "\uD83C\uDF93",
     count: 134,
     subcategories: [
       { name: "Kursevi jezika", slug: "kursevi-jezika", count: 67 },
@@ -110,6 +110,7 @@ const categories = [
     name: "Usluge",
     slug: "usluge",
     description: "Profesionalne usluge, savjetovanje, pravne usluge",
+    emoji: "\uD83D\uDCBC",
     count: 167,
     subcategories: [
       { name: "Pravne usluge", slug: "pravne-usluge", count: 89 },
@@ -122,6 +123,7 @@ const categories = [
     name: "Frizerski saloni",
     slug: "frizerski-saloni",
     description: "Frizeri, kozmetičari, salon ljepote",
+    emoji: "\u2702\uFE0F",
     count: 143,
     subcategories: [
       { name: "Frizerski saloni", slug: "frizerski", count: 189 },
@@ -133,6 +135,7 @@ const categories = [
     name: "Tehnologija",
     slug: "tehnologija",
     description: "IT tvrtke, servisi, web razvoj, software",
+    emoji: "\uD83D\uDCBB",
     count: 89,
     subcategories: [
       { name: "IT tvrtke", slug: "it-tvrtke", count: 89 },
@@ -144,6 +147,7 @@ const categories = [
     name: "Putovanja",
     slug: "putovanja",
     description: "Agencije za putovanja, hoteli, apartmani",
+    emoji: "\u2708\uFE0F",
     count: 98,
     subcategories: [
       { name: "Hoteli", slug: "hoteli", count: 123 },
@@ -156,6 +160,7 @@ const categories = [
     name: "Sport i rekreacija",
     slug: "sport-i-rekreacija",
     description: "Sportski centri, teretane, rekreacija",
+    emoji: "\u26BD",
     count: 67,
     subcategories: [
       { name: "Sportski centri", slug: "sportski-centri", count: 56 },
@@ -167,6 +172,7 @@ const categories = [
     name: "Kultura i zabava",
     slug: "kultura-i-zabava",
     description: "Kino, pozorište, muzeji, koncerti",
+    emoji: "\uD83C\uDFAC",
     count: 45,
     subcategories: [
       { name: "Kina", slug: "kina", count: 23 },
@@ -178,6 +184,7 @@ const categories = [
     name: "Smještaj",
     slug: "smjestaj",
     description: "Hoteli, hosteli, apartmani, moteli",
+    emoji: "\uD83C\uDFE8",
     count: 156,
     subcategories: [
       { name: "Hoteli", slug: "hoteli-smjestaj", count: 123 },
@@ -189,6 +196,7 @@ const categories = [
     name: "Transport",
     slug: "transport",
     description: "Prijevoz, špedicija, dostava",
+    emoji: "\uD83D\uDECE",
     count: 78,
     subcategories: [
       { name: "Cestovni prijevoz", slug: "cestovni-prijevoz", count: 89 },
@@ -200,6 +208,7 @@ const categories = [
     name: "Zaštita i sigurnost",
     slug: "zastita-i-sigurnost",
     description: "Zaštitarske tvrtke, alarmi, kamere",
+    emoji: "\uD83D\uDEE1\uFE0F",
     count: 34,
     subcategories: [
       { name: "Zaštitarske tvrtke", slug: "zastitarske-tvrtke", count: 56 },
@@ -211,6 +220,7 @@ const categories = [
     name: "Ljubimci",
     slug: "ljubimci",
     description: "Veterinari, zoo shopovi, šinternice",
+    emoji: "\uD83D\uDC3E",
     count: 45,
     subcategories: [
       { name: "Veterinarske ambulante", slug: "veterinarske", count: 89 },
@@ -221,6 +231,7 @@ const categories = [
     name: "Ostalo",
     slug: "ostalo",
     description: "Ostale usluge i tvrtke",
+    emoji: "\u2753",
     count: 56,
     subcategories: [
       { name: "Praonice rublja", slug: "praonice-rublja", count: 56 },
@@ -238,33 +249,34 @@ export const metadata: Metadata = {
 
 export default function CategoriesPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-10">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Kategorije tvrtki
+    <div className="min-h-screen bg-midnight-950">
+      {/* Section header */}
+      <div className="py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <span className="badge">{categories.length} kategorija</span>
+          <h1 className="text-3xl font-black text-white mt-4">
+            Sve kategorije
           </h1>
-          <p className="text-gray-500 mt-2">
+          <p className="text-midnight-400 mt-3 max-w-2xl mx-auto">
             Istražite {categories.length} kategorija i pronađite najbolje
             tvrtke u Federaciji BiH
           </p>
         </div>
       </div>
 
-      {/* Pretraga */}
-      <div className="max-w-5xl mx-auto px-4 -mt-5">
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+      {/* Search/filter bar */}
+      <div className="max-w-5xl mx-auto px-4 mb-12">
+        <div className="bg-midnight-900/50 border border-midnight-800/50 rounded-2xl p-4">
           <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 flex items-center border border-gray-200 rounded-lg px-4">
-              <Search className="w-4 h-4 text-gray-400" />
+            <div className="flex-1 flex items-center gap-3 bg-midnight-950 border border-midnight-800/50 rounded-xl px-4">
+              <Search className="w-4 h-4 text-midnight-500" />
               <input
                 type="text"
                 placeholder="Pretraži kategorije..."
-                className="flex-1 px-3 py-3 outline-none text-sm"
+                className="flex-1 bg-transparent px-2 py-3 text-sm text-white placeholder:text-midnight-500 outline-none"
               />
             </div>
-            <select className="px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-600 outline-none">
+            <select className="bg-midnight-950 border border-midnight-800/50 rounded-xl px-4 py-3 text-sm text-midnight-300 outline-none appearance-none cursor-pointer">
               <option value="">Svi gradovi</option>
               {FBIH_CITIES.map((city) => (
                 <option key={city.name} value={city.name}>
@@ -276,65 +288,54 @@ export default function CategoriesPage() {
         </div>
       </div>
 
-      {/* Kategorije */}
-      <div className="max-w-5xl mx-auto px-4 py-10">
-        <div className="space-y-2">
-          {categories.map((cat) => (
-            <div
-              key={cat.slug}
-              className="group border border-gray-200 rounded-xl hover:border-emerald-300 hover:shadow-sm transition-all"
-            >
-              <Link
-                href={`/kategorije/${cat.slug}`}
-                className="flex items-center justify-between p-5"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center">
-                    <Building2 className="w-6 h-6 text-emerald-500" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+      {/* Category list */}
+      <div className="max-w-5xl mx-auto px-4 space-y-3 pb-16">
+        {categories.map((cat) => (
+          <details
+            key={cat.slug}
+            className="group bg-midnight-900/40 border border-midnight-800/40 rounded-xl hover:border-midnight-700/60 transition-all"
+          >
+            <summary className="flex items-center justify-between p-5 cursor-pointer list-none">
+              <div className="flex items-center gap-4">
+                <span className="text-2xl">{cat.emoji}</span>
+                <div>
+                  <div className="flex items-center gap-3">
+                    <Link
+                      href={`/kategorije/${cat.slug}`}
+                      className="font-semibold text-white hover:text-amber-400 transition-colors"
+                    >
                       {cat.name}
-                    </div>
-                    <div className="text-sm text-gray-400 mt-0.5">
-                      {cat.description}
-                    </div>
+                    </Link>
+                    <span className="badge">{cat.count} tvrtki</span>
+                  </div>
+                  <div className="text-sm text-midnight-400 mt-0.5">
+                    {cat.description}
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm text-gray-400 hidden sm:block">
-                    {cat.count} tvrtki
-                  </span>
-                  <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 transition-colors" />
-                </div>
-              </Link>
-
-              {/* Podkategorije - inline */}
-              <div className="px-5 pb-4 flex flex-wrap gap-2">
-                {cat.subcategories.slice(0, 6).map((sub) => (
+              </div>
+              <ChevronDown className="w-5 h-5 text-midnight-500 group-open:rotate-180 transition-transform flex-shrink-0" />
+            </summary>
+            <div className="px-5 pb-5 pt-2 border-t border-midnight-800/30">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {cat.subcategories.map((sub) => (
                   <Link
                     key={sub.slug}
                     href={`/kategorije/${cat.slug}/${sub.slug}`}
-                    className="text-xs bg-gray-50 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition-colors border border-gray-100 hover:border-emerald-200"
+                    className="bg-midnight-800/50 text-midnight-300 hover:text-amber-400 hover:bg-midnight-700/50 px-4 py-2 rounded-lg text-sm border border-midnight-700/30 transition-colors text-center"
                   >
                     {sub.name}
                   </Link>
                 ))}
-                {cat.subcategories.length > 6 && (
-                  <span className="text-xs text-emerald-500 px-3 py-1.5">
-                    +{cat.subcategories.length - 6} više
-                  </span>
-                )}
               </div>
             </div>
-          ))}
-        </div>
+          </details>
+        ))}
       </div>
 
-      {/* Gradovi */}
-      <div className="bg-gray-50 py-12">
+      {/* Bottom cities section */}
+      <div className="py-16 section-dark">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
+          <h2 className="text-xl font-bold text-white mb-6">
             Gradovi Federacije BiH
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -342,18 +343,20 @@ export default function CategoriesPage() {
               <Link
                 key={city.name}
                 href={`/gradovi/${city.name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all text-sm"
+                className="card p-4 hover:border-amber-500/30 transition-all group"
               >
-                <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                <span className="text-gray-700 font-medium truncate">
+                <span className="font-medium text-white group-hover:text-amber-400 transition-colors">
                   {city.name}
                 </span>
+                <div className="text-midnight-500 text-xs mt-1">
+                  {city.population.toLocaleString("bs")} stanovnika
+                </div>
               </Link>
             ))}
           </div>
           <Link
             href="/gradovi"
-            className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-semibold text-sm mt-6"
+            className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 font-semibold text-sm mt-6 transition-colors"
           >
             Svi gradovi <ArrowRight className="w-4 h-4" />
           </Link>
@@ -361,17 +364,17 @@ export default function CategoriesPage() {
       </div>
 
       {/* CTA */}
-      <div className="py-12">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">
-            Vaša tvrtka nije na listi?
+      <div className="py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-black text-white mb-3">
+            Vaša tvrtka još nije evidentirana?
           </h2>
-          <p className="text-gray-500 mb-6">
+          <p className="text-midnight-400 mb-6">
             Prijavite se besplatno i počnite primati recenzije odmah.
           </p>
           <Link
             href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
+            className="bg-amber-500 hover:bg-amber-400 text-midnight-950 px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
           >
             Dodajte tvrtku besplatno
             <ArrowRight className="w-5 h-5" />
