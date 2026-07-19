@@ -16,8 +16,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { FBIH_CITIES } from "@/lib/constants";
+import { useAuth } from "@/lib/auth-context";
 
 export default function BusinessSignupPage() {
+  const { registerBusiness } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -41,8 +43,19 @@ export default function BusinessSignupPage() {
     if (step === 1) {
       setStep(2);
     } else {
-      // Submit registration
-      console.log("Registration:", formData);
+      registerBusiness({
+        ownerName: formData.ownerName,
+        ownerEmail: formData.ownerEmail,
+        phone: formData.phone,
+        businessName: formData.businessName,
+        category: formData.category,
+        city: formData.city,
+        address: formData.address,
+        website: formData.website,
+        description: formData.description,
+        password: formData.password,
+      });
+      window.location.href = "/tvrtke/dashboard";
     }
   };
 

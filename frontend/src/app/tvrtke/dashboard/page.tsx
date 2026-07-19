@@ -31,6 +31,7 @@ import {
   Globe,
   Mail,
 } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
 
 const mockReviews = [
   {
@@ -110,6 +111,7 @@ const quickActions = [
 ];
 
 export default function BusinessDashboardPage() {
+  const { user, business, logout, isAuthenticated } = useAuth();
   const [activeTab, setActiveTab] = useState<"reviews" | "analytics" | "badges" | "settings">("reviews");
   const [respondingTo, setRespondingTo] = useState<number | null>(null);
   const [response, setResponse] = useState("");
@@ -119,6 +121,11 @@ export default function BusinessDashboardPage() {
     setRespondingTo(null);
     setResponse("");
   };
+
+  if (typeof window !== "undefined" && !isAuthenticated) {
+    window.location.href = "/tvrtke/login";
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -164,12 +171,15 @@ export default function BusinessDashboardPage() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-medium text-gray-900 truncate">
-                Ivan Blazek
-              </div>
-              <div className="text-xs text-gray-500">Vlasnik</div>
+                 {user?.name || "Vlasnik"}
+               </div>
+               <div className="text-xs text-gray-500">Vlasnik</div>
             </div>
           </div>
-          <button className="w-full flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm px-4 py-2 mt-2">
+          <button
+            onClick={() => { logout(); window.location.href = "/"; }}
+            className="w-full flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm px-4 py-2 mt-2"
+          >
             <LogOut className="w-4 h-4" />
             Odjavi se
           </button>
@@ -182,9 +192,9 @@ export default function BusinessDashboardPage() {
         <div className="bg-white border-b border-gray-200 px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-bold text-gray-900">
-                Caffe Bar Kod Brace
-              </h1>
+                <h1 className="text-xl font-bold text-gray-900">
+                 {business?.businessName || "Moja firma"}
+               </h1>
               <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
                 <MapPin className="w-4 h-4" />
                 Sarajevo · Kafići
@@ -200,9 +210,9 @@ export default function BusinessDashboardPage() {
                 </span>
               </button>
               <Link
-                href="/tvrtke/caffe-bar-kod-brace"
-                className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
-              >
+                 href="/tvrtke/dashboard"
+                 className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+               >
                 Pogledaj profil →
               </Link>
             </div>

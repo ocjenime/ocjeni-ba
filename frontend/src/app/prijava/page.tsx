@@ -5,19 +5,22 @@ import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
-export default function BusinessLoginPage() {
-  const { loginBusiness } = useAuth();
+export default function LoginPage() {
+  const { loginUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const success = loginBusiness(email, password);
+    setError("");
+    const success = loginUser(email, password);
     if (success) {
-      window.location.href = "/tvrtke/dashboard";
+      window.location.href = "/";
     } else {
-      alert("Email ili lozinka nisu tačni. Pokušajte ponovo.");
+      setError("Neispravna email adresa ili lozinka.");
     }
   };
 
@@ -36,7 +39,7 @@ export default function BusinessLoginPage() {
             Dobrodošli nazad!
           </h1>
           <p className="text-gray-500 mt-2">
-            Upravljajte recenzijama, analitikom i vašim profilom
+            Prijavite se za pristup vašim recenzijama
           </p>
         </div>
 
@@ -44,6 +47,12 @@ export default function BusinessLoginPage() {
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
+              {error && (
+                <div className="bg-red-50 text-red-600 text-sm rounded-lg px-4 py-3">
+                  {error}
+                </div>
+              )}
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email adresa
@@ -93,12 +102,14 @@ export default function BusinessLoginPage() {
                 <label className="flex items-center gap-2">
                   <input
                     type="checkbox"
+                    checked={remember}
+                    onChange={(e) => setRemember(e.target.checked)}
                     className="w-4 h-4 rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
                   />
                   <span className="text-sm text-gray-600">Zapamti me</span>
                 </label>
                 <Link
-                  href="/tvrtke/zaboravljena-lozinka"
+                  href="/prijava"
                   className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
                 >
                   Zaboravili lozinku?
@@ -119,7 +130,7 @@ export default function BusinessLoginPage() {
             <p className="text-sm text-gray-500">
               Još nemate račun?{" "}
               <Link
-                href="/tvrtke/prijava"
+                href="/registracija"
                 className="text-emerald-600 hover:text-emerald-700 font-medium"
               >
                 Registrujte se besplatno
