@@ -59,12 +59,9 @@ export const FBIH_CITIES = [
   { name: "Olovo", canton: "Zeničko-dobojski", population: 10851 },
   { name: "Bosanski Šamac", canton: "Posavski", population: 8323 },
   { name: "Odžak", canton: "Posavski", population: 19993 },
-  { name: "Odzak", canton: "Posavski", population: 19993 },
   { name: "Domaljevac-Šamac", canton: "Posavski", population: 5230 },
   { name: "Lukavac", canton: "Tuzlanski", population: 46000 },
-  { name: "Tuzla - Stari Grad", canton: "Tuzlanski", population: 12000 },
   { name: "Banovići", canton: "Tuzlanski", population: 22583 },
-  { name: "Lukavac", canton: "Tuzlanski", population: 46000 },
 ].sort((a, b) => a.name.localeCompare(b.name, "hr"));
 
 export const FBIH_CANTONS = [

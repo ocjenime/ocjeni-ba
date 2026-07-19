@@ -8,6 +8,7 @@ import {
   ChevronRight,
   Building2,
 } from "lucide-react";
+import { FBIH_CITIES } from "@/lib/constants";
 
 interface CategoryPageProps {
   params: {
@@ -465,13 +466,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             </div>
             <div className="flex gap-2">
               <select className="px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                <option value="">Svi gradovi</option>
-                <option value="sarajevo">Sarajevo</option>
-                <option value="banja-luka">Banja Luka</option>
-                <option value="tuzla">Tuzla</option>
-                <option value="zenica">Zenica</option>
-                <option value="mostar">Mostar</option>
-                <option value="bijeljina">Bijeljina</option>
+                <option value="">Svi gradovi FBiH</option>
+                {FBIH_CITIES.map((city) => (
+                  <option key={city.name} value={city.name.toLowerCase().replace(/\s+/g, "-")}>
+                    {city.name}
+                  </option>
+                ))}
               </select>
               <button className="px-4 py-3 border border-secondary-200 rounded-lg hover:bg-secondary-50 transition-colors">
                 <Filter className="w-5 h-5" />

@@ -57,7 +57,7 @@ const businesses: Record<string, BusinessData> = {
     name: "Arilux D.O.O.",
     slug: "arilux-doo",
     rating: 5.0,
-    reviewCount: 10,
+    reviewCount: 81,
     category: "Građevinske firme",
     city: "Velika Kladuša",
     address: "Trg Mladih bb, 77230 Velika Kladuša",
@@ -168,7 +168,7 @@ const businesses: Record<string, BusinessData> = {
     name: "Caffe Bar Amor",
     slug: "cafe-bar-amor",
     rating: 4.7,
-    reviewCount: 14,
+    reviewCount: 318,
     category: "Kafići",
     city: "Velika Kladuša",
     address: "Trg Mladih 5, 77230 Velika Kladuša",
@@ -177,7 +177,7 @@ const businesses: Record<string, BusinessData> = {
     description:
       "Omiljeni kafić u centru Velike Kladuše. Uživajte uz vaše omiljeno piće, sladoled ili kolač.",
     longDescription:
-      "Caffe Bar \"Amor\" je nezavisni kafić smješten u samom centru Velike Kladuše na Trgu Mladih 5, u vlasništvu Ivana Blažeka. Od svog osnivanja, Amor je postao jedno od omiljenih mjesta za kafu, druženja i zabavu.\n\nNudimo širok asortiman pića, svježe sladoled i domaće kolače u ugodnoj atmosferi. Ljetna terasa na Trgu Mladih idealno je mjesto za opuštanje tokom toplijih mjeseci.\n\nOsim svakodnevne ponude, Caffe Bar Amor je domaćin brojnih dešavanja — od sportskih večeri sa prenosima utakmica BiH reprezentacije, preko koncerata u okviru Kladuškog ljeta, do druženja i proslava.\n\nPosjetite nas i uvjerite se zašto smo jedno od omiljenih mjesta u Velikoj Kladuši!",
+      "Caffe Bar \"Amor\" je nezavisni kafić smješten u samom centru Velike Kladuše na Trgu Mladih 5. Od svog osnivanja, Amor je postao jedno od omiljenih mjesta za kafu, druženja i zabavu.\n\nNudimo širok asortiman pića, svježe sladoled i domaće kolače u ugodnoj atmosferi. Ljetna terasa na Trgu Mladih idealno je mjesto za opuštanje tokom toplijih mjeseci.\n\nOsim svakodnevne ponude, Caffe Bar Amor je domaćin brojnih dešavanja — od sportskih večeri sa prenosima utakmica BiH reprezentacije, preko koncerata u okviru Kladuškog ljeta, do druženja i proslava.\n\nPosjetite nas i uvjerite se zašto smo jedno od omiljenih mjesta u Velikoj Kladuši!",
     founded: "2025",
     employees: "5+",
     verified: true,
@@ -248,7 +248,7 @@ const businesses: Record<string, BusinessData> = {
     ],
     stats: [
       { label: "Godina osnivanja", value: "2025." },
-      { label: "Posjeta dnevno", value: "100+" },
+      { label: "Recenzija", value: "318" },
       { label: "Zaposlenih", value: "5+" },
       { label: "Ocjena", value: "4.7 ⭐" },
     ],
