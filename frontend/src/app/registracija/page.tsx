@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { User, Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export default function RegisterPage() {
   const { registerUser } = useAuth();
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +33,7 @@ export default function RegisterPage() {
     e.preventDefault();
     if (!validate()) return;
     registerUser(name, email, password);
-    window.location.href = "/";
+    router.push("/");
   };
 
   return (

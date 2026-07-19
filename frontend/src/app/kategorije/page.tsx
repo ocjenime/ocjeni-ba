@@ -1,8 +1,8 @@
-import { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import {
   Search,
-  Star,
   ChevronRight,
   Building2,
   MapPin,
@@ -230,12 +230,6 @@ const categories = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "Kategorije | Ocjeni.ba",
-  description:
-    "Istražite sve kategorije firmi u Federaciji Bosne i Hercegovine.",
-};
-
 export default function CategoriesPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -314,7 +308,7 @@ export default function CategoriesPage() {
                 {cat.subcategories.slice(0, 6).map((sub) => (
                   <Link
                     key={sub.slug}
-                    href={`/kategorije/${cat.slug}/${sub.slug}`}
+                    href={`/kategorije/${cat.slug}`}
                     className="text-xs bg-gray-50 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition-colors border border-gray-100 hover:border-emerald-200"
                   >
                     {sub.name}

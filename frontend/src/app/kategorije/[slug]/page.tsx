@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Link from "next/link";
 import {
   Search,
@@ -379,19 +378,6 @@ export function generateStaticParams() {
   ];
 }
 
-export async function generateMetadata({
-  params,
-}: CategoryPageProps): Promise<Metadata> {
-  const category = getCategoryBySlug(params.slug);
-  if (!category) {
-    return { title: "Kategorija nije pronađena | Ocjeni.ba" };
-  }
-  return {
-    title: `${category.name} | Ocjeni.ba`,
-    description: category.description,
-  };
-}
-
 export default function CategoryPage({ params }: CategoryPageProps) {
   const category = getCategoryBySlug(params.slug);
 
@@ -490,7 +476,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           {category.subcategories.map((sub) => (
             <Link
               key={sub.slug}
-              href={`/kategorije/${params.slug}/${sub.slug}`}
+              href={`/kategorije/${params.slug}`}
               className="group flex items-center justify-between p-4 bg-white rounded-xl border border-secondary-100 hover:border-primary-500 hover:shadow-md transition-all"
             >
               <div>

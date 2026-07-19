@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Building2,
   Star,
@@ -112,9 +113,18 @@ const quickActions = [
 
 export default function BusinessDashboardPage() {
   const { user, business, logout, isAuthenticated } = useAuth();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"reviews" | "analytics" | "badges" | "settings">("reviews");
   const [respondingTo, setRespondingTo] = useState<number | null>(null);
   const [response, setResponse] = useState("");
+  const [liked, setLiked] = useState<Record<number, boolean>>({});
+  const [reported, setReported] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/tvrtke/login");
+    }
+  }, [isAuthenticated, router]);
 
   const handleRespond = (reviewId: number) => {
     console.log("Responding to review", reviewId, ":", response);
@@ -122,8 +132,7 @@ export default function BusinessDashboardPage() {
     setResponse("");
   };
 
-  if (typeof window !== "undefined" && !isAuthenticated) {
-    window.location.href = "/tvrtke/login";
+  if (!isAuthenticated) {
     return null;
   }
 
@@ -177,7 +186,7 @@ export default function BusinessDashboardPage() {
             </div>
           </div>
           <button
-            onClick={() => { logout(); window.location.href = "/"; }}
+            onClick={() => { logout(); router.push("/"); }}
             className="w-full flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm px-4 py-2 mt-2"
           >
             <LogOut className="w-4 h-4" />
@@ -210,7 +219,7 @@ export default function BusinessDashboardPage() {
                 </span>
               </button>
               <Link
-                 href="/tvrtke/dashboard"
+                 href={business?.businessName ? `/tvrtke/${business.businessName.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}` : "/tvrtke/arilux-doo"}
                  className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
                >
                 Pogledaj profil →
@@ -248,6 +257,12 @@ export default function BusinessDashboardPage() {
             {quickActions.map((action) => (
               <button
                 key={action.name}
+                onClick={() => {
+                  if (action.name === "Odgovori na recenziju") setActiveTab("reviews");
+                  else if (action.name === "Pošalji pozivnicu") alert("Slanje pozivnica će uskoro biti dostupno.");
+                  else if (action.name === "Pogledaj widget") alert("Widget pregled će uskoro biti dostupan.");
+                  else if (action.name === "Eksportuj izvještaj") alert("Eksport izvještaja će uskoro biti dostupan.");
+                }}
                 className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-emerald-300 hover:shadow-sm transition-all text-left"
               >
                 <action.icon className={`w-5 h-5 text-${action.color}-500`} />
@@ -392,13 +407,20 @@ export default function BusinessDashboardPage() {
                             <MessageSquare className="w-4 h-4" />
                             Odgovori
                           </button>
-                          <button className="text-sm text-gray-400 hover:text-gray-600 flex items-center gap-1">
+                          <button
+                            onClick={() => setLiked(prev => ({ ...prev, [review.id]: !prev[review.id] }))}
+                            className={`text-sm flex items-center gap-1 transition-colors ${liked[review.id] ? "text-emerald-600 font-medium" : "text-gray-400 hover:text-gray-600"}`}
+                          >
                             <ThumbsUp className="w-4 h-4" />
-                            Korisno
+                            {liked[review.id] ? "Korisno ✓" : "Korisno"}
                           </button>
-                          <button className="text-sm text-gray-400 hover:text-red-500 flex items-center gap-1">
+                          <button
+                            onClick={() => setReported(prev => ({ ...prev, [review.id]: true }))}
+                            className={`text-sm flex items-center gap-1 transition-colors ${reported[review.id] ? "text-red-500 font-medium" : "text-gray-400 hover:text-red-500"}`}
+                            disabled={reported[review.id]}
+                          >
                             <Flag className="w-4 h-4" />
-                            Prijavi
+                            {reported[review.id] ? "Prijavljeno" : "Prijavi"}
                           </button>
                         </>
                       )}

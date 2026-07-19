@@ -1,5 +1,7 @@
-import { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   Check,
   Star,
@@ -25,12 +27,6 @@ import {
   Target,
   ChevronRight,
 } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Cjenik | Ocjeni.ba",
-  description:
-    "Odaberite plan koji odgovara vašim potrebama. Besplatni plan dostupan svim firmama.",
-};
 
 const plans = [
   {
@@ -331,11 +327,11 @@ export default function PricingPage() {
                 </p>
 
                 <Link
-                  href={plan.name === "Enterprise" ? "/kontakt" : "/tvrtke/prijava"}
-                  className={`block w-full text-center py-3 px-6 rounded-xl font-bold transition-all duration-200 ${plan.ctaStyle}`}
-                >
-                  {plan.cta}
-                </Link>
+                   href={plan.name === "Enterprise" ? "/kontakt" : "/tvrtke/prijava"}
+                   className={`block w-full text-center py-3 px-6 rounded-xl font-bold transition-all duration-200 ${plan.ctaStyle}`}
+                 >
+                   {plan.cta}
+                 </Link>
 
                 <div className="mt-6 space-y-3">
                   {plan.features.map((feature, idx) => (
@@ -421,8 +417,8 @@ export default function PricingPage() {
                 </thead>
                 <tbody>
                   {comparisonFeatures.map((group) => (
-                    <>
-                      <tr key={group.category}>
+                    <Fragment key={group.category}>
+                      <tr>
                         <td
                           colSpan={5}
                           className="py-3 px-6 bg-gray-50 font-bold text-gray-900 text-sm uppercase tracking-wider"
@@ -463,7 +459,7 @@ export default function PricingPage() {
                           )}
                         </tr>
                       ))}
-                    </>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>

@@ -52,22 +52,11 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="mailto:info@ocjeni.ba"
                 className="w-10 h-10 bg-white/10 hover:bg-emerald-500 rounded-lg flex items-center justify-center transition-colors"
+                title="Email"
               >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-emerald-500 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-emerald-500 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>

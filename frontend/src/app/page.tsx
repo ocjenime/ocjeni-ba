@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Search,
   Star,
@@ -42,66 +46,6 @@ const topCategories = [
 ];
 
 const featuredBusinesses = [
-  {
-    name: "Caffe Bar Kod Brace",
-    slug: "caffe-bar-kod-brace",
-    rating: 4.8,
-    reviews: 234,
-    category: "Kafići",
-    city: "Sarajevo",
-    verified: true,
-    badge: "top-rated",
-  },
-  {
-    name: "Auto Servis Mehmed",
-    slug: "auto-servis-mehmed",
-    rating: 4.6,
-    reviews: 156,
-    category: "Automehaničari",
-    city: "Tuzla",
-    verified: true,
-    badge: "verified",
-  },
-  {
-    name: "Restoran Stari Most",
-    slug: "restoran-stari-most",
-    rating: 4.9,
-    reviews: 312,
-    category: "Restorani",
-    city: "Mostar",
-    verified: true,
-    badge: "top-rated",
-  },
-  {
-    name: "Digital Solutions BiH",
-    slug: "digital-solutions-bih",
-    rating: 4.7,
-    reviews: 89,
-    category: "IT firme",
-    city: "Sarajevo",
-    verified: true,
-    badge: "active",
-  },
-  {
-    name: "Frizerski Salon Glamour",
-    slug: "frizerski-salon-glamour",
-    rating: 4.5,
-    reviews: 178,
-    category: "Frizerski saloni",
-    city: "Zenica",
-    verified: true,
-    badge: "verified",
-  },
-  {
-    name: "Graditelj d.o.o.",
-    slug: "graditelj-doo",
-    rating: 4.8,
-    reviews: 67,
-    category: "Građevinske firme",
-    city: "Bihać",
-    verified: true,
-    badge: "new",
-  },
   {
     name: "Arilux D.O.O.",
     slug: "arilux-doo",
@@ -174,6 +118,18 @@ function TrustScoreBadge({ rating }: { rating: number }) {
 }
 
 export default function HomePage() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/kategorije?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push("/kategorije");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
@@ -199,19 +155,21 @@ export default function HomePage() {
             </p>
 
             <div className="max-w-2xl mx-auto">
-              <div className="flex bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20">
+              <form onSubmit={handleSearch} className="flex bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20">
                 <div className="flex-1 flex items-center">
                   <Search className="w-5 h-5 text-gray-400 ml-5" />
                   <input
                     type="text"
                     placeholder="Tražite firmu, uslugu ili kategoriju..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-4 py-5 text-gray-900 text-lg outline-none placeholder:text-gray-400"
                   />
                 </div>
-                <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 font-semibold transition-colors">
+                <button type="submit" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 font-semibold transition-colors">
                   Pretraži
                 </button>
-              </div>
+              </form>
             </div>
 
             <div className="mt-6 flex flex-wrap justify-center gap-2">

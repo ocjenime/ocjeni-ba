@@ -2,22 +2,26 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export default function BusinessLoginPage() {
   const { loginBusiness } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     const success = loginBusiness(email, password);
     if (success) {
-      window.location.href = "/tvrtke/dashboard";
+      router.push("/tvrtke/dashboard");
     } else {
-      alert("Email ili lozinka nisu tačni. Pokušajte ponovo.");
+      setError("Email ili lozinka nisu tačni. Pokušajte ponovo.");
     }
   };
 
@@ -44,6 +48,11 @@ export default function BusinessLoginPage() {
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
+              {error && (
+                <div className="bg-red-50 text-red-600 text-sm rounded-lg px-4 py-3">
+                  {error}
+                </div>
+              )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email adresa

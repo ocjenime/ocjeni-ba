@@ -2,12 +2,24 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Menu, X, Search, User, ChevronDown } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { user, logout, isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/kategorije?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push("/kategorije");
+    }
+  };
 
   return (
     <header className="bg-white/95 backdrop-blur-lg border-b border-gray-100 sticky top-0 z-50">
@@ -57,7 +69,7 @@ export function Header() {
 
           {/* Desna strana */}
           <div className="hidden md:flex items-center gap-3">
-            <button className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all">
+            <button onClick={handleSearch} className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all">
               <Search className="w-5 h-5" />
             </button>
             {!isAuthenticated ? (

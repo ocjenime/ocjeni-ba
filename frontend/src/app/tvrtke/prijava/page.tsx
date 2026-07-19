@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Building2,
   Mail,
@@ -20,6 +21,7 @@ import { useAuth } from "@/lib/auth-context";
 
 export default function BusinessSignupPage() {
   const { registerBusiness } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -55,7 +57,7 @@ export default function BusinessSignupPage() {
         description: formData.description,
         password: formData.password,
       });
-      window.location.href = "/tvrtke/dashboard";
+      router.push("/tvrtke/dashboard");
     }
   };
 

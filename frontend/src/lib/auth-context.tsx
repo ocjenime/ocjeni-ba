@@ -41,13 +41,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [business, setBusiness] = useState<Business | null>(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("ocjeni_user");
-    const savedBusiness = localStorage.getItem("ocjeni_business");
-    if (savedUser) setUser(JSON.parse(savedUser));
-    if (savedBusiness) setBusiness(JSON.parse(savedBusiness));
+    try {
+      const savedUser = localStorage.getItem("ocjeni_user");
+      const savedBusiness = localStorage.getItem("ocjeni_business");
+      if (savedUser) setUser(JSON.parse(savedUser));
+      if (savedBusiness) setBusiness(JSON.parse(savedBusiness));
+    } catch {
+      // corrupted localStorage data
+    }
   }, []);
 
   const loginBusiness = (email: string, password: string): boolean => {
+    try {
     const businesses = JSON.parse(localStorage.getItem("ocjeni_businesses") || "[]");
     const found = businesses.find((b: Business & { password: string }) => b.ownerEmail === email && b.password === password);
     if (found) {
@@ -59,9 +64,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return true;
     }
     return false;
+    } catch { return false; }
   };
 
   const registerBusiness = (data: Omit<Business, "verified" | "rating" | "reviewCount"> & { password: string }) => {
+    try {
     const businesses = JSON.parse(localStorage.getItem("ocjeni_businesses") || "[]");
     const newBusiness = {
       ...data,
@@ -76,9 +83,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("ocjeni_business", JSON.stringify(businessData));
     setUser({ name: data.ownerName, email: data.ownerEmail, type: "business" });
     localStorage.setItem("ocjeni_user", JSON.stringify({ name: data.ownerName, email: data.ownerEmail, type: "business" }));
+    } catch { /* corrupted data */ }
   };
 
   const loginUser = (email: string, password: string): boolean => {
+    try {
     const users = JSON.parse(localStorage.getItem("ocjeni_users") || "[]");
     const found = users.find((u: User & { password: string }) => u.email === email && u.password === password);
     if (found) {
@@ -88,9 +97,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return true;
     }
     return false;
+    } catch { return false; }
   };
 
   const registerUser = (name: string, email: string, password: string) => {
+    try {
     const users = JSON.parse(localStorage.getItem("ocjeni_users") || "[]");
     const newUser = { name, email, password, type: "user" as const };
     users.push(newUser);
@@ -98,6 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { password: _, ...userData } = newUser;
     setUser(userData);
     localStorage.setItem("ocjeni_user", JSON.stringify(userData));
+    } catch { /* corrupted data */ }
   };
 
   const logout = () => {

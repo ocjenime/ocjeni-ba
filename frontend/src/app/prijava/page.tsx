@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export default function LoginPage() {
   const { loginUser } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +20,7 @@ export default function LoginPage() {
     setError("");
     const success = loginUser(email, password);
     if (success) {
-      window.location.href = "/";
+      router.push("/");
     } else {
       setError("Neispravna email adresa ili lozinka.");
     }
@@ -108,12 +110,9 @@ export default function LoginPage() {
                   />
                   <span className="text-sm text-gray-600">Zapamti me</span>
                 </label>
-                <Link
-                  href="/prijava"
-                  className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
-                >
+                <span className="text-sm text-gray-400 cursor-not-allowed">
                   Zaboravili lozinku?
-                </Link>
+                </span>
               </div>
             </div>
 
