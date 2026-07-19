@@ -41,7 +41,7 @@ const getCategoryBySlug = (slug: string) => {
         { name: "Turski restorani", slug: "turski-restorani", count: 28 },
         { name: "Italijanski restorani", slug: "italijanski-restorani", count: 45 },
         { name: "Ribačnice", slug: "ribacnice", count: 23 },
-        { name: "Slastičarne", slug: "slasticarne", count: 56 },
+        { name: "Poslastičarne", slug: "slasticarne", count: 56 },
         { name: "Barovi", slug: "barovi", count: 167 },
         { name: "Klubovi", slug: "klubovi", count: 89 },
         { name: "Pivnice", slug: "pivnice", count: 45 },
@@ -50,7 +50,7 @@ const getCategoryBySlug = (slug: string) => {
     trgovine: {
       name: "Trgovine",
       description:
-        "Pronađite supermarkete, tržne centre, specijalizirane trgovine i ostale trgovinske objekte.",
+        "Pronađite supermarkete, tržne centre, specijalizovane trgovine i ostale trgovinske objekte.",
       subcategories: [
         { name: "Supermarketi", slug: "supermarketi", count: 89 },
         { name: "Mega marketi", slug: "mega-marketi", count: 34 },
@@ -114,7 +114,7 @@ const getCategoryBySlug = (slug: string) => {
         { name: "Investicije", slug: "investicije", count: 23 },
         { name: "Geodetske usluge", slug: "geodetske-usluge", count: 34 },
         { name: "Arhitekti", slug: "arhitekti", count: 56 },
-        { name: "Dizajn interijera", slug: "dizajn-interijera", count: 45 },
+        { name: "Dizajn enterijera", slug: "dizajn-enterijera", count: 45 },
       ],
     },
     zdravlje: {
@@ -191,15 +191,15 @@ const getCategoryBySlug = (slug: string) => {
     tehnologija: {
       name: "Tehnologija",
       description:
-        "IT tvrtke, servisi, web razvoj, software i ostale tehnološke usluge.",
+        "IT firme, servisi, web razvoj, software i ostale tehnološke usluge.",
       subcategories: [
-        { name: "IT tvrtke", slug: "it-tvrtke", count: 89 },
+        { name: "IT firme", slug: "it-tvrtke", count: 89 },
         { name: "Web dizajn", slug: "web-dizajn-firme", count: 56 },
         { name: "Programiranje", slug: "programiranje-firme", count: 45 },
         { name: "Software", slug: "software", count: 34 },
         { name: "Servisi računara", slug: "servisi-racunara", count: 123 },
         { name: "Mrežna oprema", slug: "mrezna-oprema", count: 23 },
-        { name: "Sigurnosni sustavi", slug: "sigurnosni-sustavi", count: 34 },
+        { name: "Sigurnosni sistemi", slug: "sigurnosni-sistemi", count: 34 },
         { name: "Smart home", slug: "smart-home", count: 12 },
         { name: "Cloud usluge", slug: "cloud-usluge", count: 18 },
       ],
@@ -306,13 +306,13 @@ const getCategoryBySlug = (slug: string) => {
     "zastita-i-sigurnost": {
       name: "Zaštita i sigurnost",
       description:
-        "Zaštitarske tvrtke, alarmi, kamere i sigurnosni sustavi.",
+        "Zaštitarske firme, alarmi, kamere i sigurnosni sistemi.",
       subcategories: [
-        { name: "Zaštitarske tvrtke", slug: "zastitarske-tvrtke", count: 56 },
-        { name: "Alarmni sustavi", slug: "alarmni-sustavi2", count: 34 },
+        { name: "Zaštitarske firme", slug: "zastitarske-tvrtke", count: 56 },
+        { name: "Alarmni sistemi", slug: "alarmni-sistemi2", count: 34 },
         { name: "Video nadzor", slug: "video-nadzor", count: 45 },
         { name: "Kontrola pristupa", slug: "kontrola-pristupa", count: 23 },
-        { name: "Vatrodojavni sustavi", slug: "vatrodojavni-sustavi", count: 18 },
+        { name: "Vatrodojavni sistemi", slug: "vatrodojavni-sistemi", count: 18 },
         { name: "Čišćenje", slug: "ciscenje", count: 123 },
         { name: "Održavanje", slug: "odrzavanje", count: 89 },
         { name: "Vrtlarstvo", slug: "vrtlarstvo", count: 67 },
@@ -336,7 +336,7 @@ const getCategoryBySlug = (slug: string) => {
     },
     ostalo: {
       name: "Ostalo",
-      description: "Ostale usluge i tvrtke koje nisu kategorizirane.",
+      description: "Ostale usluge i firme koje nisu kategorisane.",
       subcategories: [
         { name: "Praonice rublja", slug: "praonice-rublja", count: 56 },
         { name: "Krojači", slug: "krojaci", count: 34 },
@@ -498,7 +498,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {sub.name}
                 </h3>
                 <p className="text-sm text-secondary-500">
-                  {sub.count} tvrtki
+                  {sub.count} firmi
                 </p>
               </div>
               <ChevronRight className="w-5 h-5 text-secondary-400 group-hover:text-primary-500 transition-colors" />
@@ -507,11 +507,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
-      {/* Najbolje rangirane tvrtke */}
+      {/* Najbolje rangirane firme */}
       <section className="bg-white py-12 border-t border-secondary-100">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-secondary-900 mb-6">
-            Najbolje rangirane tvrtke
+            Najbolje rangirane firme
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (

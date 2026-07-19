@@ -38,7 +38,7 @@ export function CategoryCard({
           )}
           {count !== undefined && (
             <p className="text-xs text-secondary-400 mt-2">
-              {count} tvrtki
+              {count} firmi
             </p>
           )}
         </div>

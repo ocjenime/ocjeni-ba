@@ -26,10 +26,10 @@ export default function BusinessLoginPage() {
             <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">
-            Prijava za tvrtke
+            Dobrodošli nazad!
           </h1>
           <p className="text-gray-500 mt-2">
-            Prijavite se na svoj poslovni račun
+            Upravljajte recenzijama, analitikom i vašim profilom
           </p>
         </div>
 
@@ -115,7 +115,7 @@ export default function BusinessLoginPage() {
                 href="/tvrtke/prijava"
                 className="text-emerald-600 hover:text-emerald-700 font-medium"
               >
-                Registirajte se besplatno
+                Registrujte se besplatno
               </Link>
             </p>
           </div>

@@ -95,11 +95,11 @@ const stats = [
 ];
 
 const badges = [
-  { name: "Verificirana tvrtka", icon: Shield, color: "emerald", earned: true },
+  { name: "Verificirana firma", icon: Shield, color: "emerald", earned: true },
   { name: "Top rated", icon: Crown, color: "amber", earned: true },
   { name: "Odgovara na recenzije", icon: MessageSquare, color: "blue", earned: true },
   { name: "Brza usluga", icon: Target, color: "purple", earned: false },
-  { name: "Omiljena tvrtka", icon: Award, color: "rose", earned: false },
+  { name: "Omiljena firma", icon: Award, color: "rose", earned: false },
 ];
 
 const quickActions = [
@@ -338,7 +338,7 @@ export default function BusinessDashboardPage() {
                       <div className="bg-gray-50 rounded-lg p-4 mb-4 border-l-4 border-emerald-500">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                           <Building2 className="w-4 h-4 text-emerald-500" />
-                          Odgovor tvrtke
+                          Odgovor firme
                         </div>
                         <p className="text-sm text-gray-600">
                           {review.response}
@@ -462,9 +462,9 @@ export default function BusinessDashboardPage() {
                   <div className="flex items-start gap-3">
                     <Shield className="w-5 h-5 text-emerald-400 mt-0.5" />
                     <div>
-                      <div className="font-semibold">Verificirana tvrtka</div>
+                      <div className="font-semibold">Verificirana firma</div>
                       <div className="text-sm text-gray-300">
-                        Potvrdite svoju tvrtku putem emaila ili telefona
+                        Potvrdite svoju firmu putem emaila ili telefona
                       </div>
                     </div>
                   </div>
@@ -510,7 +510,7 @@ export default function BusinessDashboardPage() {
                 Analitika
               </h3>
               <p className="text-gray-500">
-                Detaljna analitika biti će dostupna uskoro.
+                Detaljna analitika bit će dostupna uskoro.
               </p>
             </div>
           )}
@@ -523,7 +523,7 @@ export default function BusinessDashboardPage() {
                 Postavke
               </h3>
               <p className="text-gray-500">
-                Uređivanje profila tvrtke biti će dostupno uskoro.
+                Uređivanje profila firme bit će dostupno uskoro.
               </p>
             </div>
           )}

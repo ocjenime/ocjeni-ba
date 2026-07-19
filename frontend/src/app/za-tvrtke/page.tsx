@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Za tvrtke | Ocjeni.ba",
+  title: "Za firme | Ocjeni.ba",
   description:
     "Povećajte povjerenje kupaca, primajte recenzije i rastite s Ocjeni.ba platformom.",
 };
@@ -39,7 +39,7 @@ const features = [
     icon: BarChart3,
     title: "Napredna analitika",
     description:
-      "Detaljni izvještaji o ocjenama, sentimentu kupaca i usporedba s konkurentima. Donosite odluke na temelju podataka.",
+      "Detaljni izvještaji o ocjenama, sentimentu kupaca i uporedba s konkurentima. Donosite odluke na temelju podataka.",
   },
   {
     icon: Mail,
@@ -57,7 +57,7 @@ const features = [
     icon: Shield,
     title: "Verificirani bedž",
     description:
-      "Dobijte verificirani bedž koji potvrđuje autentičnost vaše tvrtke. Povećajte povjerenje kupaca za 73%.",
+      "Dobijte verificirani bedž koji potvrđuje autentičnost vaše firme. Povećajte povjerenje kupaca za 73%.",
   },
   {
     icon: TrendingUp,
@@ -70,9 +70,9 @@ const features = [
 const steps = [
   {
     number: "01",
-    title: "Prijavite tvrtku",
+    title: "Prijavite firmu",
     description:
-      "Registrirajte se besplatno i dodajte podatke o vašoj tvrtki. Provjera traje manje od 24 sata.",
+      "Registrujte se besplatno i dodajte podatke o vašoj firmi. Provjera traje manje od 24 sata.",
   },
   {
     number: "02",
@@ -116,7 +116,7 @@ export default function ForBusinessPage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-sm font-medium text-emerald-400 mb-6">
                 <Sparkles className="w-4 h-4" />
-                Za tvrtke koje žele rasti
+                Besplatno za sve firme
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
                 Vaša reputacija je
@@ -126,8 +126,7 @@ export default function ForBusinessPage() {
                 </span>
               </h1>
               <p className="text-lg text-gray-300 mb-8 max-w-lg">
-                Pridružite se 10,000+ tvrtki koje već koriste Ocjeni.ba za
-                izgradnju povjerenja, privlačenje kupaca i rast poslovanja.
+                10,000+ firmi iz cijele BiH već koristi Ocjeni.ba da dobiju više klijenata.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -275,7 +274,7 @@ export default function ForBusinessPage() {
               Jednostavno
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              Kako funkcionira?
+              Za 4 jednostavna koraka do više klijenata
             </h2>
             <p className="text-gray-500 mt-3 max-w-lg mx-auto">
               Započnite u 4 jednostavna koraka. Bez komplikacija, bez skrivenih
@@ -306,7 +305,7 @@ export default function ForBusinessPage() {
               Alati
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              Sve što vam treba na jednom mjestu
+              Alati koji vam donose nove kupce svaki dan
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -333,7 +332,7 @@ export default function ForBusinessPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">
-              Tvrtke koje nam vjeruju
+              Firme iz Sarajeva, Tuzle, Mostara... koje nam vjeruju
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
@@ -360,10 +359,10 @@ export default function ForBusinessPage() {
       <section className="py-16 bg-gradient-to-br from-emerald-500 to-teal-500">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Spremni za rast?
+            Vaši konkurenti su već ovdje. A vi?
           </h2>
           <p className="text-emerald-100 mb-8 text-lg max-w-xl mx-auto">
-            Pridružite se 10,000+ tvrtki koje već grade svoju reputaciju na
+            Pridružite se 10,000+ firmi koje već grade svoju reputaciju na
             Ocjeni.ba
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

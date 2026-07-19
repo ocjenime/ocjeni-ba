@@ -25,7 +25,7 @@ export function Header() {
               href="/tvrtke"
               className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
             >
-              Tvrtke
+              Firme
             </Link>
             <Link
               href="/kategorije"
@@ -43,7 +43,7 @@ export function Header() {
               href="/za-tvrtke"
               className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
             >
-              Za tvrtke
+              Za firme
             </Link>
             <Link
               href="/cjenik"
@@ -93,7 +93,7 @@ export function Header() {
                 href="/tvrtke"
                 className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
               >
-                Tvrtke
+                Firme
               </Link>
               <Link
                 href="/kategorije"
@@ -111,7 +111,7 @@ export function Header() {
                 href="/za-tvrtke"
                 className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
               >
-                Za tvrtke
+                Za firme
               </Link>
               <Link
                 href="/cjenik"

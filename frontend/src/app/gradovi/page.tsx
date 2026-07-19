@@ -19,7 +19,7 @@ export default function CitiesPage() {
             Gradovi Federacije BiH
           </h1>
           <p className="text-gray-500 mt-2">
-            Istražite tvrtke u {FBIH_CITIES.length} gradova i općina
+            Istražite firme u {FBIH_CITIES.length} gradova i općina
           </p>
         </div>
       </div>
@@ -63,13 +63,13 @@ export default function CitiesPage() {
             Ne vidite svoj grad?
           </h2>
           <p className="text-gray-500 mb-6">
-            Prijavite tvrtku i dodajte je na Ocjeni.ba
+            Prijavite firmu i dodajte je na Ocjeni.ba
           </p>
           <Link
             href="/tvrtke/prijava"
             className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
           >
-            Dodajte tvrtku
+            Dodajte firmu
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

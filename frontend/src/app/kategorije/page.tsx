@@ -31,7 +31,7 @@ const categories = [
   {
     name: "Trgovine",
     slug: "trgovine",
-    description: "Supermarketi, tržni centri, specijalizirane trgovine",
+    description: "Supermarketi, tržni centri, specijalizovane trgovine",
     count: 312,
     subcategories: [
       { name: "Supermarketi", slug: "supermarketi", count: 89 },
@@ -78,7 +78,7 @@ const categories = [
     subcategories: [
       { name: "Agencije za nekretnine", slug: "agencije-za-nekretnine", count: 112 },
       { name: "Arhitekti", slug: "arhitekti", count: 56 },
-      { name: "Dizajn interijera", slug: "dizajn-interijera", count: 45 },
+      { name: "Dizajn enterijera", slug: "dizajn-enterijera", count: 45 },
     ],
   },
   {
@@ -132,10 +132,10 @@ const categories = [
   {
     name: "Tehnologija",
     slug: "tehnologija",
-    description: "IT tvrtke, servisi, web razvoj, software",
+    description: "IT firme, servisi, web razvoj, software",
     count: 89,
     subcategories: [
-      { name: "IT tvrtke", slug: "it-tvrtke", count: 89 },
+      { name: "IT firme", slug: "it-tvrtke", count: 89 },
       { name: "Web dizajn", slug: "web-dizajn", count: 56 },
       { name: "Servisi računara", slug: "servisi-racunara", count: 123 },
     ],
@@ -199,10 +199,10 @@ const categories = [
   {
     name: "Zaštita i sigurnost",
     slug: "zastita-i-sigurnost",
-    description: "Zaštitarske tvrtke, alarmi, kamere",
+    description: "Zaštitarske firme, alarmi, kamere",
     count: 34,
     subcategories: [
-      { name: "Zaštitarske tvrtke", slug: "zastitarske-tvrtke", count: 56 },
+      { name: "Zaštitarske firme", slug: "zastitarske-tvrtke", count: 56 },
       { name: "Čišćenje", slug: "ciscenje", count: 123 },
       { name: "Vrtlarstvo", slug: "vrtlarstvo", count: 67 },
     ],
@@ -220,7 +220,7 @@ const categories = [
   {
     name: "Ostalo",
     slug: "ostalo",
-    description: "Ostale usluge i tvrtke",
+    description: "Ostale usluge i firme",
     count: 56,
     subcategories: [
       { name: "Praonice rublja", slug: "praonice-rublja", count: 56 },
@@ -233,7 +233,7 @@ const categories = [
 export const metadata: Metadata = {
   title: "Kategorije | Ocjeni.ba",
   description:
-    "Istražite sve kategorije tvrtki u Federaciji Bosne i Hercegovine.",
+    "Istražite sve kategorije firmi u Federaciji Bosne i Hercegovine.",
 };
 
 export default function CategoriesPage() {
@@ -243,11 +243,11 @@ export default function CategoriesPage() {
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 py-10">
           <h1 className="text-3xl font-bold text-gray-900">
-            Kategorije tvrtki
+            Kategorije firmi
           </h1>
           <p className="text-gray-500 mt-2">
             Istražite {categories.length} kategorija i pronađite najbolje
-            tvrtke u Federaciji BiH
+            firme u Federaciji BiH
           </p>
         </div>
       </div>
@@ -303,7 +303,7 @@ export default function CategoriesPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-gray-400 hidden sm:block">
-                    {cat.count} tvrtki
+                    {cat.count} firmi
                   </span>
                   <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 transition-colors" />
                 </div>
@@ -364,7 +364,7 @@ export default function CategoriesPage() {
       <div className="py-12">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-3">
-            Vaša tvrtka nije na listi?
+            Vaša firma nije na listi?
           </h2>
           <p className="text-gray-500 mb-6">
             Prijavite se besplatno i počnite primati recenzije odmah.
@@ -373,7 +373,7 @@ export default function CategoriesPage() {
             href="/tvrtke/prijava"
             className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
           >
-            Dodajte tvrtku besplatno
+            Dodajte firmu besplatno
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

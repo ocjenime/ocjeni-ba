@@ -58,10 +58,10 @@ export default function BusinessSignupPage() {
             <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">
-            Prijavite svoju tvrtku
+            Dodajte svoju firmu na Ocjeni.ba
           </h1>
           <p className="text-gray-500 mt-2">
-            Besplatno se registrirajte i počnite primati recenzije
+            Besplatno. Bez kartice. Počnite primati recenzije danas.
           </p>
         </div>
 
@@ -204,13 +204,13 @@ export default function BusinessSignupPage() {
             ) : (
               <>
                 <h2 className="text-lg font-bold text-gray-900 mb-6">
-                  Podaci o tvrtki
+                  Podaci o firmi
                 </h2>
 
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Naziv tvrtke *
+                      Naziv firme *
                     </label>
                     <div className="relative">
                       <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -225,7 +225,7 @@ export default function BusinessSignupPage() {
                           })
                         }
                         className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
-                        placeholder="Naziv vaše tvrtke"
+                        placeholder="Naziv vaše firme"
                       />
                     </div>
                   </div>
@@ -321,7 +321,7 @@ export default function BusinessSignupPage() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Opis tvrtke
+                      Opis firme
                     </label>
                     <textarea
                       value={formData.description}
@@ -333,7 +333,7 @@ export default function BusinessSignupPage() {
                       }
                       rows={3}
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 resize-none"
-                      placeholder="Kratki opis vaše tvrtke..."
+                      placeholder="Kratki opis vaše firme..."
                     />
                   </div>
                 </div>
@@ -350,7 +350,7 @@ export default function BusinessSignupPage() {
                     type="submit"
                     className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
                   >
-                    Registiraj tvrtku
+                    Registruj firmu
                     <CheckCircle className="w-5 h-5" />
                   </button>
                 </div>

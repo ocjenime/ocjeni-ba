@@ -29,13 +29,13 @@ import {
 export const metadata: Metadata = {
   title: "Cjenik | Ocjeni.ba",
   description:
-    "Odaberite plan koji odgovara vašim potrebama. Besplatni plan dostupan svim tvrtkama.",
+    "Odaberite plan koji odgovara vašim potrebama. Besplatni plan dostupan svim firmama.",
 };
 
 const plans = [
   {
     name: "Free",
-    tagline: "Započnite besplatno",
+    tagline: "Počnite besplatno — odmah",
     price: "0",
     currency: "KM",
     period: "/mjesečno",
@@ -44,7 +44,7 @@ const plans = [
     popular: false,
     features: [
       { text: "1 lokacija", included: true },
-      { text: "Osnovni profil tvrtke", included: true },
+      { text: "Osnovni profil firme", included: true },
       { text: "Odgovori na recenzije", included: true },
       { text: "50 pozivnica mjesečno", included: true },
       { text: "1 widget za web", included: true },
@@ -56,21 +56,21 @@ const plans = [
       { text: "White-label widgeti", included: false },
       { text: "Dedikirani account manager", included: false },
     ],
-    cta: "Započnite besplatno",
+    cta: "Počnite besplatno — odmah",
     ctaStyle: "border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50",
   },
   {
     name: "Pro",
-    tagline: "Najpopularniji izbor",
+    tagline: "Najpopularniji — preporučujemo ga",
     price: "79",
     currency: "KM",
     period: "~40€/mjesečno",
-    description: "Za tvrtke koje žele rasti",
+    description: "Za firme koje žele rasti",
     icon: Zap,
     popular: true,
     features: [
       { text: "3 lokacije", included: true },
-      { text: "Napredni profil tvrtke", included: true },
+      { text: "Napredni profil firme", included: true },
       { text: "Sve iz Free plana", included: true },
       { text: "300 pozivnica mjesečno", included: true },
       { text: "5 widgeta za web", included: true },
@@ -83,21 +83,21 @@ const plans = [
       { text: "White-label widgeti", included: false },
       { text: "Dedikirani account manager", included: false },
     ],
-    cta: "Odaberite Pro",
+    cta: "Počnite s Pro planom",
     ctaStyle: "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25",
   },
   {
     name: "Business",
-    tagline: "Za ozbiljne tvrtke",
+    tagline: "Za ozbiljne firme",
     price: "199",
     currency: "KM",
     period: "~100€/mjesečno",
-    description: "Za tvrtke koje dominiraju tržištem",
+    description: "Za firme koje dominiraju tržištem",
     icon: Crown,
     popular: false,
     features: [
       { text: "10 lokacija", included: true },
-      { text: "Premium profil tvrtke", included: true },
+      { text: "Premium profil firme", included: true },
       { text: "Sve iz Pro plana", included: true },
       { text: "1000 pozivnica mjesečno", included: true },
       { text: "Neograničeni widgeti", included: true },
@@ -109,7 +109,7 @@ const plans = [
       { text: "Konkurentska analiza", included: true },
       { text: "Custom integracije", included: true },
     ],
-    cta: "Odaberite Business",
+    cta: "Ozbiljne firme biraju Business",
     ctaStyle: "bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-gray-800 hover:to-gray-700 shadow-lg shadow-gray-900/25",
   },
   {
@@ -206,7 +206,7 @@ const testimonials = [
     name: "Dragan P.",
     company: "Digital Solutions BiH",
     role: "CEO",
-    content: "Kao IT tvrtka, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
+    content: "Kao IT firma, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
     rating: 5,
     plan: "Pro",
   },
@@ -222,16 +222,16 @@ const faqs = [
     answer: "Ne, svi planovi su mjesečni i možete ih otkazati u bilo kojem trenutku bez penala.",
   },
   {
-    question: "Što se događa s podacima ako otkažem plan?",
+    question: "Šta se događa s podacima ako otkažem plan?",
     answer: "Vaši podaci ostaju sigurni 30 dana nakon otkazivanja. Možete ih exportirati ili ponovo aktivirati račun.",
   },
   {
     question: "Da li nudite popuste za godišnje plaćanje?",
-    answer: "Da, za godišnje plaćanje dobivate 2 mjeseca besplatno (20% popusta). Kontaktirajte nas za više informacija.",
+    answer: "Da, za godišnje plaćanje dobijete 2 mjeseca besplatno (20% popusta). Kontaktirajte nas za više informacija.",
   },
   {
-    question: "Kako funkcionira verificirani bedž?",
-    answer: "Verificirani bedž dobivate nakon što potvrdite svoju tvrtku putem emaila, telefona ili poslovnih dokumenata. To povećava povjerenje kupaca.",
+    question: "Kako funkcioniše verificirani bedž?",
+    answer: "Verificirani bedž dobijete nakon što potvrdite svoju firmu putem emaila, telefona ili poslovnih dokumenata. To povećava povjerenje kupaca.",
   },
   {
     question: "Mogu li koristiti API u Pro planu?",
@@ -262,7 +262,7 @@ export default function PricingPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              Započnite besplatno. Nadogradite kada ste spremni. Bez ugovorne obveze.
+              Svi planovi su mjesečni. Otkažite kad god hoćete. Bez skrivenih troškova.
             </p>
           </div>
         </div>
@@ -367,7 +367,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-3xl font-extrabold text-gray-900">10,000+</div>
-              <div className="text-sm text-gray-500 mt-1">Zadovoljnih tvrtki</div>
+              <div className="text-sm text-gray-500 mt-1">Zadovoljnih firmi</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-extrabold text-gray-900">500,000+</div>
@@ -393,7 +393,7 @@ export default function PricingPage() {
               Usporedite planove
             </h2>
             <p className="text-gray-500 mt-2">
-              Detaljna usporedba svih funkcionalnosti
+              Uporedite planove — šta dobijate za svoj novac
             </p>
           </div>
 
@@ -480,7 +480,7 @@ export default function PricingPage() {
               Značke i bedževi
             </h2>
             <p className="text-gray-500 mt-2">
-              Povećajte povjerenje kupaca s našim sustavom znački
+              Povećajte povjerenje kupaca s našim sistemom znački
             </p>
           </div>
 
@@ -490,10 +490,10 @@ export default function PricingPage() {
                 <Shield className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Verificirana tvrtka
+                Verificirana firma
               </h3>
               <p className="text-gray-500 text-sm">
-                Potvrda autentičnosti vaše tvrtke. Povećava povjerenje kupaca za
+                Potvrda autentičnosti vaše firme. Povećava povjerenje kupaca za
                 73%.
               </p>
             </div>
@@ -506,7 +506,7 @@ export default function PricingPage() {
                 Top rated
               </h3>
               <p className="text-gray-500 text-sm">
-                Za tvrtke s ocjenom 4.5+ i minimalno 20 recenzija. Istaknite se
+                Za firme s ocjenom 4.5+ i minimalno 20 recenzija. Istaknite se
                 iznad konkurencije.
               </p>
             </div>
@@ -534,7 +534,7 @@ export default function PricingPage() {
                 Brza usluga
               </h3>
               <p className="text-gray-500 text-sm">
-                Za tvrtke koje brzo odgovaraju na upite i recenzije.
+                Za firme koje brzo odgovaraju na upite i recenzije.
                 Prosječno vrijeme odgovora manje od 24 sata.
               </p>
             </div>
@@ -544,10 +544,10 @@ export default function PricingPage() {
                 <Heart className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Omiljena tvrtka
+                Omiljena firma
               </h3>
               <p className="text-gray-500 text-sm">
-                Za tvrtke koje su najčešće spremile u favorite od strane
+                Za firme koje su najčešće spremile u favorite od strane
                 kupaca. Znak lojalnosti.
               </p>
             </div>
@@ -560,7 +560,7 @@ export default function PricingPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">
-              Što kažu naši korisnici
+              Šta kažu naši korisnici
             </h2>
             <p className="text-gray-500 mt-2">
               Tvrtke koje već koriste Ocjeni.ba
@@ -637,10 +637,10 @@ export default function PricingPage() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Spremni za početak?
+                Spremni da vaša firma postane vidljiva?
               </h2>
               <p className="text-emerald-100 mb-8 text-lg max-w-xl mx-auto">
-                Pridružite se 10,000+ tvrtki koje već koriste Ocjeni.ba za
+                Pridružite se 10,000+ firmi koje već koriste Ocjeni.ba za
                 poboljšanje svog poslovanja.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

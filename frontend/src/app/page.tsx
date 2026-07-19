@@ -77,7 +77,7 @@ const featuredBusinesses = [
     slug: "digital-solutions-bih",
     rating: 4.7,
     reviews: 89,
-    category: "IT tvrtke",
+    category: "IT firme",
     city: "Sarajevo",
     verified: true,
     badge: "active",
@@ -105,7 +105,7 @@ const featuredBusinesses = [
 ];
 
 const stats = [
-  { value: "10,000+", label: "Tvrtki" },
+  { value: "10,000+", label: "Firmi" },
   { value: "500,000+", label: "Recenzija" },
   { value: "50+", label: "Gradova" },
   { value: "4.8", label: "Prosjek" },
@@ -123,14 +123,14 @@ const testimonials = [
     name: "Amira S.",
     company: "Auto Servis Mehmed",
     role: "Menadžerica",
-    content: "Platforma nam je pomogla da shvatimo što kupci zaista misle o nama. Sada znamo gdje se poboljšati.",
+    content: "Platforma nam je pomogla da shvatimo šta kupci zaista misle o nama. Sada znamo gdje se poboljšati.",
     rating: 5,
   },
   {
     name: "Dragan P.",
     company: "Digital Solutions BiH",
     role: "CEO",
-    content: "Kao IT tvrtka, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
+    content: "Kao IT firma, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
     rating: 5,
   },
 ];
@@ -175,8 +175,7 @@ export default function HomePage() {
               <span className="text-emerald-200">najbolji vodič</span>
             </h1>
             <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
-              Čitajte provjerene recenzije stvarnih kupaca. Ocjenjujte tvrtke.
-              Donosite pametne odluke.
+              Hiljade provjerenih recenzija od stvarnih građana BiH. Vaša odluka zaslužuje prave informacije.
             </p>
 
             <div className="max-w-2xl mx-auto">
@@ -185,7 +184,7 @@ export default function HomePage() {
                   <Search className="w-5 h-5 text-gray-400 ml-5" />
                   <input
                     type="text"
-                    placeholder="Tražite tvrtku, uslugu ili kategoriju..."
+                    placeholder="Tražite firmu, uslugu ili kategoriju..."
                     className="w-full px-4 py-5 text-gray-900 text-lg outline-none placeholder:text-gray-400"
                   />
                 </div>
@@ -249,7 +248,7 @@ export default function HomePage() {
                 Pretražite
               </h3>
               <p className="text-gray-500">
-                Pronađite tvrtku po imenu, kategoriji ili lokaciji. Sve na
+                Pronađite firmu po imenu, kategoriji ili lokaciji. Sve na
                 jednom mjestu.
               </p>
             </div>
@@ -318,7 +317,7 @@ export default function HomePage() {
                   {cat.name}
                 </div>
                 <div className="text-xs text-gray-400 mt-0.5">
-                  {cat.count} tvrtki
+                  {cat.count} firmi
                 </div>
               </Link>
             ))}
@@ -335,14 +334,14 @@ export default function HomePage() {
                 Top ocjene
               </span>
               <h2 className="text-2xl font-bold text-gray-900 mt-1">
-                Najbolje ocijenjene tvrtke
+                Najbolje ocijenjene firme u BiH
               </h2>
             </div>
             <Link
               href="/tvrtke"
               className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1"
             >
-              Sve tvrtke <ArrowRight className="w-4 h-4" />
+              Sve firme <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -406,18 +405,17 @@ export default function HomePage() {
                 <Building2 className="w-8 h-8 text-emerald-400" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Vodite svoju tvrtku na Ocjeni.ba
+                Vaša firma zaslužuje vidljivost
               </h2>
               <p className="text-gray-300 mb-8 max-w-xl mx-auto text-lg">
-                Besplatno se prijavite, primajte recenzije od kupaca i
-                odgovarajte na njih. Povećajte povjerenje i broj klijenata.
+                10,000+ firmi već koristi Ocjeni.ba. Vaša firma može biti sljedeća — besplatno.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/tvrtke/prijava"
                   className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg"
                 >
-                  Prijavite tvrtku besplatno
+                  Prijavite firmu besplatno
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
@@ -454,7 +452,7 @@ export default function HomePage() {
               Svjedočanstva
             </span>
             <h2 className="text-3xl font-bold text-gray-900 mt-2">
-              Što kažu naši korisnici
+              Šta kažu firme koje već rastu s nama
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -496,7 +494,7 @@ export default function HomePage() {
               Povjerenje
             </span>
             <h2 className="text-3xl font-bold text-gray-900 mt-2">
-              Zašto Ocjeni.ba?
+              Zašto 10,000+ firmi bira Ocjeni.ba?
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -517,10 +515,10 @@ export default function HomePage() {
                 <Zap className="w-6 h-6 text-emerald-600" />
               </div>
               <h3 className="font-bold text-gray-900 mb-1.5">
-                Bez lažnih ocjena
+                Zaštićeni od lažnih recenzija
               </h3>
               <p className="text-sm text-gray-500">
-                Napredni sustav otkriva i sprječava manipulacije ocjenama
+                Napredni sistem otkriva i sprječava manipulacije ocjenama
               </p>
             </div>
             <div className="text-center p-6">
@@ -528,7 +526,7 @@ export default function HomePage() {
                 <Globe className="w-6 h-6 text-emerald-600" />
               </div>
               <h3 className="font-bold text-gray-900 mb-1.5">
-                Federacija BiH
+                Pokrivenost cijelom FBiH
               </h3>
               <p className="text-sm text-gray-500">
                 Platforma pokriva sve gradove i općine Federacije Bosne i
@@ -540,10 +538,10 @@ export default function HomePage() {
                 <TrendingUp className="w-6 h-6 text-emerald-600" />
               </div>
               <h3 className="font-bold text-gray-900 mb-1.5">
-                Rast za tvrtke
+                Rast za firme
               </h3>
               <p className="text-sm text-gray-500">
-                Tvrtke s aktivnim recenzijama privlače 3x više novih kupaca
+                Firme s aktivnim recenzijama privlače 3x više novih kupaca
               </p>
             </div>
           </div>

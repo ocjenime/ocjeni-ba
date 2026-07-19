@@ -48,8 +48,7 @@ export function Footer() {
               <span className="text-xl font-bold">ocjeni.ba</span>
             </Link>
             <p className="text-gray-400 mb-4 max-w-sm">
-              Najpouzdaniji izvor recenzija u Bosni i Hercegovini. Čitajte,
-              pišite i dijelite recenzije.
+              Platforma broj 1 za recenzije u BiH. Hiljade provjerenih ocjena firmi širom zemlje.
             </p>
             <div className="flex gap-3">
               <a
@@ -82,7 +81,7 @@ export function Footer() {
                   href="/tvrtke"
                   className="text-gray-400 hover:text-emerald-400 transition-colors text-sm"
                 >
-                  Sve tvrtke
+                  Sve firme
                 </Link>
               </li>
               <li>
@@ -114,7 +113,7 @@ export function Footer() {
 
           {/* Za tvrtke */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Za tvrtke</h3>
+            <h3 className="font-semibold mb-4 text-white">Za firme</h3>
             <ul className="space-y-2.5">
               <li>
                 <Link
