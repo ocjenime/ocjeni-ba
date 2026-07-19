@@ -1,7 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Search, MapPin, Star, ChevronRight, Building2 } from "lucide-react";
-import { FBIH_CITIES } from "@/lib/constants";
+import {
+  Search,
+  MapPin,
+  Star,
+  Filter,
+  ChevronRight,
+  Building2,
+} from "lucide-react";
 
 interface CategoryPageProps {
   params: {
@@ -9,6 +15,7 @@ interface CategoryPageProps {
   };
 }
 
+// Ovdje bi se podaci dohvatili iz baze podataka
 const getCategoryBySlug = (slug: string) => {
   const categories: Record<
     string,
@@ -389,17 +396,17 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-midnight-950 flex items-center justify-center">
+      <div className="min-h-screen bg-secondary-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-black text-white mb-4">
+          <h1 className="text-4xl font-bold text-secondary-900 mb-4">
             Kategorija nije pronađena
           </h1>
-          <p className="text-midnight-400 mb-8">
+          <p className="text-secondary-600 mb-8">
             Tražena kategorija ne postoji ili je premještena.
           </p>
           <Link
             href="/kategorije"
-            className="inline-flex items-center gap-2 bg-amber-500 text-midnight-950 px-6 py-3 rounded-xl font-bold hover:bg-amber-400 transition-colors"
+            className="inline-flex items-center gap-2 bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors"
           >
             Pogledajte sve kategorije
           </Link>
@@ -409,123 +416,127 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-midnight-950">
+    <div className="min-h-screen bg-secondary-50">
       {/* Breadcrumb */}
-      <div className="py-4">
-        <div className="max-w-5xl mx-auto px-4">
-          <nav className="flex items-center gap-2 text-sm text-midnight-500">
-            <Link href="/" className="hover:text-amber-400 transition-colors">
+      <div className="bg-white border-b border-secondary-100">
+        <div className="container mx-auto px-4 py-3">
+          <nav className="flex items-center gap-2 text-sm text-secondary-600">
+            <Link href="/" className="hover:text-primary-500 transition-colors">
               Početna
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link
               href="/kategorije"
-              className="hover:text-amber-400 transition-colors"
+              className="hover:text-primary-500 transition-colors"
             >
               Kategorije
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-amber-400 font-medium">
+            <span className="text-secondary-900 font-medium">
               {category.name}
             </span>
           </nav>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="py-16 bg-midnight-900/30 border-b border-midnight-800/30">
-        <div className="max-w-5xl mx-auto px-4">
-          <h1 className="text-3xl font-black text-white">
+      {/* Hero sekcija */}
+      <section className="bg-gradient-to-r from-secondary-900 to-secondary-800 text-white py-12">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
             {category.name}
           </h1>
-          <p className="text-midnight-300 mt-3 max-w-2xl">
+          <p className="text-lg text-secondary-200 max-w-2xl">
             {category.description}
           </p>
         </div>
       </section>
 
-      {/* Search bar */}
-      <div className="max-w-5xl mx-auto px-4 -mt-6 mb-8">
-        <div className="bg-midnight-900/50 border border-midnight-800/50 rounded-2xl p-4">
-          <div className="flex flex-col md:flex-row gap-3">
-            <div className="flex-1 flex items-center gap-3 bg-midnight-950 border border-midnight-800/50 rounded-xl px-4">
-              <Search className="w-4 h-4 text-midnight-500" />
+      {/* Pretraga i filteri */}
+      <section className="container mx-auto px-4 -mt-6">
+        <div className="bg-white rounded-xl shadow-lg p-4 md:p-6">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary-400" />
               <input
                 type="text"
                 placeholder={`Pretraži ${category.name.toLowerCase()}...`}
-                className="flex-1 bg-transparent px-2 py-3 text-sm text-white placeholder:text-midnight-500 outline-none"
+                className="w-full pl-10 pr-4 py-3 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
-            <select className="bg-midnight-950 border border-midnight-800/50 rounded-xl px-4 py-3 text-sm text-midnight-300 outline-none appearance-none cursor-pointer">
-              <option value="">Svi gradovi</option>
-              {FBIH_CITIES.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
+            <div className="flex gap-2">
+              <select className="px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <option value="">Svi gradovi</option>
+                <option value="sarajevo">Sarajevo</option>
+                <option value="banja-luka">Banja Luka</option>
+                <option value="tuzla">Tuzla</option>
+                <option value="zenica">Zenica</option>
+                <option value="mostar">Mostar</option>
+                <option value="bijeljina">Bijeljina</option>
+              </select>
+              <button className="px-4 py-3 border border-secondary-200 rounded-lg hover:bg-secondary-50 transition-colors">
+                <Filter className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Subcategories */}
-      <section className="max-w-5xl mx-auto px-4 py-12">
-        <h2 className="text-xl font-bold text-white mb-6">
+      {/* Podkategorije */}
+      <section className="container mx-auto px-4 py-12">
+        <h2 className="text-2xl font-bold text-secondary-900 mb-6">
           Podkategorije
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {category.subcategories.map((sub) => (
             <Link
               key={sub.slug}
               href={`/kategorije/${params.slug}/${sub.slug}`}
-              className="bg-midnight-900/50 border border-midnight-800/50 hover:border-amber-500/30 rounded-xl p-5 transition-all group"
+              className="group flex items-center justify-between p-4 bg-white rounded-xl border border-secondary-100 hover:border-primary-500 hover:shadow-md transition-all"
             >
-              <div className="font-medium text-white group-hover:text-amber-400 transition-colors">
-                {sub.name}
+              <div>
+                <h3 className="font-medium text-secondary-900 group-hover:text-primary-600 transition-colors">
+                  {sub.name}
+                </h3>
+                <p className="text-sm text-secondary-500">
+                  {sub.count} tvrtki
+                </p>
               </div>
-              <div className="text-sm text-midnight-500 mt-1">
-                {sub.count} tvrtki
-              </div>
+              <ChevronRight className="w-5 h-5 text-secondary-400 group-hover:text-primary-500 transition-colors" />
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Top rated businesses */}
-      <section className="py-12 border-t border-midnight-800/30">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-white mb-6">
+      {/* Najbolje rangirane tvrtke */}
+      <section className="bg-white py-12 border-t border-secondary-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-secondary-900 mb-6">
             Najbolje rangirane tvrtke
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="bg-midnight-900/30 rounded-xl p-6"
+                className="p-6 bg-secondary-50 rounded-xl border border-secondary-100"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-midnight-800/60 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-7 h-7 text-amber-500" />
+                  <div className="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center">
+                    <Building2 className="w-8 h-8 text-primary-500" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-white">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-secondary-900">
                       Tvrtka {i}
                     </h3>
                     <div className="flex items-center gap-1 mt-1">
-                      {[...Array(5)].map((_, s) => (
-                        <Star
-                          key={s}
-                          className={`w-4 h-4 ${s < 5 - i + 1 ? "fill-amber-400 text-amber-400" : "text-midnight-700"}`}
-                        />
-                      ))}
-                      <span className="font-medium text-white ml-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="font-medium text-secondary-900">
                         {(5 - i * 0.3).toFixed(1)}
                       </span>
-                      <span className="text-sm text-midnight-500">
+                      <span className="text-sm text-secondary-500">
                         ({100 - i * 20} recenzija)
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 text-sm text-midnight-500 mt-2">
+                    <div className="flex items-center gap-1 text-sm text-secondary-500 mt-2">
                       <MapPin className="w-4 h-4" />
                       <span>Sarajevo</span>
                     </div>
@@ -538,24 +549,24 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-amber-500/5 border-t border-amber-500/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-black text-white mb-4">
+      <section className="bg-primary-500 py-12">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Tražite nešto drugo?
           </h2>
-          <p className="text-midnight-400 mb-6">
+          <p className="text-primary-100 mb-6">
             Pogledajte sve kategorije ili pretražite po gradu.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/kategorije"
-              className="inline-flex items-center justify-center gap-2 bg-amber-500 text-midnight-950 px-6 py-3 rounded-xl font-bold hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
             >
               Sve kategorije
             </Link>
             <Link
               href="/gradovi"
-              className="inline-flex items-center justify-center gap-2 bg-midnight-900/50 text-white px-6 py-3 rounded-xl font-bold hover:bg-midnight-800/50 border border-midnight-700/50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors border border-primary-400"
             >
               Prema gradovima
             </Link>

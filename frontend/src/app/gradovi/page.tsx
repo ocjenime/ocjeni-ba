@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight, Building2 } from "lucide-react";
 import { FBIH_CITIES, FBIH_CANTON_CITIES } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -11,61 +11,63 @@ export const metadata: Metadata = {
 
 export default function CitiesPage() {
   return (
-    <div className="min-h-screen bg-midnight-950">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="py-16">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <span className="badge">{FBIH_CITIES.length} gradova</span>
-          <h1 className="text-3xl font-black text-white mt-4">
+      <div className="bg-gray-50 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 py-10">
+          <h1 className="text-3xl font-bold text-gray-900">
             Gradovi Federacije BiH
           </h1>
-          <p className="text-midnight-400 mt-3 max-w-2xl mx-auto">
+          <p className="text-gray-500 mt-2">
             Istražite tvrtke u {FBIH_CITIES.length} gradova i općina
-            Federacije Bosne i Hercegovine
           </p>
         </div>
       </div>
 
-      {/* Canton sections */}
-      <div className="pb-16">
+      {/* Kantoni */}
+      <div className="max-w-5xl mx-auto px-4 py-10">
         {Object.entries(FBIH_CANTON_CITIES).map(([canton, cities]) => (
-          <div key={canton} className="py-8">
-            <div className="max-w-5xl mx-auto px-4">
-              <h2 className="flex items-center gap-2 text-xl font-bold text-white mb-4">
-                <MapPin className="w-5 h-5 text-amber-500" />
-                {canton}
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {cities.map((city) => (
-                  <Link
-                    key={city}
-                    href={`/gradovi/${city.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="bg-midnight-900/40 border border-midnight-800/40 hover:border-amber-500/30 rounded-xl p-4 transition-all group"
-                  >
-                    <div className="font-medium text-white group-hover:text-amber-400 transition-colors truncate">
+          <div key={canton} className="mb-10">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-emerald-500" />
+              {canton}
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {cities.map((city) => (
+                <Link
+                  key={city}
+                  href={`/gradovi/${city.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="group flex items-center gap-3 p-4 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all"
+                >
+                  <div className="w-10 h-10 bg-emerald-50 border border-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Building2 className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors truncate">
                       {city}
                     </div>
-                    <div className="text-xs text-midnight-500 mt-1">FBiH</div>
-                  </Link>
-                ))}
-              </div>
+                    <div className="text-xs text-gray-400">FBiH</div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-emerald-500 transition-colors" />
+                </Link>
+              ))}
             </div>
           </div>
         ))}
       </div>
 
       {/* CTA */}
-      <div className="py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-black text-white mb-3">
-            Vaš grad nije na listi?
+      <div className="bg-gray-50 py-12">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            Ne vidite svoj grad?
           </h2>
-          <p className="text-midnight-400 mb-6">
+          <p className="text-gray-500 mb-6">
             Prijavite tvrtku i dodajte je na Ocjeni.ba
           </p>
           <Link
             href="/tvrtke/prijava"
-            className="bg-amber-500 hover:bg-amber-400 text-midnight-950 px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
           >
             Dodajte tvrtku
             <ArrowRight className="w-5 h-5" />

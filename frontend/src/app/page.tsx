@@ -6,12 +6,23 @@ import {
   Building2,
   MessageSquare,
   ArrowRight,
-  CheckCircle,
-  Trophy,
+  MapPin,
   TrendingUp,
-  Globe,
+  CheckCircle,
   Zap,
-  ShieldCheck,
+  Globe,
+  Award,
+  Crown,
+  Heart,
+  Target,
+  Sparkles,
+  Users,
+  BarChart3,
+  Bell,
+  Lock,
+  Mail,
+  CheckCircle2,
+  ChevronRight,
 } from "lucide-react";
 import { FBIH_CITIES } from "@/lib/constants";
 
@@ -39,6 +50,7 @@ const featuredBusinesses = [
     category: "Kafići",
     city: "Sarajevo",
     verified: true,
+    badge: "top-rated",
   },
   {
     name: "Auto Servis Mehmed",
@@ -48,6 +60,7 @@ const featuredBusinesses = [
     category: "Automehaničari",
     city: "Tuzla",
     verified: true,
+    badge: "verified",
   },
   {
     name: "Restoran Stari Most",
@@ -57,6 +70,7 @@ const featuredBusinesses = [
     category: "Restorani",
     city: "Mostar",
     verified: true,
+    badge: "top-rated",
   },
   {
     name: "Digital Solutions BiH",
@@ -66,6 +80,7 @@ const featuredBusinesses = [
     category: "IT tvrtke",
     city: "Sarajevo",
     verified: true,
+    badge: "active",
   },
   {
     name: "Frizerski Salon Glamour",
@@ -75,6 +90,7 @@ const featuredBusinesses = [
     category: "Frizerski saloni",
     city: "Zenica",
     verified: true,
+    badge: "verified",
   },
   {
     name: "Graditelj d.o.o.",
@@ -84,6 +100,7 @@ const featuredBusinesses = [
     category: "Građevinske firme",
     city: "Bihać",
     verified: true,
+    badge: "new",
   },
 ];
 
@@ -99,31 +116,38 @@ const testimonials = [
     name: "Mirza K.",
     company: "Restoran Stari Most",
     role: "Vlasnik",
-    content:
-      "Otkad koristimo Ocjeni.ba, broj naših gostiju se povećao za 40%. Kupci nam dolaze jer vide naše odlične recenzije.",
+    content: "Otkad koristimo Ocjeni.ba, broj naših gostiju se povećao za 40%. Kupci nam dolaze jer vide naše odlične recenzije.",
     rating: 5,
   },
   {
     name: "Amira S.",
     company: "Auto Servis Mehmed",
     role: "Menadžerica",
-    content:
-      "Platforma nam je pomogla da shvatimo što kupci zaista misle o nama. Sada znamo gdje se poboljšati.",
+    content: "Platforma nam je pomogla da shvatimo što kupci zaista misle o nama. Sada znamo gdje se poboljšati.",
     rating: 5,
   },
   {
     name: "Dragan P.",
     company: "Digital Solutions BiH",
     role: "CEO",
-    content:
-      "Kao IT tvrtka, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
+    content: "Kao IT tvrtka, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
     rating: 5,
   },
 ];
 
 function TrustScoreBadge({ rating }: { rating: number }) {
+  const getColor = (r: number) => {
+    if (r >= 4.5) return "bg-emerald-500";
+    if (r >= 3.5) return "bg-emerald-400";
+    if (r >= 2.5) return "bg-amber-400";
+    if (r >= 1.5) return "bg-orange-400";
+    return "bg-red-400";
+  };
+
   return (
-    <span className="bg-amber-500 text-midnight-950 text-xs font-bold px-2.5 py-1 rounded-md">
+    <span
+      className={`${getColor(rating)} text-white text-xs font-bold px-2.5 py-1 rounded-md`}
+    >
       {rating.toFixed(1)}
     </span>
   );
@@ -131,41 +155,43 @@ function TrustScoreBadge({ rating }: { rating: number }) {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 1: HERO
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="min-h-[90vh] mesh-gradient flex items-center">
-        <div className="relative max-w-5xl mx-auto px-4 py-20 md:py-28 w-full">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 badge mb-8">
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-5xl mx-auto px-4 py-20 md:py-28">
+          <div className="text-center text-white">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
               <Shield className="w-4 h-4" />
               Platforma broj 1 za recenzije u BiH
             </div>
-
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.1]">
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-5 leading-tight">
               Vaše iskustvo je
               <br />
-              <span className="gradient-text-hero">najbolji vodič</span>
+              <span className="text-emerald-200">najbolji vodič</span>
             </h1>
-
-            <p className="text-lg md:text-xl text-midnight-300 max-w-2xl mx-auto mt-6 mb-10">
+            <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
               Čitajte provjerene recenzije stvarnih kupaca. Ocjenjujte tvrtke.
               Donosite pametne odluke.
             </p>
 
             <div className="max-w-2xl mx-auto">
-              <div className="bg-midnight-900/60 backdrop-blur-xl rounded-2xl border border-midnight-700/50 p-2">
-                <div className="flex gap-2">
+              <div className="flex bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20">
+                <div className="flex-1 flex items-center">
+                  <Search className="w-5 h-5 text-gray-400 ml-5" />
                   <input
                     type="text"
                     placeholder="Tražite tvrtku, uslugu ili kategoriju..."
-                    className="flex-1 bg-transparent text-white placeholder:text-midnight-500 px-4 py-3 outline-none"
+                    className="w-full px-4 py-5 text-gray-900 text-lg outline-none placeholder:text-gray-400"
                   />
-                  <button className="bg-amber-500 hover:bg-amber-400 text-midnight-950 font-bold px-8 py-3 rounded-xl transition-all hover:shadow-glow">
-                    Pretraži
-                  </button>
                 </div>
+                <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 font-semibold transition-colors">
+                  Pretraži
+                </button>
               </div>
             </div>
 
@@ -174,7 +200,7 @@ export default function HomePage() {
                 <Link
                   key={cat.slug}
                   href={`/kategorije/${cat.slug}`}
-                  className="text-sm text-midnight-400 bg-midnight-800/40 hover:bg-midnight-700/60 hover:text-white px-4 py-2 rounded-full border border-midnight-700/30 transition-all"
+                  className="text-sm text-white/80 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full transition-all"
                 >
                   {cat.emoji} {cat.name}
                 </Link>
@@ -184,131 +210,114 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 2: STATS BAR
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-12 border-y border-midnight-800/30">
+      {/* Stats Bar */}
+      <section className="py-8 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-black gradient-text">
+                <div className="text-2xl md:text-3xl font-extrabold text-gray-900">
                   {stat.value}
                 </div>
-                <div className="text-sm text-midnight-400 mt-1">
-                  {stat.label}
-                </div>
+                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 3: KAKO RADI (Bento Style)
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24">
+      {/* Kako radi */}
+      <section className="py-20">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="badge mb-3">Kako funkcioniše</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mt-3">
-              Jednostavno. Brzo. Pouzdano.
+          <div className="text-center mb-14">
+            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+              Jednostavno
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 mt-2">
+              Kako funkcioniše?
             </h2>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {/* Card 1 — large */}
-            <div className="col-span-2 row-span-1 bg-midnight-900/50 border border-midnight-800/50 rounded-2xl p-8">
-              <span className="text-6xl font-black text-amber-500/20">
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="relative">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
+                <Search className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
                 01
-              </span>
-              <Search className="w-8 h-8 text-amber-500 mt-4" />
-              <h3 className="text-xl font-bold text-white mt-4">
-                Pronađite tvrtku
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Pretražite
               </h3>
-              <p className="text-midnight-300 mt-2 text-lg">
-                Pretražite bazu tvrtki po imenu, kategoriji ili lokaciji. Sve na
-                jednom mjestu u Federaciji BiH.
+              <p className="text-gray-500">
+                Pronađite tvrtku po imenu, kategoriji ili lokaciji. Sve na
+                jednom mjestu.
               </p>
             </div>
-
-            {/* Card 2 */}
-            <div className="bg-midnight-900/50 border border-midnight-800/50 rounded-2xl p-8">
-              <span className="text-6xl font-black text-amber-500/20">
+            <div className="relative">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
+                <MessageSquare className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
                 02
-              </span>
-              <MessageSquare className="w-8 h-8 text-amber-500 mt-4" />
-              <h3 className="text-xl font-bold text-white mt-4">
-                Pročitajte iskustva
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Istražite
               </h3>
-              <p className="text-midnight-300 mt-2">
-                Provjerena iskustva stvarnih kupaca prije nego što donesete
-                odluku.
+              <p className="text-gray-500">
+                Pročitajte provjerena iskustva drugih kupaca prije nego što
+                donesete odluku.
               </p>
             </div>
-
-            {/* Card 3 */}
-            <div className="bg-midnight-900/50 border border-midnight-800/50 rounded-2xl p-8">
-              <span className="text-6xl font-black text-amber-500/20">
+            <div className="relative">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
+                <Star className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
                 03
-              </span>
-              <Star className="w-8 h-8 text-amber-500 mt-4" />
-              <h3 className="text-xl font-bold text-white mt-4">
-                Ocijenite
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Podijelite
               </h3>
-              <p className="text-midnight-300 mt-2">
-                Podijelite svoje iskustvo i pomognite drugim kupcima da izaberu
+              <p className="text-gray-500">
+                Ostavite svoju recenziju i pomognite drugim kupcima da izaberu
                 najbolje.
-              </p>
-            </div>
-
-            {/* Card 4 — amber highlight */}
-            <div className="col-span-2 bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-2xl p-8">
-              <Trophy className="w-8 h-8 text-amber-400" />
-              <h3 className="text-xl font-bold text-white mt-4">
-                Gradite reputaciju
-              </h3>
-              <p className="text-midnight-300 mt-2 text-lg">
-                Tvrtke s aktivnim profilom i odgovorima na recenzije privlače 3x
-                više novih kupaca. gradite povjerenje svakim danom.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 4: KATEGORIJE (Bento Grid)
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 section-dark">
+      {/* Kategorije */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <div className="badge mb-3">Istražite</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mt-1">
+              <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+                Istražite
+              </span>
+              <h2 className="text-2xl font-bold text-gray-900 mt-1">
                 Kategorije
               </h2>
             </div>
             <Link
               href="/kategorije"
-              className="text-amber-400 hover:text-amber-300 font-semibold text-sm flex items-center gap-1 transition-colors"
+              className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1"
             >
               Pogledaj sve <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {topCategories.slice(0, 12).map((cat) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {topCategories.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/kategorije/${cat.slug}`}
-                className="bg-midnight-900/50 hover:bg-midnight-800/60 border border-midnight-800/50 hover:border-amber-500/30 rounded-xl p-5 transition-all group"
+                className="group bg-white p-4 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-md transition-all duration-200"
               >
                 <span className="text-2xl">{cat.emoji}</span>
-                <div className="font-semibold text-white group-hover:text-amber-400 transition-colors mt-3">
+                <div className="font-semibold text-gray-900 mt-2 group-hover:text-emerald-600 transition-colors">
                   {cat.name}
                 </div>
-                <div className="text-xs text-midnight-500 mt-0.5">
+                <div className="text-xs text-gray-400 mt-0.5">
                   {cat.count} tvrtki
                 </div>
               </Link>
@@ -317,53 +326,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 5: TOP TVRTKE (Featured)
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24">
+      {/* Top tvrtke */}
+      <section className="py-16">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <div className="badge mb-3">Top ocjene</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mt-1">
+              <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+                Top ocjene
+              </span>
+              <h2 className="text-2xl font-bold text-gray-900 mt-1">
                 Najbolje ocijenjene tvrtke
               </h2>
             </div>
             <Link
               href="/tvrtke"
-              className="text-amber-400 hover:text-amber-300 font-semibold text-sm flex items-center gap-1 transition-colors"
+              className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1"
             >
               Sve tvrtke <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {featuredBusinesses.map((biz) => (
               <Link
                 key={biz.slug}
                 href={`/tvrtke/${biz.slug}`}
-                className="card p-6 group"
+                className="group bg-white p-5 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-200"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
-                    <Building2 className="text-amber-400" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Building2 className="w-7 h-7 text-emerald-500" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-white truncate group-hover:text-amber-400 transition-colors">
+                      <span className="font-bold text-gray-900 truncate group-hover:text-emerald-600 transition-colors">
                         {biz.name}
                       </span>
                       {biz.verified && (
-                        <CheckCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                       )}
                     </div>
-                    <div className="text-sm text-midnight-500 mt-0.5">
+                    <div className="text-sm text-gray-400 flex items-center gap-1 mt-0.5">
+                      <MapPin className="w-3 h-3" />
                       {biz.city} · {biz.category}
                     </div>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-3 mt-4 pt-4 border-t border-midnight-800/50">
+                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
                   <TrustScoreBadge rating={biz.rating} />
                   <div className="flex items-center gap-0.5">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -372,12 +380,12 @@ export default function HomePage() {
                         className={`w-3.5 h-3.5 ${
                           star <= Math.round(biz.rating)
                             ? "fill-amber-400 text-amber-400"
-                            : "fill-midnight-700 text-midnight-700"
+                            : "fill-gray-200 text-gray-200"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-midnight-400 font-medium">
+                  <span className="text-sm text-gray-500 font-medium">
                     {biz.reviews} recenzija
                   </span>
                 </div>
@@ -387,53 +395,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 6: CTA ZA TVRTKE
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 section-dark">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-midnight-800 via-midnight-900 to-midnight-950 border border-midnight-700/50 p-12 md:p-16 text-center">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-60 h-60 bg-amber-600/5 rounded-full blur-3xl" />
-
+      {/* Za tvrtke */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-10 md:p-14 text-center text-white overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl" />
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-500/10 rounded-2xl p-3">
-                <Building2 className="w-10 h-10 text-amber-400" />
+              <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Building2 className="w-8 h-8 text-emerald-400" />
               </div>
-
-              <h2 className="text-3xl md:text-4xl font-black text-white mt-6 mb-4">
-                Povećajte povjerenje kupaca
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Vodite svoju tvrtku na Ocjeni.ba
               </h2>
-              <p className="text-midnight-300 text-lg max-w-xl mx-auto mb-8">
+              <p className="text-gray-300 mb-8 max-w-xl mx-auto text-lg">
                 Besplatno se prijavite, primajte recenzije od kupaca i
-                odgovarajte na njih. gradite povjerenje i broj klijenata.
+                odgovarajte na njih. Povećajte povjerenje i broj klijenata.
               </p>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/tvrtke/prijava"
-                  className="btn-primary"
+                  className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg"
                 >
                   Prijavite tvrtku besplatno
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link href="/cjenik" className="btn-secondary">
+                <Link
+                  href="/cjenik"
+                  className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2 text-lg"
+                >
                   Pogledajte planove
                 </Link>
               </div>
-
-              <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-midnight-400">
+              <div className="flex items-center justify-center gap-6 mt-8 text-sm text-gray-400">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-amber-400" />
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
                   Bez troškova
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-amber-400" />
-                  Analitika u realnom vremenu
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  Odgovarajte na recenzije
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-amber-400" />
-                  Certifikat pouzdanosti
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  Analitika
                 </span>
               </div>
             </div>
@@ -441,22 +446,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 7: TESTIMONIALS
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24">
+      {/* Testimonials */}
+      <section className="py-16">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="badge mb-3">Svjedočanstva</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mt-3">
+          <div className="text-center mb-12">
+            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+              Svjedočanstva
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 mt-2">
               Što kažu naši korisnici
             </h2>
           </div>
-
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="card-glass p-8">
-                <div className="flex items-center gap-0.5 mb-6">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.name}
+                className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-center gap-0.5 mb-4">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
@@ -464,13 +471,15 @@ export default function HomePage() {
                     />
                   ))}
                 </div>
-                <p className="text-midnight-200 italic mb-6">
-                  &quot;{t.content}&quot;
+                <p className="text-gray-700 mb-6 italic text-sm">
+                  &quot;{testimonial.content}&quot;
                 </p>
                 <div>
-                  <div className="font-semibold text-white">{t.name}</div>
-                  <div className="text-sm text-midnight-400">
-                    {t.role}, {t.company}
+                  <div className="font-bold text-gray-900">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {testimonial.role}, {testimonial.company}
                   </div>
                 </div>
               </div>
@@ -479,59 +488,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 8: ZAŠTO OCVENI.BA
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 section-dark">
+      {/* Zašto mi */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="badge mb-3">Povjerenje</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mt-3">
+          <div className="text-center mb-14">
+            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+              Povjerenje
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 mt-2">
               Zašto Ocjeni.ba?
             </h2>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center p-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                <ShieldCheck className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="font-bold text-white mt-4">
+              <h3 className="font-bold text-gray-900 mb-1.5">
                 Provjerene recenzije
               </h3>
-              <p className="text-sm text-midnight-400 mt-1.5">
+              <p className="text-sm text-gray-500">
                 Svaka recenzija je verificirana i povezana s pravim kupovnim
                 iskustvom
               </p>
             </div>
-
             <div className="text-center p-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                <Zap className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="font-bold text-white mt-4">Bez lažnih ocjena</h3>
-              <p className="text-sm text-midnight-400 mt-1.5">
+              <h3 className="font-bold text-gray-900 mb-1.5">
+                Bez lažnih ocjena
+              </h3>
+              <p className="text-sm text-gray-500">
                 Napredni sustav otkriva i sprječava manipulacije ocjenama
               </p>
             </div>
-
             <div className="text-center p-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                <Globe className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="font-bold text-white mt-4">Federacija BiH</h3>
-              <p className="text-sm text-midnight-400 mt-1.5">
+              <h3 className="font-bold text-gray-900 mb-1.5">
+                Federacija BiH
+              </h3>
+              <p className="text-sm text-gray-500">
                 Platforma pokriva sve gradove i općine Federacije Bosne i
                 Hercegovine
               </p>
             </div>
-
             <div className="text-center p-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                <TrendingUp className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="font-bold text-white mt-4">Rast za tvrtke</h3>
-              <p className="text-sm text-midnight-400 mt-1.5">
+              <h3 className="font-bold text-gray-900 mb-1.5">
+                Rast za tvrtke
+              </h3>
+              <p className="text-sm text-gray-500">
                 Tvrtke s aktivnim recenzijama privlače 3x više novih kupaca
               </p>
             </div>

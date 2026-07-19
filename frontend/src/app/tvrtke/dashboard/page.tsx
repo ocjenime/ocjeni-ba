@@ -3,155 +3,116 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  Building2,
+  Star,
   MessageSquare,
-  BarChart3,
-  Award,
-  Settings,
+  TrendingUp,
+  Users,
   Bell,
+  Settings,
+  LogOut,
+  ChevronRight,
   MapPin,
   CheckCircle,
-  Star,
+  AlertCircle,
   Clock,
   ThumbsUp,
   Flag,
   Send,
-  LogOut,
-  Globe,
-  FileText,
-  Mail,
+  BarChart3,
+  Eye,
   Shield,
   Crown,
+  Award,
   Target,
-  ShieldCheck,
   Sparkles,
-  Construction,
-  Inbox,
+  CreditCard,
+  FileText,
+  Globe,
+  Mail,
 } from "lucide-react";
 
 const mockReviews = [
   {
     id: 1,
-    user: "Amar H.",
+    user: "Amir H.",
     rating: 5,
-    title: "Odlična kava i atmosfera!",
+    title: "Odlična usluga!",
     content:
-      "Bio sam jako zadovoljan uslugom. Profesionalan pristup i odlična kafa. Preporučujem svima!",
+      "Bio sam jako zadovoljan uslugom. Profesionalan pristup i brza usluga. Preporučujem svima!",
     date: "prije 2 dana",
-    response:
-      "Hvala vam puno! Veseli nas što vam se sviđa naša kava.",
-    status: "answered",
+    business: "Caffe Bar Kod Brace",
+    response: null,
+    status: "pending",
+    verified: true,
   },
   {
     id: 2,
     user: "Selma M.",
     rating: 4,
-    title: "Dobra usluga, malo duže čekanje",
+    title: "Dobar kafe, malo gužve",
     content:
-      "Usluga je bila dobra, ali smo malo duže čekali na kafu. Sveukupno pozitivno iskustvo.",
+      "Kafa je odlična, ali je bilo malo gužve oko podneva. Sveukupno pozitivno iskustvo.",
     date: "prije 5 dana",
-    response: null,
-    status: "pending",
+    business: "Caffe Bar Kod Brace",
+    response: "Hvala vam na posjeti! Trudimo se smanjiti gužve.",
+    status: "approved",
+    verified: true,
   },
   {
     id: 3,
-    user: "Ivan P.",
-    rating: 5,
-    title: "Najbolji kafić u Sarajevu!",
+    user: "Marko K.",
+    rating: 2,
+    title: "Dugo sam čekao",
     content:
-      "Redovito dolazim ovdje. Kafa je uvijek savršena, atmosfera ugodna. Toplo preporučujem!",
+      "Čekao sam 20 minuta za kafu. Osoblje je bilo nezainteresirano. Moraju poboljšati uslugu.",
     date: "prije 1 tjedan",
+    business: "Caffe Bar Kod Brace",
     response: null,
     status: "pending",
+    verified: false,
   },
   {
     id: 4,
-    user: "Lena K.",
-    rating: 3,
-    title: "Prosjek, ništa posebno",
+    user: "Jasna P.",
+    rating: 5,
+    title: "Najbolji kafe u gradu",
     content:
-      "Očekivala sam više na osnovu preporuka. Kafa je bila solidna, ali ništa posebno.",
+      "Redovito dolazim ovdje. Kafa je uvijek savršena, atmosfera ugodna. Toplo preporučujem!",
     date: "prije 2 tjedna",
-    response: null,
-    status: "pending",
+    business: "Caffe Bar Kod Brace",
+    response: "Hvala vam na vjernosti! Veselimo se vašem sljedećem dolasku.",
+    status: "approved",
+    verified: true,
   },
+];
+
+const stats = [
+  { label: "Ukupno recenzija", value: "234", change: "+12", icon: MessageSquare, color: "emerald" },
+  { label: "Prosječna ocjena", value: "4.8", change: "+0.1", icon: Star, color: "amber" },
+  { label: "Nepročitanih", value: "3", change: "", icon: Bell, color: "blue" },
+  { label: "Pogledi profila", value: "1,247", change: "+18%", icon: Eye, color: "purple" },
 ];
 
 const badges = [
-  {
-    name: "Verificirano",
-    description: "Tvrtka je potvrđena putem emaila ili telefona",
-    icon: ShieldCheck,
-    earned: true,
-  },
-  {
-    name: "Najbolje ocijenjen",
-    description: "Ocjena 4.5+ s minimalno 20 recenzija",
-    icon: Crown,
-    earned: true,
-  },
-  {
-    name: "Odgovara",
-    description: "Odgovorite na 90%+ recenzija u zadnjih 30 dana",
-    icon: MessageSquare,
-    earned: true,
-  },
-  {
-    name: "Brza usluga",
-    description: "Prosječno vrijeme odgovora manje od 24 sata",
-    icon: Target,
-    earned: false,
-  },
-  {
-    name: "Favorit",
-    description: "Među top 10 tvrtki u kategoriji",
-    icon: Sparkles,
-    earned: false,
-  },
+  { name: "Verificirana tvrtka", icon: Shield, color: "emerald", earned: true },
+  { name: "Top rated", icon: Crown, color: "amber", earned: true },
+  { name: "Odgovara na recenzije", icon: MessageSquare, color: "blue", earned: true },
+  { name: "Brza usluga", icon: Target, color: "purple", earned: false },
+  { name: "Omiljena tvrtka", icon: Award, color: "rose", earned: false },
 ];
 
 const quickActions = [
-  {
-    name: "Odgovori na recenziju",
-    description: "3 na čekanju",
-    icon: MessageSquare,
-  },
-  {
-    name: "Pošalji pozivnicu",
-    description: "Pozovi korisnike",
-    icon: Mail,
-  },
-  {
-    name: "Pogledaj widget",
-    description: "Ugradi na stranicu",
-    icon: Globe,
-  },
-  {
-    name: "Eksportuj izvještaj",
-    description: "Preuzmi PDF",
-    icon: FileText,
-  },
+  { name: "Odgovori na recenziju", icon: MessageSquare, count: 2, color: "emerald" },
+  { name: "Pošalji pozivnicu", icon: Mail, count: null, color: "blue" },
+  { name: "Pogledaj widget", icon: Globe, count: null, color: "purple" },
+  { name: "Eksportuj izvještaj", icon: FileText, count: null, color: "gray" },
 ];
 
 export default function BusinessDashboardPage() {
-  const [activeTab, setActiveTab] = useState<
-    "reviews" | "badges" | "analytics" | "settings"
-  >("reviews");
-  const [activeFilter, setActiveFilter] = useState<
-    "all" | "pending" | "answered"
-  >("all");
+  const [activeTab, setActiveTab] = useState<"reviews" | "analytics" | "badges" | "settings">("reviews");
   const [respondingTo, setRespondingTo] = useState<number | null>(null);
   const [response, setResponse] = useState("");
-
-  const filteredReviews = mockReviews.filter((r) => {
-    if (activeFilter === "pending") return r.status === "pending";
-    if (activeFilter === "answered") return r.status === "answered";
-    return true;
-  });
-
-  const pendingCount = mockReviews.filter((r) => r.status === "pending").length;
-  const answeredCount = mockReviews.filter(
-    (r) => r.status === "answered"
-  ).length;
 
   const handleRespond = (reviewId: number) => {
     console.log("Responding to review", reviewId, ":", response);
@@ -159,392 +120,414 @@ export default function BusinessDashboardPage() {
     setResponse("");
   };
 
-  const navItems = [
-    { id: "reviews" as const, icon: MessageSquare, label: "Recenzije" },
-    { id: "analytics" as const, icon: BarChart3, label: "Analitika" },
-    { id: "badges" as const, icon: Award, label: "Bedževi" },
-    { id: "settings" as const, icon: Settings, label: "Postavke" },
-  ];
-
   return (
-    <div className="flex min-h-screen bg-midnight-950">
+    <div className="min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="w-64 bg-midnight-900/80 border-r border-midnight-800/50 p-6 flex flex-col hidden lg:flex">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 mb-8">
-          <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
-            <span className="text-white font-black text-sm">O</span>
-          </div>
-          <span className="font-bold text-white">ocjeni.ba</span>
-        </Link>
+      <div className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 hidden lg:block">
+        <div className="p-6">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">O</span>
+            </div>
+            <span className="font-bold text-gray-900">ocjeni.ba</span>
+          </Link>
+        </div>
 
-        {/* Nav */}
-        <nav className="space-y-1 flex-1">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                activeTab === item.id
-                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                  : "text-midnight-400 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              <item.icon className="w-[18px] h-[18px]" />
-              {item.label}
-            </button>
-          ))}
+        <nav className="px-4">
+          <div className="space-y-1">
+            {[
+              { id: "reviews" as const, icon: MessageSquare, label: "Recenzije" },
+              { id: "analytics" as const, icon: BarChart3, label: "Analitika" },
+              { id: "badges" as const, icon: Award, label: "Bedževi" },
+              { id: "settings" as const, icon: Settings, label: "Postavke" },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  activeTab === item.id
+                    ? "bg-emerald-50 text-emerald-700"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                <item.icon className="w-5 h-5" />
+                {item.label}
+              </button>
+            ))}
+          </div>
         </nav>
 
-        {/* User card */}
-        <div className="border-t border-midnight-800/50 pt-4 mt-4">
-          <div className="flex items-center gap-3 px-1">
-            <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-              <span className="text-amber-400 font-bold text-sm">M</span>
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100">
+          <div className="flex items-center gap-3 px-4 py-3">
+            <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+              <span className="text-emerald-700 font-bold text-sm">IB</span>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-white truncate">
-                Mirza K.
+              <div className="text-sm font-medium text-gray-900 truncate">
+                Ivan Blazek
               </div>
-              <div className="text-xs text-midnight-500">Vlasnik</div>
+              <div className="text-xs text-gray-500">Vlasnik</div>
             </div>
           </div>
-          <button className="flex items-center gap-2 text-midnight-500 hover:text-red-400 text-xs mt-2 px-1 transition-colors">
-            <LogOut className="w-3.5 h-3.5" />
+          <button className="w-full flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm px-4 py-2 mt-2">
+            <LogOut className="w-4 h-4" />
             Odjavi se
           </button>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 p-8 overflow-y-auto">
+      <div className="lg:ml-64">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-black text-white">
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">
                 Caffe Bar Kod Brace
               </h1>
-              <span className="inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full border border-emerald-500/20">
-                <CheckCircle className="w-3 h-3" />
-                Verificirano
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 mt-1">
-              <MapPin className="w-3.5 h-3.5 text-midnight-400" />
-              <span className="text-sm text-midnight-400">
+              <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                <MapPin className="w-4 h-4" />
                 Sarajevo · Kafići
-              </span>
+                <CheckCircle className="w-4 h-4 text-emerald-500" />
+                <span className="text-emerald-600">Verificirano</span>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 text-midnight-400 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-              <Bell className="w-5 h-5" />
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 rounded-full text-white text-[10px] font-bold flex items-center justify-center">
-                3
-              </span>
-            </button>
-            <Link
-              href="/tvrtke/caffe-bar-kod-brace"
-              className="text-sm text-amber-400 hover:text-amber-300 font-medium transition-colors"
-            >
-              Pogledaj profil
-            </Link>
+            <div className="flex items-center gap-4">
+              <button className="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
+                <Bell className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">
+                  3
+                </span>
+              </button>
+              <Link
+                href="/tvrtke/caffe-bar-kod-brace"
+                className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+              >
+                Pogledaj profil →
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {[
-            {
-              label: "Ukupno recenzija",
-              value: "234",
-              change: "+12% ove sedmice",
-            },
-            {
-              label: "Prosječna ocjena",
-              value: "4.8",
-              change: "+12% ove sedmice",
-            },
-            {
-              label: "Nepročitane",
-              value: "3",
-              change: "+12% ove sedmice",
-            },
-            {
-              label: "Pregledi profila",
-              value: "1,247",
-              change: "+12% ove sedmice",
-            },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-midnight-900/50 border border-midnight-800/50 rounded-xl p-5"
-            >
-              <div className="text-xs text-midnight-500 uppercase tracking-wider">
-                {stat.label}
+        <div className="p-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <stat.icon className={`w-5 h-5 text-${stat.color}-500`} />
+                  {stat.change && (
+                    <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                      {stat.change}
+                    </span>
+                  )}
+                </div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
               </div>
-              <div className="text-2xl font-black text-white mt-1">
-                {stat.value}
-              </div>
-              <div className="text-xs text-emerald-400 mt-1">
-                {stat.change}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          {quickActions.map((action) => (
-            <button
-              key={action.name}
-              className="bg-midnight-900/40 hover:bg-midnight-800/60 border border-midnight-800/40 hover:border-amber-500/30 rounded-xl p-4 transition-all text-left"
-            >
-              <action.icon className="w-5 h-5 text-amber-400 mb-2" />
-              <div className="text-sm font-medium text-white">
-                {action.name}
-              </div>
-              <div className="text-xs text-midnight-500 mt-0.5">
-                {action.description}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-1 mb-6 bg-midnight-900/30 rounded-xl p-1">
-          {[
-            { id: "reviews" as const, label: "Recenzije" },
-            { id: "badges" as const, label: "Bedževi" },
-            { id: "analytics" as const, label: "Analitika" },
-            { id: "settings" as const, label: "Postavke" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                activeTab === tab.id
-                  ? "bg-midnight-800 text-white"
-                  : "text-midnight-500 hover:text-white"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab: Reviews */}
-        {activeTab === "reviews" && (
-          <div>
-            {/* Filters */}
-            <div className="flex gap-2 mb-6">
-              {[
-                { id: "all" as const, label: "Sve" },
-                { id: "pending" as const, label: `Na čekanju (${pendingCount})` },
-                { id: "answered" as const, label: `Odgovorene (${answeredCount})` },
-              ].map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    activeFilter === filter.id
-                      ? "bg-amber-500/10 text-amber-400"
-                      : "text-midnight-500 hover:text-white"
-                  }`}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Reviews */}
-            <div className="space-y-4">
-              {filteredReviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="bg-midnight-900/40 border border-midnight-800/40 rounded-xl p-5"
-                >
-                  {/* Header */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-midnight-700 flex items-center justify-center">
-                      <span className="text-midnight-300 font-medium text-sm">
-                        {review.user.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-medium text-white">
-                        {review.user}
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs text-midnight-500">
-                        <Clock className="w-3 h-3" />
-                        {review.date}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-0.5">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star
-                          key={star}
-                          className={`w-4 h-4 ${
-                            star <= review.rating
-                              ? "fill-amber-400 text-amber-400"
-                              : "text-midnight-700"
-                          }`}
-                        />
-                      ))}
-                    </div>
+          {/* Quick Actions */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {quickActions.map((action) => (
+              <button
+                key={action.name}
+                className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-emerald-300 hover:shadow-sm transition-all text-left"
+              >
+                <action.icon className={`w-5 h-5 text-${action.color}-500`} />
+                <div>
+                  <div className="text-sm font-medium text-gray-900">
+                    {action.name}
                   </div>
-
-                  {/* Content */}
-                  <h3 className="font-semibold text-white mb-1">
-                    {review.title}
-                  </h3>
-                  <p className="text-midnight-300 text-sm">{review.content}</p>
-
-                  {/* Response */}
-                  {review.response && (
-                    <div className="bg-midnight-800/50 rounded-lg p-3 mt-3 border-l-2 border-amber-500">
-                      <div className="text-xs text-amber-400 font-medium mb-1">
-                        Odgovor tvrtke
-                      </div>
-                      <p className="text-midnight-300 text-sm">
-                        {review.response}
-                      </p>
+                  {action.count && (
+                    <div className="text-xs text-emerald-600 font-medium">
+                      {action.count} na čekanju
                     </div>
                   )}
-
-                  {/* Actions */}
-                  <div className="flex gap-2 mt-3">
-                    {respondingTo === review.id ? (
-                      <div className="flex-1 flex gap-2 items-center">
-                        <input
-                          type="text"
-                          value={response}
-                          onChange={(e) => setResponse(e.target.value)}
-                          placeholder="Napišite odgovor..."
-                          className="flex-1 px-3 py-2 bg-midnight-800/50 border border-midnight-700/50 rounded-lg text-sm text-white placeholder-midnight-500 outline-none focus:border-amber-500/50 transition-colors"
-                        />
-                        <button
-                          onClick={() => handleRespond(review.id)}
-                          className="btn-primary text-xs px-3 py-2"
-                        >
-                          <Send className="w-3.5 h-3.5" />
-                        </button>
-                        <button
-                          onClick={() => {
-                            setRespondingTo(null);
-                            setResponse("");
-                          }}
-                          className="btn-secondary text-xs px-3 py-2"
-                        >
-                          Odustani
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => setRespondingTo(review.id)}
-                          className="btn-secondary text-xs"
-                        >
-                          <MessageSquare className="w-3.5 h-3.5" />
-                          Odgovori
-                        </button>
-                        <button className="flex items-center gap-1 text-xs text-midnight-500 hover:text-white transition-colors px-2 py-1">
-                          <ThumbsUp className="w-3.5 h-3.5" />
-                          Korisno
-                        </button>
-                        <button className="flex items-center gap-1 text-xs text-midnight-500 hover:text-red-400 transition-colors px-2 py-1">
-                          <Flag className="w-3.5 h-3.5" />
-                          Prijavi
-                        </button>
-                      </>
-                    )}
-                  </div>
                 </div>
-              ))}
-            </div>
+              </button>
+            ))}
           </div>
-        )}
 
-        {/* Tab: Badges */}
-        {activeTab === "badges" && (
-          <div>
-            <h2 className="text-lg font-bold text-white mb-6">
-              Badgeovi pouzdanosti
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {badges.map((badge) => (
-                <div
-                  key={badge.name}
-                  className="bg-midnight-900/40 border border-midnight-800/40 rounded-xl p-5"
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        badge.earned
-                          ? "bg-gradient-to-br from-amber-500 to-amber-600"
-                          : "bg-midnight-700"
-                      }`}
-                    >
-                      <badge.icon
-                        className={`w-6 h-6 ${
-                          badge.earned ? "text-white" : "text-midnight-500"
-                        }`}
-                      />
+          {/* Reviews */}
+          {activeTab === "reviews" && (
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-bold text-gray-900">
+                  Posljednje recenzije
+                </h2>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 text-sm font-medium bg-emerald-50 text-emerald-700 rounded-lg">
+                    Sve (4)
+                  </button>
+                  <button className="px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg">
+                    Na čekanju (2)
+                  </button>
+                  <button className="px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg">
+                    Odgovorene (2)
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {mockReviews.map((review) => (
+                  <div
+                    key={review.id}
+                    className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-shadow"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                          <span className="text-gray-600 font-medium text-sm">
+                            {review.user.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-gray-900">
+                              {review.user}
+                            </span>
+                            {review.verified && (
+                              <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <Shield className="w-3 h-3" />
+                                Verificirano
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <Clock className="w-3 h-3" />
+                            {review.date}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-0.5">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star
+                              key={star}
+                              className={`w-4 h-4 ${
+                                star <= review.rating
+                                  ? "fill-amber-400 text-amber-400"
+                                  : "fill-gray-200 text-gray-200"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        {review.status === "pending" && (
+                          <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-1 rounded-full flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            Na čekanju
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
+
+                    <h3 className="font-bold text-gray-900 mb-2">
+                      {review.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4">{review.content}</p>
+
+                    {/* Response */}
+                    {review.response && (
+                      <div className="bg-gray-50 rounded-lg p-4 mb-4 border-l-4 border-emerald-500">
+                        <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                          <Building2 className="w-4 h-4 text-emerald-500" />
+                          Odgovor tvrtke
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {review.response}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                      {respondingTo === review.id ? (
+                        <div className="flex-1 flex gap-2">
+                          <input
+                            type="text"
+                            value={response}
+                            onChange={(e) => setResponse(e.target.value)}
+                            placeholder="Napišite odgovor..."
+                            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                          />
+                          <button
+                            onClick={() => handleRespond(review.id)}
+                            className="bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
+                          >
+                            <Send className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              setRespondingTo(null);
+                              setResponse("");
+                            }}
+                            className="text-gray-500 hover:text-gray-700 text-sm"
+                          >
+                            Odustani
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => setRespondingTo(review.id)}
+                            className="text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
+                          >
+                            <MessageSquare className="w-4 h-4" />
+                            Odgovori
+                          </button>
+                          <button className="text-sm text-gray-400 hover:text-gray-600 flex items-center gap-1">
+                            <ThumbsUp className="w-4 h-4" />
+                            Korisno
+                          </button>
+                          <button className="text-sm text-gray-400 hover:text-red-500 flex items-center gap-1">
+                            <Flag className="w-4 h-4" />
+                            Prijavi
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Badges */}
+          {activeTab === "badges" && (
+            <div>
+              <div className="mb-6">
+                <h2 className="text-lg font-bold text-gray-900">
+                  Vaši bedževi
+                </h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  Bedževi povećavaju povjerenje kupaca
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {badges.map((badge) => (
+                  <div
+                    key={badge.name}
+                    className={`bg-white rounded-xl border p-6 transition-all ${
+                      badge.earned
+                        ? "border-emerald-200 hover:shadow-md"
+                        : "border-gray-200 opacity-60"
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
                       <div
-                        className={`font-semibold ${
-                          badge.earned ? "text-white" : "text-midnight-600"
+                        className={`w-14 h-14 rounded-xl flex items-center justify-center ${
+                          badge.earned
+                            ? `bg-${badge.color}-100`
+                            : "bg-gray-100"
                         }`}
                       >
-                        {badge.name}
+                        <badge.icon
+                          className={`w-7 h-7 ${
+                            badge.earned
+                              ? `text-${badge.color}-600`
+                              : "text-gray-400"
+                          }`}
+                        />
                       </div>
-                      <div className="text-xs text-midnight-400 mt-0.5">
-                        {badge.description}
+                      <div>
+                        <div className="font-bold text-gray-900">
+                          {badge.name}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {badge.earned ? "Zarađeno" : "Nije zarađeno"}
+                        </div>
+                      </div>
+                      {badge.earned && (
+                        <CheckCircle className="w-5 h-5 text-emerald-500 ml-auto" />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* How to earn */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">
+                  Kako zaraditi bedževe?
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-emerald-400 mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Verificirana tvrtka</div>
+                      <div className="text-sm text-gray-300">
+                        Potvrdite svoju tvrtku putem emaila ili telefona
                       </div>
                     </div>
                   </div>
-                  <div className="mt-3">
-                    {badge.earned ? (
-                      <span className="badge badge-success text-xs">
-                        Ostvareno
-                      </span>
-                    ) : (
-                      <span className="text-xs text-midnight-600">
-                        Nije ostvareno
-                      </span>
-                    )}
+                  <div className="flex items-start gap-3">
+                    <Crown className="w-5 h-5 text-amber-400 mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Top rated</div>
+                      <div className="text-sm text-gray-300">
+                        Ocjena 4.5+ s minimalno 20 recenzija
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <MessageSquare className="w-5 h-5 text-blue-400 mt-0.5" />
+                    <div>
+                      <div className="font-semibold">
+                        Odgovara na recenzije
+                      </div>
+                      <div className="text-sm text-gray-300">
+                        Odgovorite na 90%+ recenzija u zadnjih 30 dana
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Target className="w-5 h-5 text-purple-400 mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Brza usluga</div>
+                      <div className="text-sm text-gray-300">
+                        Prosječno vrijeme odgovora manje od 24 sata
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Tab: Analytics */}
-        {activeTab === "analytics" && (
-          <div className="bg-midnight-900/40 border border-midnight-800/40 rounded-xl p-12 text-center">
-            <Construction className="w-12 h-12 text-midnight-600 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-white mb-2">U izradi</h3>
-            <p className="text-midnight-400 text-sm">
-              Detaljna analitika bit će dostupna uskoro. Pratite nas za
-              ažuriranja.
-            </p>
-          </div>
-        )}
+          {/* Analytics placeholder */}
+          {activeTab === "analytics" && (
+            <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
+              <BarChart3 className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Analitika
+              </h3>
+              <p className="text-gray-500">
+                Detaljna analitika biti će dostupna uskoro.
+              </p>
+            </div>
+          )}
 
-        {/* Tab: Settings */}
-        {activeTab === "settings" && (
-          <div className="bg-midnight-900/40 border border-midnight-800/40 rounded-xl p-12 text-center">
-            <Construction className="w-12 h-12 text-midnight-600 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-white mb-2">U izradi</h3>
-            <p className="text-midnight-400 text-sm">
-              Uređivanje profila tvrtke bit će dostupno uskoro. Pratite nas za
-              ažuriranja.
-            </p>
-          </div>
-        )}
+          {/* Settings placeholder */}
+          {activeTab === "settings" && (
+            <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
+              <Settings className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Postavke
+              </h3>
+              <p className="text-gray-500">
+                Uređivanje profila tvrtke biti će dostupno uskoro.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

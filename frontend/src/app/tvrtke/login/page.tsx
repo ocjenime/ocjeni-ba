@@ -8,142 +8,126 @@ export default function BusinessLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login:", { email, password, rememberMe });
+    console.log("Login:", { email, password });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center mesh-gradient p-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="bg-midnight-900/60 backdrop-blur-xl border border-midnight-800/50 rounded-2xl p-8">
-          {/* Logo */}
-          <div className="text-center mb-8">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
-                <span className="text-midnight-950 font-black text-lg">O</span>
-              </div>
-              <span className="text-xl font-black text-white">ocjeni.ba</span>
-            </Link>
-            <h1 className="text-2xl font-black text-white text-center">
-              Pristupite dashboardu
-            </h1>
-            <p className="text-midnight-400 text-center mt-2">
-              Prijavite se na svoj račun
-            </p>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-midnight-300 mb-1.5">
-                Email adresa
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-midnight-500" />
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-midnight-800/50 border border-midnight-700/50 rounded-xl text-white placeholder:text-midnight-600 outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 transition-colors"
-                  placeholder="vas@email.ba"
-                />
-              </div>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-flex items-center gap-2 mb-6">
+            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-lg">O</span>
             </div>
+            <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
+          </Link>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Prijava za tvrtke
+          </h1>
+          <p className="text-gray-500 mt-2">
+            Prijavite se na svoj poslovni račun
+          </p>
+        </div>
 
-            {/* Password */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="text-sm font-medium text-midnight-300">
+        {/* Form */}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email adresa
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    placeholder="vas@email.ba"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Lozinka
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    placeholder="Vaša lozinka"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
+                  />
+                  <span className="text-sm text-gray-600">Zapamti me</span>
                 </label>
                 <Link
                   href="/tvrtke/zaboravljena-lozinka"
-                  className="text-xs text-amber-400 hover:text-amber-300 font-medium transition-colors"
+                  className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
                 >
-                  Zaboravili ste lozinku?
+                  Zaboravili lozinku?
                 </Link>
-              </div>
-              <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-midnight-500" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-12 py-3 bg-midnight-800/50 border border-midnight-700/50 rounded-xl text-white placeholder:text-midnight-600 outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 transition-colors"
-                  placeholder="Vaša lozinka"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-midnight-500 hover:text-midnight-300 transition-colors"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
-                  ) : (
-                    <Eye className="w-5 h-5" />
-                  )}
-                </button>
               </div>
             </div>
 
-            {/* Remember me */}
-            <label className="flex items-center gap-2.5 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 rounded border-midnight-600 bg-midnight-800/50 text-amber-500 focus:ring-amber-500/30 focus:ring-offset-0"
-              />
-              <span className="text-sm text-midnight-300">Zapamti me</span>
-            </label>
-
-            {/* Submit */}
             <button
               type="submit"
-              className="btn-primary w-full"
+              className="w-full mt-6 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
             >
               Prijavi se
               <ArrowRight className="w-5 h-5" />
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-midnight-700/50" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="bg-midnight-900/60 px-3 text-midnight-500">
-                ili
-              </span>
-            </div>
+          <div className="mt-6 pt-6 border-t border-gray-100 text-center">
+            <p className="text-sm text-gray-500">
+              Još nemate račun?{" "}
+              <Link
+                href="/tvrtke/prijava"
+                className="text-emerald-600 hover:text-emerald-700 font-medium"
+              >
+                Registirajte se besplatno
+              </Link>
+            </p>
           </div>
-
-          {/* Register link */}
-          <p className="text-center text-sm text-midnight-400">
-            Nemate račun?{" "}
-            <Link
-              href="/tvrtke/prijava"
-              className="text-amber-400 hover:text-amber-300 font-semibold transition-colors"
-            >
-              Registrirajte se
-            </Link>
-          </p>
         </div>
 
-        {/* Back link */}
+        {/* Natrag */}
         <p className="text-center mt-6">
           <Link
             href="/"
-            className="text-sm text-midnight-500 hover:text-midnight-300 transition-colors"
+            className="text-sm text-gray-500 hover:text-gray-700"
           >
-            &larr; Natrag na početnu
+            ← Natrag na početnu
           </Link>
         </p>
       </div>

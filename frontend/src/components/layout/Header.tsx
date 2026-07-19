@@ -2,82 +2,137 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Search, Menu, X, Star } from "lucide-react";
+import { Menu, X, Search, User, ChevronDown } from "lucide-react";
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-midnight-950/80 backdrop-blur-xl border-b border-midnight-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white/95 backdrop-blur-lg border-b border-gray-100 sticky top-0 z-50">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-              <span className="text-black font-bold text-sm">O</span>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-sm shadow-emerald-500/20">
+              <span className="text-white font-bold text-xl">O</span>
             </div>
-            <span className="font-bold text-lg text-white">
-              ocjeni<span className="text-amber-400">.ba</span>
-            </span>
+            <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            <Link href="/za-tvrtke" className="px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
+          {/* Desktop navigacija */}
+          <nav className="hidden md:flex items-center gap-6">
+            <Link
+              href="/tvrtke"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
+            >
               Tvrtke
             </Link>
-            <Link href="/kategorije" className="px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
+            <Link
+              href="/kategorije"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
+            >
               Kategorije
             </Link>
-            <Link href="/gradovi" className="px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
+            <Link
+              href="/gradovi"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
+            >
               Gradovi
             </Link>
-            <Link href="/cjenik" className="px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
+            <Link
+              href="/za-tvrtke"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
+            >
+              Za tvrtke
+            </Link>
+            <Link
+              href="/cjenik"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm"
+            >
               Cjenik
             </Link>
           </nav>
 
-          {/* Desktop right side */}
+          {/* Desna strana */}
           <div className="hidden md:flex items-center gap-3">
-            <button className="p-2 rounded-lg text-midnight-400 hover:text-white hover:bg-white/5 transition-all">
+            <button className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all">
               <Search className="w-5 h-5" />
             </button>
-            <Link href="/tvrtke/login" className="text-sm font-medium text-midnight-300 hover:text-white transition-colors">
+            <Link
+              href="/prijava"
+              className="text-gray-600 hover:text-emerald-600 transition-colors font-medium text-sm px-4 py-2"
+            >
               Prijava
             </Link>
-            <Link href="/tvrtke/prijava" className="btn-primary px-4 py-2 text-sm rounded-lg">
+            <Link
+              href="/registracija"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-semibold text-sm transition-all shadow-sm shadow-emerald-500/20"
+            >
               Registracija
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <button className="md:hidden p-2 rounded-lg text-midnight-300 hover:text-white transition-colors" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {/* Mobilni hamburger */}
+          <button
+            className="md:hidden p-2 text-gray-600"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
-        {/* Mobile menu */}
-        {isOpen && (
-          <div className="md:hidden p-4 space-y-2 border-t border-midnight-800/50 bg-midnight-950/95 backdrop-blur-xl">
-            <Link href="/za-tvrtke" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
-              Tvrtke
-            </Link>
-            <Link href="/kategorije" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
-              Kategorije
-            </Link>
-            <Link href="/gradovi" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
-              Gradovi
-            </Link>
-            <Link href="/cjenik" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
-              Cjenik
-            </Link>
-            <hr className="border-midnight-800/50" />
-            <Link href="/tvrtke/login" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-lg text-sm font-medium text-midnight-300 hover:text-white hover:bg-white/5 transition-all">
-              Prijava
-            </Link>
-            <Link href="/tvrtke/prijava" onClick={() => setIsOpen(false)} className="block btn-primary px-4 py-2 text-sm rounded-lg text-center">
-              Registracija
-            </Link>
+        {/* Mobilni izbornik */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-100">
+            <nav className="flex flex-col gap-1">
+              <Link
+                href="/tvrtke"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Tvrtke
+              </Link>
+              <Link
+                href="/kategorije"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Kategorije
+              </Link>
+              <Link
+                href="/gradovi"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Gradovi
+              </Link>
+              <Link
+                href="/za-tvrtke"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Za tvrtke
+              </Link>
+              <Link
+                href="/cjenik"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Cjenik
+              </Link>
+              <hr className="my-2 border-gray-100" />
+              <Link
+                href="/prijava"
+                className="text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-3 rounded-lg transition-all font-medium"
+              >
+                Prijava
+              </Link>
+              <Link
+                href="/registracija"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-3 rounded-lg font-semibold transition-all text-center shadow-sm"
+              >
+                Registracija
+              </Link>
+            </nav>
           </div>
         )}
       </div>
