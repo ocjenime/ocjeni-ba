@@ -8,11 +8,9 @@ import {
   Star,
   MessageSquare,
   TrendingUp,
-  Users,
   Bell,
   Settings,
   LogOut,
-  ChevronRight,
   MapPin,
   CheckCircle,
   AlertCircle,
@@ -90,25 +88,25 @@ const mockReviews = [
 ];
 
 const stats = [
-  { label: "Ukupno recenzija", value: "234", change: "+12", icon: MessageSquare, color: "emerald" },
-  { label: "Prosječna ocjena", value: "4.8", change: "+0.1", icon: Star, color: "amber" },
-  { label: "Nepročitanih", value: "3", change: "", icon: Bell, color: "blue" },
-  { label: "Pogledi profila", value: "1,247", change: "+18%", icon: Eye, color: "purple" },
+  { label: "Ukupno recenzija", value: "234", change: "+12", icon: MessageSquare },
+  { label: "Prosječna ocjena", value: "4.8", change: "+0.1", icon: Star },
+  { label: "Nepročitanih", value: "3", change: "", icon: Bell },
+  { label: "Pogledi profila", value: "1,247", change: "+18%", icon: Eye },
 ];
 
 const badges = [
-  { name: "Verificirana firma", icon: Shield, color: "emerald", earned: true },
-  { name: "Top rated", icon: Crown, color: "amber", earned: true },
-  { name: "Odgovara na recenzije", icon: MessageSquare, color: "blue", earned: true },
-  { name: "Brza usluga", icon: Target, color: "purple", earned: false },
-  { name: "Omiljena firma", icon: Award, color: "rose", earned: false },
+  { name: "Verificirana firma", icon: Shield, earned: true },
+  { name: "Top rated", icon: Crown, earned: true },
+  { name: "Odgovara na recenzije", icon: MessageSquare, earned: true },
+  { name: "Brza usluga", icon: Target, earned: false },
+  { name: "Omiljena firma", icon: Award, earned: false },
 ];
 
 const quickActions = [
-  { name: "Odgovori na recenziju", icon: MessageSquare, count: 2, color: "emerald" },
-  { name: "Pošalji pozivnicu", icon: Mail, count: null, color: "blue" },
-  { name: "Pogledaj widget", icon: Globe, count: null, color: "purple" },
-  { name: "Eksportuj izvještaj", icon: FileText, count: null, color: "gray" },
+  { name: "Odgovori na recenziju", icon: MessageSquare, count: 2 },
+  { name: "Pošalji pozivnicu", icon: Mail, count: null },
+  { name: "Pogledaj widget", icon: Globe, count: null },
+  { name: "Eksportuj izvještaj", icon: FileText, count: null },
 ];
 
 export default function BusinessDashboardPage() {
@@ -137,15 +135,17 @@ export default function BusinessDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background pt-16 lg:pt-0">
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 hidden lg:block">
+      <div className="fixed bottom-0 left-0 top-0 hidden w-64 border-r border-white/5 bg-white/[0.02] lg:block">
         <div className="p-6">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">O</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500">
+              <span className="text-sm font-bold text-white">O</span>
             </div>
-            <span className="font-bold text-gray-900">ocjeni.ba</span>
+            <span className="font-bold text-white">
+              ocijeni<span className="gradient-text">.ba</span>
+            </span>
           </Link>
         </div>
 
@@ -160,36 +160,38 @@ export default function BusinessDashboardPage() {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                   activeTab === item.id
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-emerald-500/10 text-emerald-400"
+                    : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
                 }`}
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="h-5 w-5" />
                 {item.label}
               </button>
             ))}
           </div>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100">
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/5 p-4">
           <div className="flex items-center gap-3 px-4 py-3">
-            <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-              <span className="text-emerald-700 font-bold text-sm">IB</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500">
+              <span className="text-sm font-bold text-white">
+                {user?.name?.charAt(0) || "V"}
+              </span>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-gray-900 truncate">
-                 {user?.name || "Vlasnik"}
-               </div>
-               <div className="text-xs text-gray-500">Vlasnik</div>
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-sm font-medium text-white">
+                {user?.name || "Vlasnik"}
+              </div>
+              <div className="text-xs text-foreground/50">Vlasnik</div>
             </div>
           </div>
           <button
             onClick={() => { logout(); router.push("/"); }}
-            className="w-full flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm px-4 py-2 mt-2"
+            className="flex w-full items-center gap-2 px-4 py-2 text-sm text-foreground/50 hover:text-foreground"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="h-4 w-4" />
             Odjavi se
           </button>
         </div>
@@ -198,62 +200,62 @@ export default function BusinessDashboardPage() {
       {/* Main content */}
       <div className="lg:ml-64">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="border-b border-white/5 bg-white/[0.02] px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-                <h1 className="text-xl font-bold text-gray-900">
-                 {business?.businessName || "Moja firma"}
-               </h1>
-              <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
-                <MapPin className="w-4 h-4" />
+              <h1 className="text-xl font-semibold text-white">
+                {business?.businessName || "Moja firma"}
+              </h1>
+              <div className="mt-1 flex items-center gap-2 text-sm text-foreground/50">
+                <MapPin className="h-4 w-4" />
                 Sarajevo · Kafići
-                <CheckCircle className="w-4 h-4 text-emerald-500" />
-                <span className="text-emerald-600">Verificirano</span>
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <span className="text-emerald-400">Verificirano</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                <Bell className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">
+              <button className="relative rounded-full border border-white/10 bg-white/5 p-2 text-foreground/60 transition-colors hover:text-foreground">
+                <Bell className="h-5 w-5" />
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   3
                 </span>
               </button>
               <Link
-                 href={business?.businessName ? `/tvrtke/${business.businessName.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}` : "/tvrtke/arilux-doo"}
-                 className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
-               >
+                href={business?.businessName ? `/tvrtke/${business.businessName.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}` : "/tvrtke/arilux-doo"}
+                className="text-sm font-medium text-emerald-400 hover:text-emerald-300"
+              >
                 Pogledaj profil →
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Stats */}
         <div className="p-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {/* Stats */}
+          <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md transition-shadow"
+                className="rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-white/10"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <stat.icon className={`w-5 h-5 text-${stat.color}-500`} />
+                <div className="mb-3 flex items-center justify-between">
+                  <stat.icon className="h-5 w-5 text-emerald-400" />
                   {stat.change && (
-                    <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                    <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">
                       {stat.change}
                     </span>
                   )}
                 </div>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-semibold text-white">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+                <div className="mt-1 text-sm text-foreground/50">{stat.label}</div>
               </div>
             ))}
           </div>
 
           {/* Quick Actions */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {quickActions.map((action) => (
               <button
                 key={action.name}
@@ -263,15 +265,15 @@ export default function BusinessDashboardPage() {
                   else if (action.name === "Pogledaj widget") alert("Widget pregled će uskoro biti dostupan.");
                   else if (action.name === "Eksportuj izvještaj") alert("Eksport izvještaja će uskoro biti dostupan.");
                 }}
-                className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-emerald-300 hover:shadow-sm transition-all text-left"
+                className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-left transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
               >
-                <action.icon className={`w-5 h-5 text-${action.color}-500`} />
+                <action.icon className="h-5 w-5 text-emerald-400" />
                 <div>
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-sm font-medium text-white">
                     {action.name}
                   </div>
                   {action.count && (
-                    <div className="text-xs text-emerald-600 font-medium">
+                    <div className="text-xs font-medium text-emerald-400">
                       {action.count} na čekanju
                     </div>
                   )}
@@ -283,18 +285,18 @@ export default function BusinessDashboardPage() {
           {/* Reviews */}
           {activeTab === "reviews" && (
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-bold text-gray-900">
+              <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                <h2 className="text-lg font-semibold text-white">
                   Posljednje recenzije
                 </h2>
                 <div className="flex gap-2">
-                  <button className="px-3 py-1.5 text-sm font-medium bg-emerald-50 text-emerald-700 rounded-lg">
+                  <button className="rounded-lg bg-emerald-500/10 px-3 py-1.5 text-sm font-medium text-emerald-400">
                     Sve (4)
                   </button>
-                  <button className="px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg">
+                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-white/5">
                     Na čekanju (2)
                   </button>
-                  <button className="px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg">
+                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-white/5">
                     Odgovorene (2)
                   </button>
                 </div>
@@ -304,29 +306,29 @@ export default function BusinessDashboardPage() {
                 {mockReviews.map((review) => (
                   <div
                     key={review.id}
-                    className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-shadow"
+                    className="rounded-xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10"
                   >
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="mb-4 flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                          <span className="text-gray-600 font-medium text-sm">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5">
+                          <span className="font-medium text-white">
                             {review.user.charAt(0)}
                           </span>
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-gray-900">
+                            <span className="font-medium text-white">
                               {review.user}
                             </span>
                             {review.verified && (
-                              <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                                <Shield className="w-3 h-3" />
+                              <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-bold text-emerald-400">
+                                <Shield className="h-3 w-3" />
                                 Verificirano
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center gap-2 text-sm text-gray-500">
-                            <Clock className="w-3 h-3" />
+                          <div className="flex items-center gap-2 text-sm text-foreground/50">
+                            <Clock className="h-3 w-3" />
                             {review.date}
                           </div>
                         </div>
@@ -336,64 +338,60 @@ export default function BusinessDashboardPage() {
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star
                               key={star}
-                              className={`w-4 h-4 ${
+                              className={`h-4 w-4 ${
                                 star <= review.rating
                                   ? "fill-amber-400 text-amber-400"
-                                  : "fill-gray-200 text-gray-200"
+                                  : "fill-white/10 text-white/10"
                               }`}
                             />
                           ))}
                         </div>
                         {review.status === "pending" && (
-                          <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-1 rounded-full flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" />
+                          <span className="flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-1 text-xs font-medium text-amber-400">
+                            <AlertCircle className="h-3 w-3" />
                             Na čekanju
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <h3 className="font-bold text-gray-900 mb-2">
-                      {review.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">{review.content}</p>
+                    <h3 className="mb-2 font-semibold text-white">{review.title}</h3>
+                    <p className="mb-4 text-sm text-foreground/70">{review.content}</p>
 
-                    {/* Response */}
                     {review.response && (
-                      <div className="bg-gray-50 rounded-lg p-4 mb-4 border-l-4 border-emerald-500">
-                        <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                          <Building2 className="w-4 h-4 text-emerald-500" />
+                      <div className="mb-4 rounded-lg border-l-4 border-emerald-500 bg-white/5 p-4">
+                        <div className="mb-1 flex items-center gap-2 text-sm font-medium text-white">
+                          <Building2 className="h-4 w-4 text-emerald-400" />
                           Odgovor firme
                         </div>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-foreground/70">
                           {review.response}
                         </p>
                       </div>
                     )}
 
-                    {/* Actions */}
-                    <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div className="flex items-center gap-4 border-t border-white/5 pt-4">
                       {respondingTo === review.id ? (
-                        <div className="flex-1 flex gap-2">
+                        <div className="flex flex-1 gap-2">
                           <input
                             type="text"
                             value={response}
                             onChange={(e) => setResponse(e.target.value)}
                             placeholder="Napišite odgovor..."
-                            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                            className="input flex-1 py-2 text-sm"
                           />
                           <button
                             onClick={() => handleRespond(review.id)}
-                            className="bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
+                            className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600"
                           >
-                            <Send className="w-4 h-4" />
+                            <Send className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => {
                               setRespondingTo(null);
                               setResponse("");
                             }}
-                            className="text-gray-500 hover:text-gray-700 text-sm"
+                            className="text-sm text-foreground/50 hover:text-foreground"
                           >
                             Odustani
                           </button>
@@ -402,24 +400,24 @@ export default function BusinessDashboardPage() {
                         <>
                           <button
                             onClick={() => setRespondingTo(review.id)}
-                            className="text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
+                            className="flex items-center gap-1 text-sm font-medium text-emerald-400 hover:text-emerald-300"
                           >
-                            <MessageSquare className="w-4 h-4" />
+                            <MessageSquare className="h-4 w-4" />
                             Odgovori
                           </button>
                           <button
-                            onClick={() => setLiked(prev => ({ ...prev, [review.id]: !prev[review.id] }))}
-                            className={`text-sm flex items-center gap-1 transition-colors ${liked[review.id] ? "text-emerald-600 font-medium" : "text-gray-400 hover:text-gray-600"}`}
+                            onClick={() => setLiked((prev) => ({ ...prev, [review.id]: !prev[review.id] }))}
+                            className={`flex items-center gap-1 text-sm transition-colors ${liked[review.id] ? "font-medium text-emerald-400" : "text-foreground/50 hover:text-foreground"}`}
                           >
-                            <ThumbsUp className="w-4 h-4" />
+                            <ThumbsUp className="h-4 w-4" />
                             {liked[review.id] ? "Korisno ✓" : "Korisno"}
                           </button>
                           <button
-                            onClick={() => setReported(prev => ({ ...prev, [review.id]: true }))}
-                            className={`text-sm flex items-center gap-1 transition-colors ${reported[review.id] ? "text-red-500 font-medium" : "text-gray-400 hover:text-red-500"}`}
+                            onClick={() => setReported((prev) => ({ ...prev, [review.id]: true }))}
+                            className={`flex items-center gap-1 text-sm transition-colors ${reported[review.id] ? "font-medium text-red-400" : "text-foreground/50 hover:text-red-400"}`}
                             disabled={reported[review.id]}
                           >
-                            <Flag className="w-4 h-4" />
+                            <Flag className="h-4 w-4" />
                             {reported[review.id] ? "Prijavljeno" : "Prijavi"}
                           </button>
                         </>
@@ -435,100 +433,70 @@ export default function BusinessDashboardPage() {
           {activeTab === "badges" && (
             <div>
               <div className="mb-6">
-                <h2 className="text-lg font-bold text-gray-900">
-                  Vaši bedževi
-                </h2>
-                <p className="text-sm text-gray-500 mt-1">
+                <h2 className="text-lg font-semibold text-white">Vaši bedževi</h2>
+                <p className="mt-1 text-sm text-foreground/50">
                   Bedževi povećavaju povjerenje kupaca
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              <div className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {badges.map((badge) => (
                   <div
                     key={badge.name}
-                    className={`bg-white rounded-xl border p-6 transition-all ${
+                    className={`rounded-xl border p-6 transition-all ${
                       badge.earned
-                        ? "border-emerald-200 hover:shadow-md"
-                        : "border-gray-200 opacity-60"
+                        ? "border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/40"
+                        : "border-white/5 bg-white/[0.02] opacity-60"
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       <div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center ${
-                          badge.earned
-                            ? `bg-${badge.color}-100`
-                            : "bg-gray-100"
+                        className={`flex h-14 w-14 items-center justify-center rounded-xl ${
+                          badge.earned ? "bg-emerald-500/10" : "bg-white/5"
                         }`}
                       >
                         <badge.icon
-                          className={`w-7 h-7 ${
-                            badge.earned
-                              ? `text-${badge.color}-600`
-                              : "text-gray-400"
+                          className={`h-7 w-7 ${
+                            badge.earned ? "text-emerald-400" : "text-foreground/40"
                           }`}
                         />
                       </div>
                       <div>
-                        <div className="font-bold text-gray-900">
+                        <div className="font-semibold text-white">
                           {badge.name}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-foreground/50">
                           {badge.earned ? "Zarađeno" : "Nije zarađeno"}
                         </div>
                       </div>
                       {badge.earned && (
-                        <CheckCircle className="w-5 h-5 text-emerald-500 ml-auto" />
+                        <CheckCircle className="ml-auto h-5 w-5 text-emerald-400" />
                       )}
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* How to earn */}
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
-                <h3 className="text-xl font-bold mb-4">
+              <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-8">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
+                <h3 className="relative mb-4 text-xl font-semibold text-white">
                   Kako zaraditi bedževe?
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-emerald-400 mt-0.5" />
-                    <div>
-                      <div className="font-semibold">Verificirana firma</div>
-                      <div className="text-sm text-gray-300">
-                        Potvrdite svoju firmu putem emaila ili telefona
+                <div className="relative grid gap-4 md:grid-cols-2">
+                  {[
+                    { icon: Shield, title: "Verificirana firma", desc: "Potvrdite svoju firmu putem emaila ili telefona" },
+                    { icon: Crown, title: "Top rated", desc: "Ocjena 4.5+ s minimalno 20 recenzija" },
+                    { icon: MessageSquare, title: "Odgovara na recenzije", desc: "Odgovorite na 90%+ recenzija u zadnjih 30 dana" },
+                    { icon: Target, title: "Brza usluga", desc: "Prosječno vrijeme odgovora manje od 24 sata" },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-3">
+                      <item.icon className="mt-0.5 h-5 w-5 text-emerald-400" />
+                      <div>
+                        <div className="font-medium text-white">{item.title}</div>
+                        <div className="text-sm text-foreground/60">{item.desc}</div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Crown className="w-5 h-5 text-amber-400 mt-0.5" />
-                    <div>
-                      <div className="font-semibold">Top rated</div>
-                      <div className="text-sm text-gray-300">
-                        Ocjena 4.5+ s minimalno 20 recenzija
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <MessageSquare className="w-5 h-5 text-blue-400 mt-0.5" />
-                    <div>
-                      <div className="font-semibold">
-                        Odgovara na recenzije
-                      </div>
-                      <div className="text-sm text-gray-300">
-                        Odgovorite na 90%+ recenzija u zadnjih 30 dana
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Target className="w-5 h-5 text-purple-400 mt-0.5" />
-                    <div>
-                      <div className="font-semibold">Brza usluga</div>
-                      <div className="text-sm text-gray-300">
-                        Prosječno vrijeme odgovora manje od 24 sata
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -536,12 +504,10 @@ export default function BusinessDashboardPage() {
 
           {/* Analytics placeholder */}
           {activeTab === "analytics" && (
-            <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-              <BarChart3 className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Analitika
-              </h3>
-              <p className="text-gray-500">
+            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-12 text-center">
+              <BarChart3 className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
+              <h3 className="text-lg font-semibold text-white">Analitika</h3>
+              <p className="mt-2 text-foreground/50">
                 Detaljna analitika bit će dostupna uskoro.
               </p>
             </div>
@@ -549,12 +515,10 @@ export default function BusinessDashboardPage() {
 
           {/* Settings placeholder */}
           {activeTab === "settings" && (
-            <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-              <Settings className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Postavke
-              </h3>
-              <p className="text-gray-500">
+            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-12 text-center">
+              <Settings className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
+              <h3 className="text-lg font-semibold text-white">Postavke</h3>
+              <p className="mt-2 text-foreground/50">
                 Uređivanje profila firme bit će dostupno uskoro.
               </p>
             </div>

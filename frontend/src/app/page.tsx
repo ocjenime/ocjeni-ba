@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import {
   Search,
   Star,
@@ -11,24 +11,15 @@ import {
   MessageSquare,
   ArrowRight,
   MapPin,
-  TrendingUp,
   CheckCircle,
   Zap,
   Globe,
-  Award,
-  Crown,
-  Heart,
-  Target,
-  Sparkles,
-  Users,
-  BarChart3,
-  Bell,
-  Lock,
-  Mail,
+  TrendingUp,
   CheckCircle2,
   ChevronRight,
 } from "lucide-react";
-import { FBIH_CITIES } from "@/lib/constants";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const topCategories = [
   { name: "Restorani", slug: "restorani", count: 245, emoji: "🍽" },
@@ -55,6 +46,7 @@ const featuredBusinesses = [
     city: "Sarajevo",
     verified: true,
     badge: "top-rated",
+    image: "https://source.unsplash.com/featured/600x400?bakery,bread",
   },
   {
     name: "Frizerski Salon Glamour",
@@ -65,6 +57,7 @@ const featuredBusinesses = [
     city: "Mostar",
     verified: true,
     badge: "top-rated",
+    image: "https://source.unsplash.com/featured/600x400?hair,salon",
   },
   {
     name: "Restoran Kod Braće",
@@ -75,6 +68,7 @@ const featuredBusinesses = [
     city: "Bihać",
     verified: true,
     badge: "verified",
+    image: "https://source.unsplash.com/featured/600x400?restaurant,food",
   },
   {
     name: "Arilux D.O.O.",
@@ -85,6 +79,7 @@ const featuredBusinesses = [
     city: "Velika Kladuša",
     verified: true,
     badge: "top-rated",
+    image: "https://source.unsplash.com/featured/600x400?construction,modern",
   },
   {
     name: "Auto Servis Meridian",
@@ -95,6 +90,7 @@ const featuredBusinesses = [
     city: "Tuzla",
     verified: true,
     badge: "verified",
+    image: "https://source.unsplash.com/featured/600x400?car,service",
   },
   {
     name: "Apoteka Zdravlje",
@@ -105,26 +101,7 @@ const featuredBusinesses = [
     city: "Zenica",
     verified: true,
     badge: "verified",
-  },
-  {
-    name: "Caffe Bar Amor",
-    slug: "cafe-bar-amor",
-    rating: 4.7,
-    reviews: 318,
-    category: "Kafići",
-    city: "Velika Kladuša",
-    verified: true,
-    badge: "verified",
-  },
-  {
-    name: "IT Centar Digital",
-    slug: "it-centar-digital",
-    rating: 4.6,
-    reviews: 89,
-    category: "IT i Tech",
-    city: "Sarajevo",
-    verified: false,
-    badge: "new",
+    image: "https://source.unsplash.com/featured/600x400?pharmacy,medicine",
   },
 ];
 
@@ -140,7 +117,7 @@ const testimonials = [
     name: "Mirza K.",
     company: "Restoran Stari Most",
     role: "Vlasnik",
-    content: "Otkad koristimo Ocjeni.ba, broj naših gostiju se povećao za 40%. Kupci nam dolaze jer vide naše odlične recenzije.",
+    content: "Otkad koristimo ocijeni.ba, broj naših gostiju se povećao za 40%. Kupci nam dolaze jer vide naše odlične recenzije.",
     rating: 5,
   },
   {
@@ -154,8 +131,31 @@ const testimonials = [
     name: "Dragan P.",
     company: "Digital Solutions BiH",
     role: "CEO",
-    content: "Kao IT firma, nama je online reputacija ključna. Ocjeni.ba nam je pomogao da se istaknemo na tržištu.",
+    content: "Kao IT firma, nama je online reputacija ključna. ocijeni.ba nam je pomogao da se istaknemo na tržištu.",
     rating: 5,
+  },
+];
+
+const features = [
+  {
+    icon: Shield,
+    title: "Provjerene recenzije",
+    description: "Svaka ocjena dolazi od stvarnih korisnika. Borimo se protiv lažnih recenzija.",
+  },
+  {
+    icon: Search,
+    title: "Lokalna pretraga",
+    description: "Pronađite tvrtke po gradu, kategoriji i ocjeni u svojoj blizini.",
+  },
+  {
+    icon: Building2,
+    title: "Profili tvrtki",
+    description: "Detaljni profili s fotografijama, radnim vremenom i kontaktom.",
+  },
+  {
+    icon: Star,
+    title: "Pametne ocjene",
+    description: "Ocjene po kategorijama: kvaliteta, cijena, brzina i komunikacija.",
   },
 ];
 
@@ -170,16 +170,36 @@ function TrustScoreBadge({ rating }: { rating: number }) {
 
   return (
     <span
-      className={`${getColor(rating)} text-white text-xs font-bold px-2.5 py-1 rounded-md`}
+      className={`${getColor(rating)} rounded-md px-2.5 py-1 text-xs font-bold text-white`}
     >
       {rating.toFixed(1)}
     </span>
   );
 }
 
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`h-3.5 w-3.5 ${
+            star <= Math.round(rating)
+              ? "fill-amber-400 text-amber-400"
+              : "fill-white/10 text-white/10"
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function HomePage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -190,290 +210,327 @@ export default function HomePage() {
     }
   };
 
+  const handleBusinessSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500" />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden pt-16">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://source.unsplash.com/featured/2400x1400?sarajevo,city,night"
+            alt="Sarajevo panorama"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
         </div>
-        <div className="relative max-w-5xl mx-auto px-4 py-20 md:py-28">
-          <div className="text-center text-white">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-              <Shield className="w-4 h-4" />
+        <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+          <div className="aurora-blob absolute h-[50vh] w-[50vh] opacity-60" />
+          <div
+            className="aurora-blob absolute h-[40vh] w-[40vh] opacity-40"
+            style={{ animationDelay: "-4s", animationDuration: "16s" }}
+          />
+        </div>
+
+        <div className="container relative z-10 mx-auto px-4 py-20 text-center md:py-28">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-xs font-medium uppercase tracking-wide text-foreground/80">
               Platforma broj 1 za recenzije u BiH
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-5 leading-tight">
-              Vaše iskustvo je
-              <br />
-              <span className="text-emerald-200">najbolji vodič</span>
-            </h1>
-            <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
-              Hiljade provjerenih recenzija od stvarnih građana BiH. Vaša odluka zaslužuje prave informacije.
-            </p>
+            </span>
+          </motion.div>
 
-            <div className="max-w-2xl mx-auto">
-              <form onSubmit={handleSearch} className="flex bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20">
-                <div className="flex-1 flex items-center">
-                  <Search className="w-5 h-5 text-gray-400 ml-5" />
-                  <input
-                    type="text"
-                    placeholder="Tražite firmu, uslugu ili kategoriju..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-5 text-gray-900 text-lg outline-none placeholder:text-gray-400"
-                  />
-                </div>
-                <button type="submit" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 font-semibold transition-colors">
-                  Pretraži
-                </button>
-              </form>
-            </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl"
+          >
+            Pronađi. Ocijeni.{" "}
+            <span className="gradient-text">Pouzdano.</span>
+          </motion.h1>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {topCategories.slice(0, 5).map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/kategorije/${cat.slug}`}
-                  className="text-sm text-white/80 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full transition-all"
-                >
-                  {cat.emoji} {cat.name}
-                </Link>
-              ))}
-            </div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 md:text-xl"
+          >
+            Hiljade provjerenih recenzija od stvarnih građana BiH. Vaša odluka
+            zaslužuje prave informacije.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mx-auto mt-10 max-w-2xl"
+          >
+            <form
+              onSubmit={handleSearch}
+              className="flex flex-col gap-3 rounded-full border border-white/10 bg-white/5 p-2 backdrop-blur-sm sm:flex-row"
+            >
+              <div className="relative flex flex-1 items-center px-4">
+                <Search className="h-5 w-5 text-foreground/40" />
+                <input
+                  type="text"
+                  placeholder="Tražite firmu, uslugu ili kategoriju..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full border-0 bg-transparent px-4 py-3 text-lg text-white outline-none placeholder:text-foreground/40"
+                />
+              </div>
+              <button
+                type="submit"
+                className="animated-border inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 px-8 text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-transform hover:scale-105 sm:h-auto"
+              >
+                Pretraži
+              </button>
+            </form>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="mt-6 flex flex-wrap justify-center gap-2"
+          >
+            {topCategories.slice(0, 5).map((cat) => (
+              <Link
+                key={cat.slug}
+                href={`/kategorije/${cat.slug}`}
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-foreground/70 backdrop-blur-sm transition-all hover:border-white/20 hover:text-foreground"
+              >
+                {cat.emoji} {cat.name}
+              </Link>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Bar */}
-      <section className="py-8 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="border-b border-white/5 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold text-gray-900">
+                <div className="text-2xl font-semibold text-white md:text-3xl">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+                <div className="mt-1 text-sm text-foreground/50">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Kako radi */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
-              Jednostavno
-            </span>
-            <h2 className="text-3xl font-bold text-gray-900 mt-2">
-              Kako funkcioniše?
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-10">
-            <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
-                <Search className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
-                01
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Pretražite
-              </h3>
-              <p className="text-gray-500">
-                Pronađite firmu po imenu, kategoriji ili lokaciji. Sve na
-                jednom mjestu.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
-                <MessageSquare className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
-                02
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Istražite
-              </h3>
-              <p className="text-gray-500">
-                Pročitajte provjerena iskustva drugih kupaca prije nego što
-                donesete odluku.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
-                <Star className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div className="absolute top-5 left-16 text-5xl font-black text-emerald-100 hidden md:block">
-                03
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Podijelite
-              </h3>
-              <p className="text-gray-500">
-                Ostavite svoju recenziju i pomognite drugim kupcima da izaberu
-                najbolje.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Kategorije */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
-                Istražite
-              </span>
-              <h2 className="text-2xl font-bold text-gray-900 mt-1">
-                Kategorije
-              </h2>
-            </div>
-            <Link
-              href="/kategorije"
-              className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1"
-            >
-              Pogledaj sve <ArrowRight className="w-4 h-4" />
-            </Link>
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Istražite
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-5xl">
+              Kategorije
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
+              Pronađite uslugu po svom izboru — sve provjereno i ocijenjeno.
+            </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {topCategories.map((cat) => (
-              <Link
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            {topCategories.map((cat, index) => (
+              <motion.div
                 key={cat.slug}
-                href={`/kategorije/${cat.slug}`}
-                className="group bg-white p-4 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-md transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.03 }}
               >
-                <span className="text-2xl">{cat.emoji}</span>
-                <div className="font-semibold text-gray-900 mt-2 group-hover:text-emerald-600 transition-colors">
-                  {cat.name}
-                </div>
-                <div className="text-xs text-gray-400 mt-0.5">
-                  {cat.count} firmi
-                </div>
-              </Link>
+                <Link
+                  href={`/kategorije/${cat.slug}`}
+                  className="group flex flex-col rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                >
+                  <span className="text-3xl">{cat.emoji}</span>
+                  <div className="mt-3 font-semibold text-white transition-colors group-hover:text-emerald-400">
+                    {cat.name}
+                  </div>
+                  <div className="mt-1 text-xs text-foreground/40">
+                    {cat.count} firmi
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Top tvrtke */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
+      <section className="relative py-24">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4">
+          <div className="mb-12 flex items-end justify-between">
             <div>
-              <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+              <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
                 Top ocjene
               </span>
-              <h2 className="text-2xl font-bold text-gray-900 mt-1">
-                Najbolje ocijenjene firme u BiH
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+                Najbolje ocijenjene firme
               </h2>
             </div>
             <Link
               href="/tvrtke"
-              className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1"
+              className="hidden items-center gap-1 text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 sm:flex"
             >
-              Sve firme <ArrowRight className="w-4 h-4" />
+              Sve firme <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {featuredBusinesses.map((biz) => (
-              <Link
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {featuredBusinesses.map((biz, index) => (
+              <motion.div
                 key={biz.slug}
-                href={`/tvrtke/${biz.slug}`}
-                className="group bg-white p-5 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-7 h-7 text-emerald-500" />
+                <Link
+                  href={`/tvrtke/${biz.slug}`}
+                  className="animated-border shimmer glow-ring group flex h-full flex-col overflow-hidden rounded-2xl bg-white/[0.02]"
+                >
+                  <div className="relative h-40 w-full overflow-hidden">
+                    <Image
+                      src={biz.image}
+                      alt={biz.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-gray-900 truncate group-hover:text-emerald-600 transition-colors">
-                        {biz.name}
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                        <Building2 className="h-6 w-6 text-emerald-400" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="truncate font-semibold text-white transition-colors group-hover:text-emerald-400">
+                            {biz.name}
+                          </span>
+                          {biz.verified && (
+                            <CheckCircle className="h-4 w-4 flex-shrink-0 text-emerald-400" />
+                          )}
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-foreground/50">
+                          <MapPin className="h-3 w-3" />
+                          {biz.city} · {biz.category}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 border-t border-white/5 pt-4">
+                      <TrustScoreBadge rating={biz.rating} />
+                      <StarRating rating={biz.rating} />
+                      <span className="text-sm text-foreground/50">
+                        {biz.reviews} recenzija
                       </span>
-                      {biz.verified && (
-                        <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                      )}
-                    </div>
-                    <div className="text-sm text-gray-400 flex items-center gap-1 mt-0.5">
-                      <MapPin className="w-3 h-3" />
-                      {biz.city} · {biz.category}
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
-                  <TrustScoreBadge rating={biz.rating} />
-                  <div className="flex items-center gap-0.5">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className={`w-3.5 h-3.5 ${
-                          star <= Math.round(biz.rating)
-                            ? "fill-amber-400 text-amber-400"
-                            : "fill-gray-200 text-gray-200"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-500 font-medium">
-                    {biz.reviews} recenzija
-                  </span>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Za tvrtke */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-10 md:p-14 text-center text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl" />
+      {/* Features */}
+      <section className="border-y border-white/5 py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-16 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Zašto mi
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-5xl">
+              Recenzije koje se mogu vjerovati
+            </h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all hover:border-green-500/30 hover:bg-white/[0.04]"
+              >
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-emerald-400 shadow-inner shadow-green-500/10">
+                  <feature.icon className="h-7 w-7" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Za tvrtke CTA */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 text-center md:p-16">
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
             <div className="relative">
-              <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Building2 className="w-8 h-8 text-emerald-400" />
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
+                <Building2 className="h-8 w-8 text-emerald-400" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="mb-4 text-3xl font-semibold text-white md:text-4xl">
                 Vaša firma zaslužuje vidljivost
               </h2>
-              <p className="text-gray-300 mb-8 max-w-xl mx-auto text-lg">
-                10,000+ firmi već koristi Ocjeni.ba. Vaša firma može biti sljedeća — besplatno.
+              <p className="mx-auto mb-8 max-w-xl text-lg text-foreground/60">
+                10,000+ firmi već koristi ocijeni.ba. Vaša firma može biti
+                sljedeća — besplatno.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/tvrtke/prijava"
-                  className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg"
-                >
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                <Link href="/tvrtke/prijava" className="btn-primary">
                   Prijavite firmu besplatno
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <Link
-                  href="/cjenik"
-                  className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2 text-lg"
-                >
+                <Link href="/cjenik" className="btn-secondary">
                   Pogledajte planove
                 </Link>
               </div>
-              <div className="flex items-center justify-center gap-6 mt-8 text-sm text-gray-400">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-foreground/50">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Bez troškova
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Odgovarajte na recenzije
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Analitika
                 </span>
               </div>
@@ -483,105 +540,115 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+      <section className="border-y border-white/5 py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Svjedočanstva
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 mt-2">
-              Šta kažu firme koje već rastu s nama
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Šta kažu firme koje rastu s nama
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
-              <div
+          <div className="grid gap-6 md:grid-cols-3">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
                 key={testimonial.name}
-                className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10"
               >
-                <div className="flex items-center gap-0.5 mb-4">
+                <div className="mb-4 flex items-center gap-0.5">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
-                      className="w-5 h-5 fill-amber-400 text-amber-400"
+                      className="h-5 w-5 fill-amber-400 text-amber-400"
                     />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-6 italic text-sm">
+                <p className="mb-6 text-sm italic leading-relaxed text-foreground/70">
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div>
-                  <div className="font-bold text-gray-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="font-semibold text-white">{testimonial.name}</div>
+                  <div className="text-sm text-foreground/50">
                     {testimonial.role}, {testimonial.company}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Zašto mi */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
-              Povjerenje
+      {/* Business registration form */}
+      <section id="dodaj-tvrtku" className="py-24">
+        <div className="container mx-auto max-w-3xl px-4">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Dodaj tvrtku
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 mt-2">
-              Zašto 10,000+ firmi bira Ocjeni.ba?
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Pridruži se ocijeni.ba
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-6 h-6 text-emerald-600" />
+          <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-6 sm:p-10">
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+            <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
+            {submitted ? (
+              <div className="relative z-10 flex flex-col items-center py-12 text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500 text-3xl text-white">
+                  <CheckCircle2 />
+                </div>
+                <h3 className="text-2xl font-semibold text-white">Hvala vam</h3>
+                <p className="mt-3 max-w-md text-foreground/70">
+                  Primili smo vaš zahtjev. Kontaktirat ćemo vas u roku od 24 sata.
+                </p>
               </div>
-              <h3 className="font-bold text-gray-900 mb-1.5">
-                Provjerene recenzije
-              </h3>
-              <p className="text-sm text-gray-500">
-                Svaka recenzija je verificirana i povezana s pravim kupovnim
-                iskustvom
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-emerald-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-1.5">
-                Zaštićeni od lažnih recenzija
-              </h3>
-              <p className="text-sm text-gray-500">
-                Napredni sistem otkriva i sprječava manipulacije ocjenama
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-6 h-6 text-emerald-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-1.5">
-                Pokrivenost cijelom FBiH
-              </h3>
-              <p className="text-sm text-gray-500">
-                Platforma pokriva sve gradove i općine Federacije Bosne i
-                Hercegovine
-              </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-emerald-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-1.5">
-                Rast za firme
-              </h3>
-              <p className="text-sm text-gray-500">
-                Firme s aktivnim recenzijama privlače 3x više novih kupaca
-              </p>
-            </div>
+            ) : (
+              <form onSubmit={handleBusinessSubmit} className="relative z-10 space-y-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label className="label">Naziv tvrtke</label>
+                    <input
+                      type="text"
+                      required
+                      value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      className="input"
+                      placeholder="npr. Restoran Sarajevo"
+                    />
+                  </div>
+                  <div>
+                    <label className="label">Email adresa</label>
+                    <input
+                      type="email"
+                      required
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                      className="input"
+                      placeholder="info@tvrtka.ba"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="label">Kategorija</label>
+                  <select className="input bg-background">
+                    <option value="">Odaberite kategoriju</option>
+                    {topCategories.map((cat) => (
+                      <option key={cat.slug} value={cat.slug}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <button type="submit" className="btn-primary w-full">
+                  Pošalji zahtjev
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
