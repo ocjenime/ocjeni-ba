@@ -16,6 +16,7 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { FBIH_CITIES } from "@/lib/constants";
 import { useAuth } from "@/lib/auth-context";
 
@@ -25,13 +26,11 @@ export default function BusinessSignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    // Vlasnik
     ownerName: "",
     ownerEmail: "",
     password: "",
     confirmPassword: "",
     phone: "",
-    // Tvrtka
     businessName: "",
     category: "",
     city: "",
@@ -62,67 +61,94 @@ export default function BusinessSignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-2xl mx-auto px-4 py-12">
+    <div className="relative min-h-screen overflow-hidden px-4 py-24">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
+        <div
+          className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
+          style={{ animationDelay: "-4s", animationDuration: "16s" }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-2xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">O</span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 text-center"
+        >
+          <Link href="/" className="mb-6 inline-flex items-center gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 shadow-lg shadow-green-500/20">
+              <span className="text-lg font-bold text-white">O</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
+            <span className="text-xl font-bold text-white">
+              ocijeni<span className="gradient-text">.ba</span>
+            </span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold text-white">
             Dodajte svoju firmu na Ocjeni.ba
           </h1>
-          <p className="text-gray-500 mt-2">
+          <p className="mt-2 text-foreground/60">
             Besplatno. Bez kartice. Počnite primati recenzije danas.
           </p>
-        </div>
+        </motion.div>
 
         {/* Progress */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8 flex items-center justify-center gap-2"
+        >
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+            className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
               step >= 1
-                ? "bg-emerald-500 text-white"
-                : "bg-gray-200 text-gray-500"
+                ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white"
+                : "border border-white/10 bg-white/5 text-foreground/50"
             }`}
           >
             1
           </div>
           <div
-            className={`w-16 h-1 rounded ${
-              step >= 2 ? "bg-emerald-500" : "bg-gray-200"
+            className={`h-1 w-16 rounded-full ${
+              step >= 2 ? "bg-gradient-to-r from-emerald-400 to-teal-500" : "bg-white/10"
             }`}
           />
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+            className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
               step >= 2
-                ? "bg-emerald-500 text-white"
-                : "bg-gray-200 text-gray-500"
+                ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white"
+                : "border border-white/10 bg-white/5 text-foreground/50"
             }`}
           >
             2
           </div>
-        </div>
+        </motion.div>
 
         {/* Form */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
-          <form onSubmit={handleSubmit}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+        >
+          <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
+
+          <form onSubmit={handleSubmit} className="relative z-10">
             {step === 1 ? (
               <>
-                <h2 className="text-lg font-bold text-gray-900 mb-6">
+                <h2 className="mb-6 text-lg font-semibold text-white">
                   Vaši podaci
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Ime i prezime *
-                    </label>
+                    <label className="label">Ime i prezime *</label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <User className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="text"
                         required
@@ -130,18 +156,16 @@ export default function BusinessSignupPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, ownerName: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="Vaše ime"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email adresa *
-                    </label>
+                    <label className="label">Email adresa *</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="email"
                         required
@@ -152,18 +176,16 @@ export default function BusinessSignupPage() {
                             ownerEmail: e.target.value,
                           })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="vas@email.ba"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Lozinka *
-                    </label>
+                    <label className="label">Lozinka *</label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type={showPassword ? "text" : "password"}
                         required
@@ -171,29 +193,27 @@ export default function BusinessSignupPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, password: e.target.value })
                         }
-                        className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11 pr-12"
                         placeholder="Min. 8 znakova"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground"
                       >
                         {showPassword ? (
-                          <EyeOff className="w-5 h-5" />
+                          <EyeOff className="h-5 w-5" />
                         ) : (
-                          <Eye className="w-5 h-5" />
+                          <Eye className="h-5 w-5" />
                         )}
                       </button>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Telefon *
-                    </label>
+                    <label className="label">Telefon *</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Phone className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="tel"
                         required
@@ -201,7 +221,7 @@ export default function BusinessSignupPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="+387 XX XXX XXX"
                       />
                     </div>
@@ -210,25 +230,23 @@ export default function BusinessSignupPage() {
 
                 <button
                   type="submit"
-                  className="w-full mt-6 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                  className="animated-border mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 px-6 text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-transform hover:scale-[1.01]"
                 >
                   Nastavi
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
               </>
             ) : (
               <>
-                <h2 className="text-lg font-bold text-gray-900 mb-6">
+                <h2 className="mb-6 text-lg font-semibold text-white">
                   Podaci o firmi
                 </h2>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Naziv firme *
-                    </label>
+                    <label className="label">Naziv firme *</label>
                     <div className="relative">
-                      <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Building2 className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="text"
                         required
@@ -239,7 +257,7 @@ export default function BusinessSignupPage() {
                             businessName: e.target.value,
                           })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="Naziv vaše firme"
                       />
                     </div>
@@ -247,9 +265,7 @@ export default function BusinessSignupPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Kategorija *
-                      </label>
+                      <label className="label">Kategorija *</label>
                       <select
                         required
                         value={formData.category}
@@ -259,7 +275,7 @@ export default function BusinessSignupPage() {
                             category: e.target.value,
                           })
                         }
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input bg-background"
                       >
                         <option value="">Odaberite...</option>
                         <option value="restorani">Restorani</option>
@@ -277,16 +293,14 @@ export default function BusinessSignupPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Grad *
-                      </label>
+                      <label className="label">Grad *</label>
                       <select
                         required
                         value={formData.city}
                         onChange={(e) =>
                           setFormData({ ...formData, city: e.target.value })
                         }
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input bg-background"
                       >
                         <option value="">Odaberite grad...</option>
                         {FBIH_CITIES.map((city) => (
@@ -299,45 +313,39 @@ export default function BusinessSignupPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Adresa
-                    </label>
+                    <label className="label">Adresa</label>
                     <div className="relative">
-                      <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <MapPin className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="text"
                         value={formData.address}
                         onChange={(e) =>
                           setFormData({ ...formData, address: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="Ulica i broj"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Web stranica
-                    </label>
+                    <label className="label">Web stranica</label>
                     <div className="relative">
-                      <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Globe className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                       <input
                         type="url"
                         value={formData.website}
                         onChange={(e) =>
                           setFormData({ ...formData, website: e.target.value })
                         }
-                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                        className="input pl-11"
                         placeholder="https://vasa-stranica.ba"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Opis firme
-                    </label>
+                    <label className="label">Opis firme</label>
                     <textarea
                       value={formData.description}
                       onChange={(e) =>
@@ -347,39 +355,38 @@ export default function BusinessSignupPage() {
                         })
                       }
                       rows={3}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 resize-none"
+                      className="input resize-none"
                       placeholder="Kratki opis vaše firme..."
                     />
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-6">
+                <div className="mt-6 flex gap-3">
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex-1 border border-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                    className="btn-secondary flex-1"
                   >
                     Nazad
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                    className="animated-border inline-flex h-12 flex-1 items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 px-6 text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-transform hover:scale-[1.01]"
                   >
                     Registruj firmu
-                    <CheckCircle className="w-5 h-5" />
+                    <CheckCircle className="ml-2 h-5 w-5" />
                   </button>
                 </div>
               </>
             )}
           </form>
-        </div>
+        </motion.div>
 
-        {/* Footer */}
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="mt-6 text-center text-sm text-foreground/50">
           Već imate račun?{" "}
           <Link
             href="/tvrtke/login"
-            className="text-emerald-600 hover:text-emerald-700 font-medium"
+            className="font-medium text-emerald-400 hover:text-emerald-300"
           >
             Prijavite se
           </Link>

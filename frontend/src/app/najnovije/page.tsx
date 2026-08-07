@@ -3,11 +3,9 @@ import Link from "next/link";
 import {
   Star,
   Building2,
-  MapPin,
   ArrowRight,
-  MessageSquare,
-  CheckCircle,
 } from "lucide-react";
+import { FadeIn, SlideUp } from "@/components/ui/Motion";
 
 export const metadata: Metadata = {
   title: "Najnovije recenzije | Ocjeni.ba",
@@ -82,10 +80,10 @@ function StarRating({ rating }: { rating: number }) {
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
-          className={`w-4 h-4 ${
+          className={`h-4 w-4 ${
             star <= rating
               ? "fill-amber-400 text-amber-400"
-              : "fill-gray-200 text-gray-200"
+              : "fill-white/10 text-white/10"
           }`}
         />
       ))}
@@ -95,91 +93,95 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function NajnovijePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4">
+          <FadeIn className="mx-auto max-w-3xl text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Recenzije
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
               Najnovije recenzije
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
               Iskustva stvarnih kupaca iz cijele Bosne i Hercegovine. Sve
               recenzije su verificirane.
             </p>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Reviews */}
-      <section className="py-12 pb-20">
-        <div className="max-w-3xl mx-auto px-4">
+      <section className="py-16">
+        <div className="container mx-auto max-w-3xl px-4">
           <div className="space-y-6">
-            {reviews.map((review) => (
-              <div
-                key={review.id}
-                className="bg-white p-6 rounded-2xl border border-gray-200 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <span className="text-emerald-700 font-bold text-sm">
-                        {review.author.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900">
-                        {review.author}
+            {reviews.map((review, index) => (
+              <SlideUp key={review.id} delay={index * 0.08}>
+                <div className="card">
+                  <div className="mb-4 flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                        <span className="text-sm font-bold text-emerald-400">
+                          {review.author.charAt(0)}
+                        </span>
                       </div>
-                      <div className="text-xs text-gray-400">{review.date}</div>
+                      <div>
+                        <div className="font-semibold text-white">
+                          {review.author}
+                        </div>
+                        <div className="text-xs text-foreground/50">{review.date}</div>
+                      </div>
                     </div>
+                    <StarRating rating={review.rating} />
                   </div>
-                  <StarRating rating={review.rating} />
-                </div>
 
-                <h3 className="font-bold text-gray-900 mb-2">{review.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  {review.content}
-                </p>
+                  <h3 className="mb-2 font-semibold text-white">{review.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-foreground/70">
+                    {review.content}
+                  </p>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <Link
-                    href={`/tvrtke/${review.businessSlug}`}
-                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors"
-                  >
-                    <Building2 className="w-4 h-4" />
-                    {review.business}
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                  <span className="text-xs text-gray-400">
-                    {review.helpful} korisno
-                  </span>
+                  <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                    <Link
+                      href={`/tvrtke/${review.businessSlug}`}
+                      className="flex items-center gap-2 text-sm text-foreground/50 transition-colors hover:text-emerald-400"
+                    >
+                      <Building2 className="h-4 w-4" />
+                      {review.business}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                    <span className="text-xs text-foreground/50">
+                      {review.helpful} korisno
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </SlideUp>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Podijelite svoje iskustvo
-          </h2>
-          <p className="text-gray-500 mb-8 text-lg max-w-xl mx-auto">
-            Vaša recenzija pomaže drugim kupcima da donesu pravu odluku.
-          </p>
-          <Link
-            href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-          >
-            Prijavite firmu besplatno
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      <section className="border-t border-white/5 py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <SlideUp>
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Podijelite iskustvo
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+              Podijelite svoje iskustvo
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">
+              Vaša recenzija pomaže drugim kupcima da donesu pravu odluku.
+            </p>
+            <Link href="/tvrtke/prijava" className="btn-primary mt-6">
+              Prijavite firmu besplatno
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </SlideUp>
         </div>
       </section>
     </div>

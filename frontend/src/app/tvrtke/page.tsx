@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Filter,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const businesses = [
   {
@@ -106,115 +107,130 @@ export default function TvrtkePage() {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Directorij
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
               Sve firme
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
               Pretražite sve verificirane firme u Bosni i Hercegovini. Pronađite
               najbolje ocijenjene pružaoci usluga.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Search */}
-      <section className="py-8">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center gap-3 max-w-2xl mx-auto">
-            <div className="flex-1 flex items-center bg-white border border-gray-200 rounded-xl overflow-hidden focus-within:border-emerald-300 focus-within:ring-2 focus-within:ring-emerald-100 transition-all">
-              <Search className="w-5 h-5 text-gray-400 ml-4" />
+      <section className="py-10">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="mx-auto flex max-w-2xl items-center gap-3">
+            <div className="flex flex-1 items-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-colors focus-within:border-emerald-400/50">
+              <Search className="ml-4 h-5 w-5 text-foreground/40" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Pretražite firme po imenu, kategoriji ili gradu..."
-                className="w-full px-4 py-4 text-gray-900 outline-none placeholder:text-gray-400"
+                className="w-full bg-transparent px-4 py-4 text-white outline-none placeholder:text-foreground/40"
               />
             </div>
-            <button className="p-4 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
-              <Filter className="w-5 h-5 text-gray-600" />
+            <button className="rounded-xl border border-white/10 bg-white/5 p-4 text-foreground/70 transition-colors hover:bg-white/10">
+              <Filter className="h-5 w-5" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Business listings */}
-      <section className="py-8 pb-20">
-        <div className="max-w-5xl mx-auto px-4">
+      <section className="py-8">
+        <div className="container mx-auto max-w-5xl px-4">
           <div className="mb-6">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-foreground/50">
               Prikazano {filtered.length} firmi
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {filtered.map((biz) => (
-              <Link
+          <div className="grid gap-6 md:grid-cols-2">
+            {filtered.map((biz, index) => (
+              <motion.div
                 key={biz.slug}
-                href={`/tvrtke/${biz.slug}`}
-                className="group bg-white p-6 rounded-2xl border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-8 h-8 text-emerald-500" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-bold text-gray-900 group-hover:text-emerald-600 transition-colors truncate">
-                        {biz.name}
-                      </h2>
-                      {biz.verified && (
-                        <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      )}
+                <Link
+                  href={`/tvrtke/${biz.slug}`}
+                  className="group flex flex-col rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                      <Building2 className="h-8 w-8 text-emerald-400" />
                     </div>
-                    <div className="text-sm text-gray-400 flex items-center gap-1 mt-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {biz.city} · {biz.category}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <h2 className="truncate text-lg font-semibold text-white transition-colors group-hover:text-emerald-400">
+                          {biz.name}
+                        </h2>
+                        {biz.verified && (
+                          <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-400" />
+                        )}
+                      </div>
+                      <div className="mt-1 flex items-center gap-1 text-sm text-foreground/50">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {biz.city} · {biz.category}
+                      </div>
+                      <p className="mt-2 text-sm text-foreground/60">
+                        {biz.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-500 mt-2">
-                      {biz.description}
-                    </p>
                   </div>
-                </div>
-                <div className="flex items-center gap-2 mt-5 pt-4 border-t border-gray-100">
-                  <span className="bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">
-                    {biz.rating.toFixed(1)}
-                  </span>
-                  <div className="flex items-center gap-0.5">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className={`w-4 h-4 ${
-                          star <= Math.round(biz.rating)
-                            ? "fill-amber-400 text-amber-400"
-                            : "fill-gray-200 text-gray-200"
-                        }`}
-                      />
-                    ))}
+                  <div className="mt-5 flex items-center gap-2 border-t border-white/5 pt-4">
+                    <span className="rounded-md bg-emerald-500 px-2.5 py-1 text-xs font-bold text-white">
+                      {biz.rating.toFixed(1)}
+                    </span>
+                    <div className="flex items-center gap-0.5">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          className={`h-4 w-4 ${
+                            star <= Math.round(biz.rating)
+                              ? "fill-amber-400 text-amber-400"
+                              : "fill-white/10 text-white/10"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm font-medium text-foreground/50">
+                      {biz.reviews} recenzija
+                    </span>
+                    <ArrowRight className="ml-auto h-4 w-4 text-foreground/30 transition-colors group-hover:text-emerald-400" />
                   </div>
-                  <span className="text-sm text-gray-500 font-medium">
-                    {biz.reviews} recenzija
-                  </span>
-                  <ArrowRight className="w-4 h-4 text-gray-300 ml-auto group-hover:text-emerald-500 transition-colors" />
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16">
-              <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+            <div className="py-16 text-center">
+              <Search className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
+              <h3 className="mb-2 text-lg font-semibold text-white">
                 Nema rezultata
               </h3>
-              <p className="text-gray-500">
+              <p className="text-foreground/50">
                 Pokušajte s drugačijim pojmom za pretragu.
               </p>
             </div>
@@ -223,21 +239,21 @@ export default function TvrtkePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      <section className="border-t border-white/5 py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+            Pridružite se
+          </span>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
             Vaša firma nije na listi?
           </h2>
-          <p className="text-gray-500 mb-8 text-lg max-w-xl mx-auto">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">
             Pridružite se hiljadama firmi koje već koriste Ocjeni.ba. Potpuno
             besplatno.
           </p>
-          <Link
-            href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-          >
+          <Link href="/tvrtke/prijava" className="btn-primary mt-6">
             Prijavite firmu besplatno
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
       </section>

@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Building2,
 } from "lucide-react";
+import { FadeIn, SlideUp } from "@/components/ui/Motion";
 import { FBIH_CITIES } from "@/lib/constants";
 
 interface CategoryPageProps {
@@ -15,7 +16,6 @@ interface CategoryPageProps {
   };
 }
 
-// Ovdje bi se podaci dohvatili iz baze podataka
 const getCategoryBySlug = (slug: string) => {
   const categories: Record<
     string,
@@ -383,17 +383,17 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-secondary-50 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-secondary-900 mb-4">
+          <h1 className="mb-4 text-4xl font-semibold text-white">
             Kategorija nije pronađena
           </h1>
-          <p className="text-secondary-600 mb-8">
+          <p className="mb-8 text-foreground/60">
             Tražena kategorija ne postoji ili je premještena.
           </p>
           <Link
             href="/kategorije"
-            className="inline-flex items-center gap-2 bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors"
+            className="btn-primary inline-flex items-center gap-2"
           >
             Pogledajte sve kategorije
           </Link>
@@ -403,160 +403,173 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-background">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-secondary-100">
-        <div className="container mx-auto px-4 py-3">
-          <nav className="flex items-center gap-2 text-sm text-secondary-600">
-            <Link href="/" className="hover:text-primary-500 transition-colors">
+      <section className="border-b border-white/5 py-4">
+        <div className="container mx-auto px-4">
+          <nav className="flex flex-wrap items-center gap-2 text-sm text-foreground/50">
+            <Link href="/" className="transition-colors hover:text-emerald-400">
               Početna
             </Link>
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="h-4 w-4" />
             <Link
               href="/kategorije"
-              className="hover:text-primary-500 transition-colors"
+              className="transition-colors hover:text-emerald-400"
             >
               Kategorije
             </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-secondary-900 font-medium">
-              {category.name}
-            </span>
+            <ChevronRight className="h-4 w-4" />
+            <span className="font-medium text-white">{category.name}</span>
           </nav>
         </div>
-      </div>
+      </section>
 
       {/* Hero sekcija */}
-      <section className="bg-gradient-to-r from-secondary-900 to-secondary-800 text-white py-12">
+      <section className="relative overflow-hidden border-b border-white/5 py-16">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
+        </div>
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            {category.name}
-          </h1>
-          <p className="text-lg text-secondary-200 max-w-2xl">
-            {category.description}
-          </p>
+          <FadeIn>
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Kategorija
+            </span>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              {category.name}
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-foreground/60">
+              {category.description}
+            </p>
+          </FadeIn>
         </div>
       </section>
 
       {/* Pretraga i filteri */}
       <section className="container mx-auto px-4 -mt-6">
-        <div className="bg-white rounded-xl shadow-lg p-4 md:p-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary-400" />
-              <input
-                type="text"
-                placeholder={`Pretraži ${category.name.toLowerCase()}...`}
-                className="w-full pl-10 pr-4 py-3 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
-            </div>
-            <div className="flex gap-2">
-              <select className="px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                <option value="">Svi gradovi FBiH</option>
-                {FBIH_CITIES.map((city) => (
-                  <option key={city.name} value={city.name.toLowerCase().replace(/\s+/g, "-")}>
-                    {city.name}
-                  </option>
-                ))}
-              </select>
-              <button className="px-4 py-3 border border-secondary-200 rounded-lg hover:bg-secondary-50 transition-colors">
-                <Filter className="w-5 h-5" />
-              </button>
+        <FadeIn delay={0.2}>
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4 md:p-6">
+            <div className="flex flex-col gap-4 md:flex-row">
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
+                <input
+                  type="text"
+                  placeholder={`Pretraži ${category.name.toLowerCase()}...`}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-white outline-none transition-colors placeholder:text-foreground/40 focus:border-emerald-400/50"
+                />
+              </div>
+              <div className="flex gap-2">
+                <select className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground/70 outline-none">
+                  <option value="">Svi gradovi FBiH</option>
+                  {FBIH_CITIES.map((city) => (
+                    <option key={city.name} value={city.name.toLowerCase().replace(/\s+/g, "-")}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
+                <button className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-foreground/70 transition-colors hover:bg-white/10">
+                  <Filter className="h-5 w-5" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Podkategorije */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold text-secondary-900 mb-6">
+      <section className="container mx-auto px-4 py-16">
+        <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
           Podkategorije
+        </span>
+        <h2 className="mt-3 text-2xl font-semibold text-white">
+          Pronađite specijalizovane firme
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {category.subcategories.map((sub) => (
-            <Link
-              key={sub.slug}
-              href={`/kategorije/${params.slug}`}
-              className="group flex items-center justify-between p-4 bg-white rounded-xl border border-secondary-100 hover:border-primary-500 hover:shadow-md transition-all"
-            >
-              <div>
-                <h3 className="font-medium text-secondary-900 group-hover:text-primary-600 transition-colors">
-                  {sub.name}
-                </h3>
-                <p className="text-sm text-secondary-500">
-                  {sub.count} firmi
-                </p>
-              </div>
-              <ChevronRight className="w-5 h-5 text-secondary-400 group-hover:text-primary-500 transition-colors" />
-            </Link>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {category.subcategories.map((sub, index) => (
+            <SlideUp key={sub.slug} delay={index * 0.03}>
+              <Link
+                href={`/kategorije/${params.slug}`}
+                className="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.02] p-4 transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+              >
+                <div>
+                  <h3 className="font-medium text-white transition-colors group-hover:text-emerald-400">
+                    {sub.name}
+                  </h3>
+                  <p className="text-sm text-foreground/50">
+                    {sub.count} firmi
+                  </p>
+                </div>
+                <ChevronRight className="h-5 w-5 text-foreground/40 transition-colors group-hover:text-emerald-400" />
+              </Link>
+            </SlideUp>
           ))}
         </div>
       </section>
 
       {/* Najbolje rangirane firme */}
-      <section className="bg-white py-12 border-t border-secondary-100">
+      <section className="border-y border-white/5 py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-secondary-900 mb-6">
+          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+            Top firme
+          </span>
+          <h2 className="mt-3 text-2xl font-semibold text-white">
             Najbolje rangirane firme
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="p-6 bg-secondary-50 rounded-xl border border-secondary-100"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center">
-                    <Building2 className="w-8 h-8 text-primary-500" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-secondary-900">
-                      Firma {i}
-                    </h3>
-                    <div className="flex items-center gap-1 mt-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-medium text-secondary-900">
-                        {(5 - i * 0.3).toFixed(1)}
-                      </span>
-                      <span className="text-sm text-secondary-500">
-                        ({100 - i * 20} recenzija)
-                      </span>
+          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i, index) => (
+              <SlideUp key={i} delay={index * 0.08}>
+                <div className="card">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                      <Building2 className="h-8 w-8 text-emerald-400" />
                     </div>
-                    <div className="flex items-center gap-1 text-sm text-secondary-500 mt-2">
-                      <MapPin className="w-4 h-4" />
-                      <span>Sarajevo</span>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white">
+                        Firma {i}
+                      </h3>
+                      <div className="mt-1 flex items-center gap-1">
+                        <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                        <span className="font-medium text-white">
+                          {(5 - i * 0.3).toFixed(1)}
+                        </span>
+                        <span className="text-sm text-foreground/50">
+                          ({100 - i * 20} recenzija)
+                        </span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-1 text-sm text-foreground/50">
+                        <MapPin className="h-4 w-4" />
+                        <span>Sarajevo</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </SlideUp>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-primary-500 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Tražite nešto drugo?
-          </h2>
-          <p className="text-primary-100 mb-6">
-            Pogledajte sve kategorije ili pretražite po gradu.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/kategorije"
-              className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
-            >
-              Sve kategorije
-            </Link>
-            <Link
-              href="/gradovi"
-              className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors border border-primary-400"
-            >
-              Prema gradovima
-            </Link>
-          </div>
+      <section className="py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <SlideUp>
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Pridružite se
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+              Tražite nešto drugo?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-foreground/60">
+              Pogledajte sve kategorije ili pretražite po gradu.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link href="/kategorije" className="btn-primary">
+                Sve kategorije
+              </Link>
+              <Link href="/gradovi" className="btn-secondary">
+                Prema gradovima
+              </Link>
+            </div>
+          </SlideUp>
         </div>
       </section>
     </div>

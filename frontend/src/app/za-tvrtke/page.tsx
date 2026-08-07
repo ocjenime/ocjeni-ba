@@ -4,23 +4,17 @@ import {
   Shield,
   Star,
   TrendingUp,
-  Users,
   BarChart3,
   MessageSquare,
   Globe,
-  Zap,
   CheckCircle2,
   ArrowRight,
   Building2,
   Mail,
-  Bell,
-  Lock,
-  Award,
-  Target,
-  Eye,
   Sparkles,
   Crown,
 } from "lucide-react";
+import { FadeIn, SlideUp } from "@/components/ui/Motion";
 
 export const metadata: Metadata = {
   title: "Za firme | Ocjeni.ba",
@@ -103,71 +97,62 @@ const stats = [
 
 export default function ForBusinessPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500 rounded-full blur-3xl opacity-20" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-500 rounded-full blur-3xl opacity-20" />
+      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/4 top-0 h-[50vh] w-[50vh] rounded-full bg-emerald-500/10 blur-3xl opacity-60" />
+          <div className="absolute bottom-0 right-1/4 h-[40vh] w-[40vh] rounded-full bg-teal-500/10 blur-3xl opacity-50" />
         </div>
-        <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-sm font-medium text-emerald-400 mb-6">
-                <Sparkles className="w-4 h-4" />
+        <div className="container mx-auto px-4">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <FadeIn>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+                <Sparkles className="h-4 w-4" />
                 Besplatno za sve firme
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+              <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
                 Vaša reputacija je
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  vaš najjači alat
-                </span>
+                <span className="gradient-text">vaš najjači alat</span>
               </h1>
-              <p className="text-lg text-gray-300 mb-8 max-w-lg">
+              <p className="mt-6 max-w-lg text-lg text-foreground/60">
                 10,000+ firmi iz cijele BiH već koristi Ocjeni.ba da dobiju više klijenata.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/tvrtke/prijava"
-                  className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-4 rounded-xl font-bold transition-all inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-                >
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Link href="/tvrtke/prijava" className="btn-primary">
                   Započnite besplatno
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <Link
-                  href="/cjenik"
-                  className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2 text-lg"
-                >
+                <Link href="/cjenik" className="btn-secondary">
                   Pogledajte planove
                 </Link>
               </div>
-              <div className="flex items-center gap-6 mt-8 text-sm text-gray-400">
+              <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-foreground/50">
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Bez kreditne kartice
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Bez ugovorne obveze
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                   Otkazivanje u bilo kojem trenutku
                 </span>
               </div>
-            </div>
+            </FadeIn>
 
-            <div className="hidden lg:block">
+            <FadeIn delay={0.2} direction="left" className="hidden lg:block">
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-200">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center">
-                      <Building2 className="w-7 h-7 text-white" />
+                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-6 shadow-2xl">
+                  <div className="mb-6 flex items-center gap-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600">
+                      <Building2 className="h-7 w-7 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">
+                      <div className="font-semibold text-white">
                         Restoran Stari Most
                       </div>
                       <div className="flex items-center gap-1 text-sm">
@@ -175,92 +160,92 @@ export default function ForBusinessPage() {
                           {[1, 2, 3, 4, 5].map((s) => (
                             <Star
                               key={s}
-                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
+                              className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
                             />
                           ))}
                         </div>
-                        <span className="text-gray-600 font-medium">4.9</span>
-                        <span className="text-gray-400">(312)</span>
+                        <span className="font-medium text-white">4.9</span>
+                        <span className="text-foreground/50">(312)</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-3 mb-4">
-                    <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <Shield className="w-3 h-3" />
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-400">
+                      <Shield className="h-3 w-3" />
                       Verificirano
                     </span>
-                    <span className="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <Crown className="w-3 h-3" />
+                    <span className="flex items-center gap-1 rounded-full bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-400">
+                      <Crown className="h-3 w-3" />
                       Top Rated
                     </span>
-                    <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                      <MessageSquare className="w-3 h-3" />
+                    <span className="flex items-center gap-1 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400">
+                      <MessageSquare className="h-3 w-3" />
                       Aktivno
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-gray-900">312</div>
-                      <div className="text-xs text-gray-500">Recenzija</div>
+                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
+                      <div className="text-lg font-semibold text-white">312</div>
+                      <div className="text-xs text-foreground/50">Recenzija</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-gray-900">98%</div>
-                      <div className="text-xs text-gray-500">Preporučuju</div>
+                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
+                      <div className="text-lg font-semibold text-white">98%</div>
+                      <div className="text-xs text-foreground/50">Preporučuju</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-emerald-600">
+                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
+                      <div className="text-lg font-semibold text-emerald-400">
                         +42%
                       </div>
-                      <div className="text-xs text-gray-500">Rast</div>
+                      <div className="text-xs text-foreground/50">Rast</div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-4 h-4 text-emerald-600" />
+                <div className="absolute -right-4 -top-4 rounded-2xl border border-white/5 bg-white/[0.04] p-4 shadow-xl backdrop-blur-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
+                      <TrendingUp className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-500">Novi kupci</div>
-                      <div className="text-sm font-bold text-emerald-600">
+                      <div className="text-xs text-foreground/50">Novi kupci</div>
+                      <div className="text-sm font-semibold text-emerald-400">
                         +127 ovaj mjesec
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                      <Star className="w-4 h-4 text-amber-600" />
+                <div className="absolute -bottom-4 -left-4 rounded-2xl border border-white/5 bg-white/[0.04] p-4 shadow-xl backdrop-blur-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10">
+                      <Star className="h-5 w-5 text-amber-400" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-500">Prosjek</div>
-                      <div className="text-sm font-bold text-amber-600">
+                      <div className="text-xs text-foreground/50">Prosjek</div>
+                      <div className="text-sm font-semibold text-amber-400">
                         4.9 ★ (312)
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-12 bg-gray-50 border-y border-gray-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-extrabold text-emerald-600">
-                  {stat.value}
+      <section className="border-y border-white/5 py-12">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {stats.map((stat, index) => (
+              <SlideUp key={stat.label} delay={index * 0.08}>
+                <div className="text-center">
+                  <div className="text-3xl font-semibold text-emerald-400 md:text-4xl">
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 font-medium text-white">{stat.label}</div>
+                  <div className="text-sm text-foreground/50">{stat.description}</div>
                 </div>
-                <div className="font-semibold text-gray-900 mt-1">
-                  {stat.label}
-                </div>
-                <div className="text-sm text-gray-500">{stat.description}</div>
-              </div>
+              </SlideUp>
             ))}
           </div>
         </div>
@@ -268,60 +253,57 @@ export default function ForBusinessPage() {
 
       {/* How it works */}
       <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="mb-14 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Jednostavno
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
               Za 4 jednostavna koraka do više klijenata
             </h2>
-            <p className="text-gray-500 mt-3 max-w-lg mx-auto">
+            <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
               Započnite u 4 jednostavna koraka. Bez komplikacija, bez skrivenih
               troškova.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step) => (
-              <div key={step.number} className="relative">
-                <div className="text-6xl font-black text-emerald-100 mb-4">
-                  {step.number}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, index) => (
+              <SlideUp key={step.number} delay={index * 0.08}>
+                <div className="relative">
+                  <div className="mb-4 text-6xl font-black text-emerald-500/10">
+                    {step.number}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/50">{step.description}</p>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{step.description}</p>
-              </div>
+              </SlideUp>
             ))}
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+      <section className="border-y border-white/5 py-20">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="mb-14 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Alati
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
               Alati koji vam donose nove kupce svaki dan
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-emerald-600" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
+              <SlideUp key={feature.title} delay={index * 0.08}>
+                <div className="card">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <feature.icon className="h-6 w-6 text-emerald-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/50">{feature.description}</p>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{feature.description}</p>
-              </div>
+              </SlideUp>
             ))}
           </div>
         </div>
@@ -329,57 +311,71 @@ export default function ForBusinessPage() {
 
       {/* Social Proof */}
       <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Povjerenje
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
               Firme iz Sarajeva, Tuzle, Mostara... koje nam vjeruju
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {["Restoran Stari Most", "Auto Servis Mehmed", "Digital Solutions BiH", "Frizerski Salon Glamour"].map(
-              (name) => (
-                <div
-                  key={name}
-                  className="flex items-center gap-3 bg-gray-50 rounded-xl p-4"
-                >
-                  <div className="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center">
-                    <Building2 className="w-6 h-6 text-emerald-500" />
+          <div className="grid grid-cols-2 items-center gap-6 md:grid-cols-4">
+            {[
+              "Restoran Stari Most",
+              "Auto Servis Mehmed",
+              "Digital Solutions BiH",
+              "Frizerski Salon Glamour",
+            ].map((name, index) => (
+              <SlideUp key={name} delay={index * 0.08}>
+                <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] p-4">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <Building2 className="h-6 w-6 text-emerald-400" />
                   </div>
-                  <div className="font-semibold text-gray-900 text-sm">
-                    {name}
-                  </div>
+                  <div className="text-sm font-semibold text-white">{name}</div>
                 </div>
-              )
-            )}
+              </SlideUp>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-br from-emerald-500 to-teal-500">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Vaši konkurenti su već ovdje. A vi?
-          </h2>
-          <p className="text-emerald-100 mb-8 text-lg max-w-xl mx-auto">
-            Pridružite se 10,000+ firmi koje već grade svoju reputaciju na
-            Ocjeni.ba
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/tvrtke/prijava"
-              className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg"
-            >
-              Započnite besplatno
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/cjenik"
-              className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2 text-lg"
-            >
-              Pogledajte cjenik
-            </Link>
-          </div>
+      <section className="py-20">
+        <div className="container mx-auto max-w-5xl px-4">
+          <SlideUp>
+            <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-emerald-500 to-teal-500 p-10 text-center md:p-14">
+              <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+              <div className="relative">
+                <span className="text-sm font-medium uppercase tracking-widest text-emerald-100">
+                  Započnite danas
+                </span>
+                <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
+                  Vaši konkurenti su već ovdje. A vi?
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-lg text-emerald-100">
+                  Pridružite se 10,000+ firmi koje već grade svoju reputaciju na
+                  Ocjeni.ba
+                </p>
+                <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                  <Link
+                    href="/tvrtke/prijava"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-semibold text-emerald-600 transition-colors hover:bg-emerald-50"
+                  >
+                    Započnite besplatno
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/cjenik"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10"
+                  >
+                    Pogledajte cjenik
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </SlideUp>
         </div>
       </section>
     </div>

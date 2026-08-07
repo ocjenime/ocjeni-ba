@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { useAuth } from "@/lib/auth-context";
 
 export default function BusinessLoginPage() {
@@ -26,73 +27,93 @@ export default function BusinessLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-24">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
+        <div
+          className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
+          style={{ animationDelay: "-4s", animationDuration: "16s" }}
+        />
+      </div>
+
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">O</span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 text-center"
+        >
+          <Link href="/" className="mb-6 inline-flex items-center gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 shadow-lg shadow-green-500/20">
+              <span className="text-lg font-bold text-white">O</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">ocjeni.ba</span>
+            <span className="text-xl font-bold text-white">
+              ocijeni<span className="gradient-text">.ba</span>
+            </span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold text-white">
             Dobrodošli nazad!
           </h1>
-          <p className="text-gray-500 mt-2">
+          <p className="mt-2 text-foreground/60">
             Upravljajte recenzijama, analitikom i vašim profilom
           </p>
-        </div>
+        </motion.div>
 
         {/* Form */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
-          <form onSubmit={handleSubmit}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+        >
+          <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
+
+          <form onSubmit={handleSubmit} className="relative z-10">
             <div className="space-y-4">
               {error && (
-                <div className="bg-red-50 text-red-600 text-sm rounded-lg px-4 py-3">
+                <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
                   {error}
                 </div>
               )}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email adresa
-                </label>
+                <label className="label">Email adresa</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="input pl-11"
                     placeholder="vas@email.ba"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Lozinka
-                </label>
+                <label className="label">Lozinka</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
                   <input
                     type={showPassword ? "text" : "password"}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="input pl-11 pr-12"
                     placeholder="Vaša lozinka"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground"
                   >
                     {showPassword ? (
-                      <EyeOff className="w-5 h-5" />
+                      <EyeOff className="h-5 w-5" />
                     ) : (
-                      <Eye className="w-5 h-5" />
+                      <Eye className="h-5 w-5" />
                     )}
                   </button>
                 </div>
@@ -102,13 +123,13 @@ export default function BusinessLoginPage() {
                 <label className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded border-white/10 bg-white/5 text-emerald-500 focus:ring-emerald-500/20"
                   />
-                  <span className="text-sm text-gray-600">Zapamti me</span>
+                  <span className="text-sm text-foreground/60">Zapamti me</span>
                 </label>
                 <Link
                   href="/tvrtke/zaboravljena-lozinka"
-                  className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+                  className="text-sm font-medium text-emerald-400 hover:text-emerald-300"
                 >
                   Zaboravili lozinku?
                 </Link>
@@ -117,31 +138,30 @@ export default function BusinessLoginPage() {
 
             <button
               type="submit"
-              className="w-full mt-6 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+              className="animated-border mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 px-6 text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-transform hover:scale-[1.01]"
             >
               Prijavi se
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-100 text-center">
-            <p className="text-sm text-gray-500">
+          <div className="relative z-10 mt-6 border-t border-white/5 pt-6 text-center">
+            <p className="text-sm text-foreground/50">
               Još nemate račun?{" "}
               <Link
                 href="/tvrtke/prijava"
-                className="text-emerald-600 hover:text-emerald-700 font-medium"
+                className="font-medium text-emerald-400 hover:text-emerald-300"
               >
                 Registrujte se besplatno
               </Link>
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Natrag */}
-        <p className="text-center mt-6">
+        <p className="mt-6 text-center">
           <Link
             href="/"
-            className="text-sm text-gray-500 hover:text-gray-700"
+            className="text-sm text-foreground/50 hover:text-foreground"
           >
             ← Natrag na početnu
           </Link>

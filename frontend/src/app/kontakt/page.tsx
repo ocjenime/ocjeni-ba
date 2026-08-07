@@ -11,6 +11,7 @@ import {
   MessageSquare,
   Clock,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function KontaktPage() {
   const [form, setForm] = useState({
@@ -27,49 +28,67 @@ export default function KontaktPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <span className="text-emerald-500 font-semibold text-sm uppercase tracking-wider">
+      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Podrška
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
               Kontakt
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
               Imate pitanje? Javite nam se. Odgovorit ćemo u najkraćem mogućem
               roku.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-16 pb-20">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="grid md:grid-cols-5 gap-12">
+      <section className="py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="grid gap-12 md:grid-cols-5">
             {/* Form */}
             <div className="md:col-span-3">
               {submitted ? (
-                <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-8 h-8 text-emerald-600" />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-emerald-500/10 p-8 text-center"
+                >
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500">
+                    <Send className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-white">
                     Poruka poslana!
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="mt-2 text-foreground/70">
                     Hvala vam na poruci. Odgovorit ćemo vam u najkraćem roku.
                   </p>
-                </div>
+                </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <motion.form
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-1.5">
-                      Ime i prezime
-                    </label>
+                    <label className="label">Ime i prezime</label>
                     <input
                       type="text"
                       required
@@ -77,14 +96,12 @@ export default function KontaktPage() {
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
                       }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100 transition-all"
+                      className="input"
                       placeholder="Vaše ime i prezime"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-1.5">
-                      Email adresa
-                    </label>
+                    <label className="label">Email adresa</label>
                     <input
                       type="email"
                       required
@@ -92,14 +109,12 @@ export default function KontaktPage() {
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
                       }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100 transition-all"
+                      className="input"
                       placeholder="vasa@email.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-1.5">
-                      Predmet
-                    </label>
+                    <label className="label">Predmet</label>
                     <input
                       type="text"
                       required
@@ -107,14 +122,12 @@ export default function KontaktPage() {
                       onChange={(e) =>
                         setForm({ ...form, subject: e.target.value })
                       }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100 transition-all"
+                      className="input"
                       placeholder="O čemu se radi?"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-1.5">
-                      Poruka
-                    </label>
+                    <label className="label">Poruka</label>
                     <textarea
                       required
                       rows={5}
@@ -122,125 +135,136 @@ export default function KontaktPage() {
                       onChange={(e) =>
                         setForm({ ...form, message: e.target.value })
                       }
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100 transition-all resize-none"
+                      className="input resize-none"
                       placeholder="Vaša poruka..."
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-                  >
-                    <Send className="w-5 h-5" />
+                  <button type="submit" className="btn-primary w-full">
+                    <Send className="mr-2 h-5 w-5" />
                     Pošaljite poruku
                   </button>
-                </form>
+                </motion.form>
               )}
             </div>
 
             {/* Contact info */}
-            <div className="md:col-span-2 space-y-6">
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <h3 className="font-bold text-gray-900 mb-4">Kontakt podaci</h3>
+            <div className="space-y-6 md:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="card"
+              >
+                <h3 className="mb-4 font-semibold text-white">Kontakt podaci</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5 text-emerald-600" />
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <Mail className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider font-medium">
+                      <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Email
                       </div>
-                      <div className="text-gray-900 font-medium">
+                      <div className="font-medium text-white">
                         info@ocjeni.ba
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5 text-emerald-600" />
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <Phone className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider font-medium">
+                      <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Telefon
                       </div>
-                      <div className="text-gray-900 font-medium">
+                      <div className="font-medium text-white">
                         +387 XX XXX XXX
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-emerald-600" />
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <MapPin className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider font-medium">
+                      <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Lokacija
                       </div>
-                      <div className="text-gray-900 font-medium">
+                      <div className="font-medium text-white">
                         Sarajevo, Bosna i Hercegovina
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <div className="flex items-center gap-2 mb-3">
-                  <Clock className="w-5 h-5 text-emerald-600" />
-                  <h3 className="font-bold text-gray-900">Radno vrijeme</h3>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="card"
+              >
+                <div className="mb-3 flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-emerald-400" />
+                  <h3 className="font-semibold text-white">Radno vrijeme</h3>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Ponedjeljak - Petak</span>
-                    <span className="font-medium text-gray-900">
-                      09:00 - 17:00
-                    </span>
+                    <span className="text-foreground/50">Ponedjeljak - Petak</span>
+                    <span className="font-medium text-white">09:00 - 17:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Subota</span>
-                    <span className="font-medium text-gray-900">
-                      10:00 - 14:00
-                    </span>
+                    <span className="text-foreground/50">Subota</span>
+                    <span className="font-medium text-white">10:00 - 14:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Nedjelja</span>
-                    <span className="font-medium text-gray-400">Zatvoreno</span>
+                    <span className="text-foreground/50">Nedjelja</span>
+                    <span className="text-foreground/40">Zatvoreno</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-6"
+              >
                 <div className="flex items-center gap-2 mb-2">
-                  <MessageSquare className="w-5 h-5 text-emerald-600" />
-                  <h3 className="font-bold text-gray-900">Hitna podrška?</h3>
+                  <MessageSquare className="h-5 w-5 text-emerald-400" />
+                  <h3 className="font-semibold text-white">Hitna podrška?</h3>
                 </div>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-foreground/70">
                   Za hitne probleme pošaljite email direktno na{" "}
-                  <span className="font-semibold text-emerald-700">
+                  <span className="font-semibold text-emerald-400">
                     info@ocjeni.ba
                   </span>
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      <section className="border-t border-white/5 py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+            Za firme
+          </span>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
             Želite registrovati firmu?
           </h2>
-          <p className="text-gray-500 mb-8 text-lg max-w-xl mx-auto">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">
             Registracija je potpuno besplatna. Započnite odmah.
           </p>
-          <Link
-            href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2 text-lg shadow-lg shadow-emerald-500/25"
-          >
+          <Link href="/tvrtke/prijava" className="btn-primary mt-6">
             Prijavite firmu besplatno
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
       </section>

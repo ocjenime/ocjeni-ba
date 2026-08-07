@@ -21,23 +21,23 @@ export function CategoryCard({
   return (
     <Link
       href={`/kategorije/${slug}`}
-      className="group block bg-white rounded-xl border border-secondary-100 p-6 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
+      className="group block rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.04]"
     >
       <div className="flex items-start gap-4">
-        <div className="w-14 h-14 rounded-xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-500 transition-colors duration-300">
-          <Icon className="w-7 h-7 text-primary-500 group-hover:text-white transition-colors duration-300" />
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-colors duration-300 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10">
+          <Icon className="h-7 w-7 text-emerald-400 transition-colors duration-300" />
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">
+        <div className="min-w-0 flex-1">
+          <h3 className="font-semibold text-white transition-colors group-hover:text-emerald-400">
             {name}
           </h3>
           {description && (
-            <p className="text-sm text-secondary-500 mt-1 line-clamp-2">
+            <p className="mt-1 line-clamp-2 text-sm text-foreground/50">
               {description}
             </p>
           )}
           {count !== undefined && (
-            <p className="text-xs text-secondary-400 mt-2">
+            <p className="mt-2 text-xs text-foreground/50">
               {count} firmi
             </p>
           )}
@@ -45,18 +45,18 @@ export function CategoryCard({
       </div>
 
       {subcategories && subcategories.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-secondary-100">
+        <div className="mt-4 border-t border-white/5 pt-4">
           <div className="flex flex-wrap gap-2">
             {subcategories.slice(0, 4).map((sub) => (
               <span
                 key={sub.slug}
-                className="text-xs bg-secondary-50 text-secondary-600 px-2 py-1 rounded-full"
+                className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs text-foreground/60"
               >
                 {sub.name}
               </span>
             ))}
             {subcategories.length > 4 && (
-              <span className="text-xs text-primary-500 px-2 py-1">
+              <span className="px-2 py-1 text-xs text-emerald-400">
                 +{subcategories.length - 4} više
               </span>
             )}

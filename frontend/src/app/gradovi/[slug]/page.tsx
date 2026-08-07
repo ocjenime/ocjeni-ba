@@ -7,6 +7,7 @@ import {
   ChevronRight,
   FolderOpen,
 } from "lucide-react";
+import { FadeIn, SlideUp } from "@/components/ui/Motion";
 import { FBIH_CITIES } from "@/lib/constants";
 
 interface CityPageProps {
@@ -45,17 +46,17 @@ export default function CityPage({ params }: CityPageProps) {
 
   if (!city) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="mb-4 text-4xl font-semibold text-white">
             Grad nije pronađen
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="mb-8 text-foreground/60">
             Traženi grad ne postoji ili nije u našoj bazi podataka.
           </p>
           <Link
             href="/gradovi"
-            className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-600 transition-colors"
+            className="btn-primary inline-flex items-center gap-2"
           >
             Pogledajte sve gradove
           </Link>
@@ -65,58 +66,68 @@ export default function CityPage({ params }: CityPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-10">
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-            <Link href="/" className="hover:text-emerald-600 transition-colors">
+    <div className="min-h-screen bg-background">
+      <section className="border-b border-white/5 py-12">
+        <div className="container mx-auto max-w-5xl px-4">
+          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-foreground/50">
+            <Link href="/" className="transition-colors hover:text-emerald-400">
               Početna
             </Link>
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="h-4 w-4" />
             <Link
               href="/gradovi"
-              className="hover:text-emerald-600 transition-colors"
+              className="transition-colors hover:text-emerald-400"
             >
               Gradovi
             </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-gray-900 font-medium">{city.name}</span>
+            <ChevronRight className="h-4 w-4" />
+            <span className="font-medium text-white">{city.name}</span>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-emerald-500" />
+          <FadeIn className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
+              <MapPin className="h-7 w-7 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{city.name}</h1>
-              <p className="text-gray-500 text-sm">
+              <h1 className="text-3xl font-semibold text-white md:text-4xl">
+                {city.name}
+              </h1>
+              <p className="text-sm text-foreground/60">
                 {city.canton} · {city.population.toLocaleString("bs-BI")}{" "}
                 stanovnika
               </p>
             </div>
-          </div>
+          </FadeIn>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="bg-gray-50 rounded-2xl border border-gray-200 p-10 text-center">
-          <FolderOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-gray-900 mb-2">
-            Trenutno nema firmi u ovom gradu
-          </h2>
-          <p className="text-gray-500 mb-6 max-w-md mx-auto">
-            Budite prvi koji će dodati firmu u {city.name}. Prijavite svoju
-            firmu besplatno.
-          </p>
-          <Link
-            href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
-          >
-            Dodajte firmu
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      <section className="py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <SlideUp>
+            <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 text-center md:p-14">
+              <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
+              <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+              <div className="relative">
+                <FolderOpen className="mx-auto mb-4 h-12 w-12 text-foreground/30" />
+                <h2 className="text-xl font-semibold text-white">
+                  Trenutno nema firmi u ovom gradu
+                </h2>
+                <p className="mx-auto mt-3 max-w-md text-foreground/60">
+                  Budite prvi koji će dodati firmu u {city.name}. Prijavite svoju
+                  firmu besplatno.
+                </p>
+                <Link
+                  href="/tvrtke/prijava"
+                  className="btn-primary mt-6 inline-flex items-center gap-2"
+                >
+                  Dodajte firmu
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+          </SlideUp>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

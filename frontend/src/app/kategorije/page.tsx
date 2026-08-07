@@ -8,6 +8,7 @@ import {
   MapPin,
   ArrowRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { FBIH_CITIES } from "@/lib/constants";
 
 const categories = [
@@ -232,146 +233,176 @@ const categories = [
 
 export default function CategoriesPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 py-10">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Kategorije firmi
-          </h1>
-          <p className="text-gray-500 mt-2">
-            Istražite {categories.length} kategorija i pronađite najbolje
-            firme u Federaciji BiH
-          </p>
+    <div className="min-h-screen bg-background">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
+          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
         </div>
-      </div>
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+              Istražite
+            </span>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+              Kategorije firmi
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
+              Istražite {categories.length} kategorija i pronađite najbolje
+              firme u Federaciji BiH
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Pretraga */}
-      <div className="max-w-5xl mx-auto px-4 -mt-5">
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 flex items-center border border-gray-200 rounded-lg px-4">
-              <Search className="w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Pretraži kategorije..."
-                className="flex-1 px-3 py-3 outline-none text-sm"
-              />
+      <section className="py-8">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-1 items-center rounded-xl border border-white/10 bg-white/5 px-4">
+                <Search className="h-4 w-4 text-foreground/40" />
+                <input
+                  type="text"
+                  placeholder="Pretraži kategorije..."
+                  className="flex-1 bg-transparent px-3 py-3 text-sm text-white outline-none placeholder:text-foreground/40"
+                />
+              </div>
+              <select className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground/70 outline-none">
+                <option value="">Svi gradovi</option>
+                {FBIH_CITIES.map((city) => (
+                  <option key={city.name} value={city.name}>
+                    {city.name}
+                  </option>
+                ))}
+              </select>
             </div>
-            <select className="px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-600 outline-none">
-              <option value="">Svi gradovi</option>
-              {FBIH_CITIES.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Kategorije */}
-      <div className="max-w-5xl mx-auto px-4 py-10">
-        <div className="space-y-2">
-          {categories.map((cat) => (
-            <div
-              key={cat.slug}
-              className="group border border-gray-200 rounded-xl hover:border-emerald-300 hover:shadow-sm transition-all"
-            >
-              <Link
-                href={`/kategorije/${cat.slug}`}
-                className="flex items-center justify-between p-5"
+      <section className="py-10">
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="space-y-3">
+            {categories.map((cat, index) => (
+              <motion.div
+                key={cat.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.03 }}
+                className="group rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:border-emerald-500/30 hover:bg-white/[0.03]"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center">
-                    <Building2 className="w-6 h-6 text-emerald-500" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
-                      {cat.name}
+                <Link
+                  href={`/kategorije/${cat.slug}`}
+                  className="flex items-center justify-between p-5"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <Building2 className="h-6 w-6 text-emerald-400" />
                     </div>
-                    <div className="text-sm text-gray-400 mt-0.5">
-                      {cat.description}
+                    <div>
+                      <div className="font-semibold text-white transition-colors group-hover:text-emerald-400">
+                        {cat.name}
+                      </div>
+                      <div className="mt-0.5 text-sm text-foreground/50">
+                        {cat.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm text-gray-400 hidden sm:block">
-                    {cat.count} firmi
-                  </span>
-                  <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 transition-colors" />
-                </div>
-              </Link>
+                  <div className="flex items-center gap-4">
+                    <span className="hidden text-sm text-foreground/50 sm:block">
+                      {cat.count} firmi
+                    </span>
+                    <ChevronRight className="h-5 w-5 text-foreground/40 transition-colors group-hover:text-emerald-400" />
+                  </div>
+                </Link>
 
-              {/* Podkategorije - inline */}
-              <div className="px-5 pb-4 flex flex-wrap gap-2">
-                {cat.subcategories.slice(0, 6).map((sub) => (
-                  <Link
-                    key={sub.slug}
-                    href={`/kategorije/${cat.slug}`}
-                    className="text-xs bg-gray-50 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition-colors border border-gray-100 hover:border-emerald-200"
-                  >
-                    {sub.name}
-                  </Link>
-                ))}
-                {cat.subcategories.length > 6 && (
-                  <span className="text-xs text-emerald-500 px-3 py-1.5">
-                    +{cat.subcategories.length - 6} više
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
+                <div className="flex flex-wrap gap-2 px-5 pb-4">
+                  {cat.subcategories.slice(0, 6).map((sub) => (
+                    <Link
+                      key={sub.slug}
+                      href={`/kategorije/${cat.slug}`}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-foreground/60 transition-colors hover:border-emerald-500/30 hover:text-emerald-400"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                  {cat.subcategories.length > 6 && (
+                    <span className="px-3 py-1.5 text-xs text-emerald-400">
+                      +{cat.subcategories.length - 6} više
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Gradovi */}
-      <div className="bg-gray-50 py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
+      <section className="border-y border-white/5 py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+            Prema gradu
+          </span>
+          <h2 className="mt-3 text-2xl font-semibold text-white">
             Gradovi Federacije BiH
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {FBIH_CITIES.slice(0, 30).map((city) => (
-              <Link
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {FBIH_CITIES.slice(0, 30).map((city, index) => (
+              <motion.div
                 key={city.name}
-                href={`/gradovi/${city.name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all text-sm"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.01 }}
               >
-                <MapPin className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                <span className="text-gray-700 font-medium truncate">
-                  {city.name}
-                </span>
-              </Link>
+                <Link
+                  href={`/gradovi/${city.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="group flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3 text-sm transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                >
+                  <MapPin className="h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
+                  <span className="truncate font-medium text-white transition-colors group-hover:text-emerald-400">
+                    {city.name}
+                  </span>
+                </Link>
+              </motion.div>
             ))}
           </div>
           <Link
             href="/gradovi"
-            className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-semibold text-sm mt-6"
+            className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
           >
-            Svi gradovi <ArrowRight className="w-4 h-4" />
+            Svi gradovi <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-      </div>
+      </section>
 
       {/* CTA */}
-      <div className="py-12">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+      <section className="py-16">
+        <div className="container mx-auto max-w-3xl px-4 text-center">
+          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
+            Pridružite se
+          </span>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
             Vaša firma nije na listi?
           </h2>
-          <p className="text-gray-500 mb-6">
+          <p className="mx-auto mt-4 max-w-xl text-foreground/60">
             Prijavite se besplatno i počnite primati recenzije odmah.
           </p>
-          <Link
-            href="/tvrtke/prijava"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
-          >
+          <Link href="/tvrtke/prijava" className="btn-primary mt-6">
             Dodajte firmu besplatno
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
