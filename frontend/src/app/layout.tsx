@@ -15,15 +15,52 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "ocjeni.ba - Recenzije firmi u Bosni i Hercegovini",
-  description: "Hiljade provjerenih recenzija firmi u BiH. Čitajte, ocjenjujte i donosite pametne odluke.",
-  keywords: ["recenzije", "ocjene", "Bosna i Hercegovina", "BiH", "firme", "usluge", "proizvodi"],
+  description:
+    "Hiljade provjerenih recenzija firmi u BiH. Čitajte, ocjenjujte i donosite pametne odluke o restoranima, servisima, trgovinama i drugim tvrtkama.",
+  keywords: [
+    "recenzije",
+    "ocjene",
+    "Bosna i Hercegovina",
+    "BiH",
+    "firme",
+    "usluge",
+    "proizvodi",
+    "restorani",
+    "servisi",
+    "Cazin",
+    "Sarajevo",
+    "Mostar",
+  ],
+  metadataBase: new URL("https://ocijeni-ba-redesign.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "ocjeni.ba - Platforma za recenzije",
     description: "Najpouzdaniji izvor recenzija u Bosni i Hercegovini",
-    url: "https://ocjeni.ba",
+    url: "https://ocijeni-ba-redesign.vercel.app",
     siteName: "ocjeni.ba",
     locale: "bs_BA",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ocjeni.ba - Recenzije firmi u BiH",
+    description: "Hiljade provjerenih recenzija firmi u Bosni i Hercegovini",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "TODO",
   },
 };
 
