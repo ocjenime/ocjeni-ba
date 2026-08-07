@@ -52,11 +52,12 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <img
-              src="/ocijenilogo.jpg"
-              alt="ocijeni.ba logo"
-              className="h-10 w-auto object-contain"
-            />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 shadow-lg shadow-green-500/20">
+              <span className="text-xl font-bold text-white">O</span>
+            </div>
+            <span className="text-xl font-bold text-foreground">
+              ocijeni<span className="gradient-text">.ba</span>
+            </span>
           </Link>
 
           {/* Desktop navigation */}
