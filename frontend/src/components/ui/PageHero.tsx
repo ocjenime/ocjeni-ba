@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 interface PageHeroProps {
   label?: string;
@@ -20,7 +19,7 @@ export default function PageHero({
   title,
   highlight,
   subtitle,
-  backgroundImage = "https://source.unsplash.com/featured/2400x1400?business,bosnia",
+  backgroundImage = "/images/hero-bg.svg",
   children,
   minHeight = "min-h-[60vh]",
   showScrollIndicator = false,
@@ -43,17 +42,13 @@ export default function PageHero({
       className={`relative flex ${minHeight} items-center justify-center overflow-hidden`}
       aria-label="Hero"
     >
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt=""
-          fill
-          priority
-          unoptimized
-          className="object-cover"
-          sizes="100vw"
-        />
+      {/* SVG background image */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${backgroundImage}')` }}
+        role="img"
+        aria-label=""
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
       </div>

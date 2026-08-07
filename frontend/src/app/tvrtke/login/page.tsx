@@ -33,7 +33,7 @@ export default function BusinessLoginPage() {
         label="Prijava firme"
         title="Dobrodošli nazad!"
         subtitle="Upravljajte recenzijama, analitikom i vašim profilom"
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,login"
+        backgroundImage="/images/hero-bg.svg"
         minHeight="min-h-[50vh]"
       />
 

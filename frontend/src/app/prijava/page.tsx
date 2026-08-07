@@ -34,7 +34,7 @@ export default function LoginPage() {
         label="Prijava"
         title="Dobrodošli nazad!"
         subtitle="Prijavite se za pristup vašim recenzijama"
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?login,account"
+        backgroundImage="/images/hero-bg.svg"
         minHeight="min-h-[50vh]"
       />
 

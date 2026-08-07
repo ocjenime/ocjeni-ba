@@ -204,7 +204,7 @@ export default function BusinessDashboardPage() {
           label="Dashboard"
           title={business?.businessName || "Moja firma"}
           subtitle="Upravljajte recenzijama, analitikom i profilom vaše firme"
-          backgroundImage="https://source.unsplash.com/featured/2400x1400?dashboard,business"
+          backgroundImage="/images/hero-bg.svg"
           minHeight="min-h-[35vh]"
         />
 

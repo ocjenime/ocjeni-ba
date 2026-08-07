@@ -60,7 +60,7 @@ export default function ApiDocsPage() {
         label="Integracije"
         title="API dokumentacija"
         subtitle="Integrirajte Ocjeni.ba sa svojom aplikacijom putem našeg REST API-ja."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?api,technology"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       <div className="container mx-auto max-w-3xl px-4 py-16">

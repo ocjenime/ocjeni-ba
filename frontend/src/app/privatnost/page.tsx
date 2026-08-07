@@ -15,7 +15,7 @@ export default function PrivatnostPage() {
         label="Pravni dokumenti"
         title="Politika privatnosti"
         subtitle="Kako štitimo i obrađujemo vaše osobne podatke na platformi Ocjeni.ba."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?privacy,security"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Content */}

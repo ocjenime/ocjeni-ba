@@ -264,7 +264,7 @@ export default function PricingPage() {
         title="Odaberite plan koji odgovara vašim potrebama"
         highlight="odgovara vašim potrebama"
         subtitle="Svi planovi su mjesečni. Otkažite kad god hoćete. Bez skrivenih troškova."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?pricing,business"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Plans */}

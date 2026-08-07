@@ -18,7 +18,7 @@ export default function CitiesPage() {
         label="Lokacije"
         title="Gradovi Federacije BiH"
         subtitle={`Istražite firme u ${FBIH_CITIES.length} gradova i općina`}
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?bosnia,city"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Kantoni */}

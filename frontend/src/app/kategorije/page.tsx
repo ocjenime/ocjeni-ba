@@ -239,7 +239,7 @@ export default function CategoriesPage() {
         label="Istražite"
         title="Kategorije firmi"
         subtitle={`Istražite ${categories.length} kategorija i pronađite najbolje firme u Federaciji BiH`}
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,categories"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Pretraga */}

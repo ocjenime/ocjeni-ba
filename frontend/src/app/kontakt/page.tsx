@@ -34,7 +34,7 @@ export default function KontaktPage() {
         label="Podrška"
         title="Kontakt"
         subtitle="Imate pitanje? Javite nam se. Odgovorit ćemo u najkraćem mogućem roku."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?support,contact"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Content */}

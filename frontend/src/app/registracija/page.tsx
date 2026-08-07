@@ -44,7 +44,7 @@ export default function RegisterPage() {
         label="Registracija"
         title="Kreirajte račun"
         subtitle="Pridružite se zajednici i ostavljajte recenzije"
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?register,account"
+        backgroundImage="/images/hero-bg.svg"
         minHeight="min-h-[50vh]"
       />
 

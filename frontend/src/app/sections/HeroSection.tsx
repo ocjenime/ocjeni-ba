@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
-import Image from "next/image";
 
 export default function HeroSection() {
   const [search, setSearch] = useState("");
@@ -27,17 +26,13 @@ export default function HeroSection() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
       aria-label="Hero"
     >
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://source.unsplash.com/featured/2400x1400?sarajevo,city,night"
-          alt="Panorama grada u BiH"
-          fill
-          priority
-          unoptimized
-          className="object-cover"
-          sizes="100vw"
-        />
+      {/* SVG background image */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/hero-bg.svg')" }}
+        role="img"
+        aria-label="Apstraktna tamna pozadina grada"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
       </div>

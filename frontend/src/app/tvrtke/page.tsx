@@ -113,7 +113,7 @@ export default function TvrtkePage() {
         label="Directorij"
         title="Sve firme"
         subtitle="Pretražite sve verificirane firme u Bosni i Hercegovini. Pronađite najbolje ocijenjene pružaoci usluga."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,directory"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Search */}

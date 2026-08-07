@@ -35,7 +35,7 @@ export default function WidgetsPage() {
         label="Integracije"
         title="Widgeti za web"
         subtitle="Dodajte Ocjeni.ba na svoju web stranicu"
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?widget,web"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       <div className="container mx-auto max-w-3xl px-4 py-16">

@@ -86,8 +86,7 @@ export default function BusinessProfileClient({
         label={business.category}
         title={business.name}
         subtitle={business.description}
-        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${business.category.replace(/\s+/g, ",").toLowerCase()},business`}
-        minHeight="min-h-[55vh]"
+                minHeight="min-h-[55vh]"
       />
 
       <div className="container mx-auto -mt-16 px-4 pb-12 relative z-20">

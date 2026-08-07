@@ -99,7 +99,7 @@ export default function NajnovijePage() {
         label="Recenzije"
         title="Najnovije recenzije"
         subtitle="Iskustva stvarnih kupaca iz cijele Bosne i Hercegovine. Sve recenzije su verificirane."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?reviews,people"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Reviews */}

@@ -15,7 +15,7 @@ export default function PravilaPage() {
         label="Pravni dokumenti"
         title="Pravila korištenja"
         subtitle="Uslovi korištenja platforme Ocjeni.ba za sve korisnike i firme."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?terms,legal"
+        backgroundImage="/images/hero-bg.svg"
       />
 
       {/* Content */}

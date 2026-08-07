@@ -429,8 +429,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         label="Kategorija"
         title={category.name}
         subtitle={category.description}
-        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${category.name.replace(/\s+/g, ",").toLowerCase()},business`}
-      />
+              />
 
       {/* Pretraga i filteri */}
       <section className="container mx-auto px-4 -mt-6">

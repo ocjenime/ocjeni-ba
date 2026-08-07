@@ -91,8 +91,7 @@ export default function CityPage({ params }: CityPageProps) {
         label="Grad"
         title={city.name}
         subtitle={`${city.canton} · ${city.population.toLocaleString("bs-BI")} stanovnika`}
-        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${city.name.toLowerCase().replace(/\s+/g, ",")},bosnia`}
-        minHeight="min-h-[50vh]"
+                minHeight="min-h-[50vh]"
       />
 
       <section className="py-16">

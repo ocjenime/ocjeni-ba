@@ -21,7 +21,7 @@ export default function ForgotPasswordPage() {
         label="Podrška"
         title="Zaboravljena lozinka"
         subtitle="Unesite svoju email adresu i poslat ćemo vam upute za resetovanje"
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?password,security"
+        backgroundImage="/images/hero-bg.svg"
         minHeight="min-h-[50vh]"
       />
 

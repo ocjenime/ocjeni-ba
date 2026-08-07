@@ -104,7 +104,7 @@ export default function ForBusinessPage() {
         title="Vaša reputacija je vaš najjači alat"
         highlight="vaš najjači alat"
         subtitle="10,000+ firmi iz cijele BiH već koristi Ocjeni.ba da dobiju više klijenata."
-        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,success"
+        backgroundImage="/images/hero-bg.svg"
       >
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link href="/tvrtke/prijava" className="btn-primary">
