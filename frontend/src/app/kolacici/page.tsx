@@ -23,7 +23,7 @@ export default function CookiesPage() {
       <section className="py-16">
         <div className="container mx-auto max-w-3xl px-4">
           <SlideUp>
-            <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 text-center">
+            <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-10 text-center dark:border-white/5 dark:bg-white/[0.02]">
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
               <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
               <div className="relative">
@@ -38,7 +38,7 @@ export default function CookiesPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 py-10">
+      <section className="border-t border-black/5 py-10 dark:border-white/5">
         <div className="container mx-auto max-w-3xl px-4 text-center">
           <Link
             href="/"

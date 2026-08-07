@@ -9,9 +9,9 @@ import {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-background" role="contentinfo">
+    <footer className="border-t border-black/5 bg-background dark:border-white/5" role="contentinfo">
       {/* Trust Bar */}
-      <div className="border-b border-white/5">
+      <div className="border-b border-black/5 dark:border-white/5">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-foreground/50">
             <span className="flex items-center gap-2">
@@ -42,9 +42,9 @@ export function Footer() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500">
                 <span className="text-xl font-bold text-white">O</span>
               </div>
-              <span className="text-xl font-bold text-white">
-                ocijeni<span className="gradient-text">.ba</span>
-              </span>
+            <span className="text-xl font-bold text-foreground">
+              ocijeni<span className="gradient-text">.ba</span>
+            </span>
             </Link>
             <p className="mb-4 max-w-sm text-sm leading-relaxed text-foreground/50">
               Platforma broj 1 za recenzije u BiH. Hiljade provjerenih ocjena
@@ -53,7 +53,7 @@ export function Footer() {
             <div className="flex gap-3">
               <a
                 href="mailto:info@ocjeni.ba"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-foreground/70 transition-colors hover:border-emerald-400/40 hover:text-emerald-400"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/5 text-foreground/70 transition-colors hover:border-emerald-400/40 hover:text-emerald-400"
                 title="Email"
               >
                 <Mail className="h-5 w-5" />
@@ -63,7 +63,7 @@ export function Footer() {
 
           {/* Brzi linkovi */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-white">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground">
               Platforma
             </h3>
             <ul className="space-y-2.5">
@@ -87,7 +87,7 @@ export function Footer() {
 
           {/* Za tvrtke */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-white">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground">
               Za firme
             </h3>
             <ul className="space-y-2.5">
@@ -111,7 +111,7 @@ export function Footer() {
 
           {/* Kontakt */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-white">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground">
               Kontakt
             </h3>
             <ul className="space-y-3 text-sm text-foreground/50">
@@ -132,7 +132,7 @@ export function Footer() {
         </div>
 
         {/* Donji dio */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-foreground/5 pt-8 md:flex-row">
           <p className="text-xs text-foreground/40">
             © 2026 ocjeni.ba. Sva prava pridržana.
           </p>

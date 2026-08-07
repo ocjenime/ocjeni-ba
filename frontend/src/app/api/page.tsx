@@ -80,7 +80,7 @@ export default function ApiDocsPage() {
 
         {/* Endpoints */}
         <FadeIn delay={0.2} className="mb-16">
-          <h2 className="mb-6 text-2xl font-semibold text-white">
+          <h2 className="mb-6 text-2xl font-semibold text-foreground">
             Dostupni endpointi
           </h2>
           <div className="space-y-3">
@@ -112,10 +112,10 @@ export default function ApiDocsPage() {
             {features.map((feature, index) => (
               <SlideUp key={feature.title} delay={index * 0.1}>
                 <div className="card text-center">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-emerald-400">
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5 text-emerald-400">
                     <feature.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-semibold text-white">{feature.title}</h3>
+                  <h3 className="font-semibold text-foreground">{feature.title}</h3>
                   <p className="mt-2 text-sm text-foreground/50">
                     {feature.description}
                   </p>
@@ -127,14 +127,14 @@ export default function ApiDocsPage() {
 
         {/* CTA */}
         <SlideUp>
-          <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 text-center md:p-12">
+          <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-8 text-center md:p-12 dark:border-white/5 dark:bg-white/[0.02]">
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
             <div className="relative">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
                 <FileCode className="h-7 w-7 text-emerald-400" />
               </div>
-              <h3 className="text-2xl font-semibold text-white">
+              <h3 className="text-2xl font-semibold text-foreground">
                 Trebate pristup API-ju?
               </h3>
               <p className="mx-auto mt-3 max-w-md text-foreground/60">

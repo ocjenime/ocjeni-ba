@@ -49,7 +49,7 @@ export default function WidgetsPage() {
           <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
             Ugradnja
           </span>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
+          <h2 className="mt-3 text-2xl font-semibold text-foreground">
             Dodajte Ocjeni.ba na svoju web stranicu
           </h2>
           <p className="mt-3 leading-relaxed text-foreground/60">
@@ -67,12 +67,12 @@ export default function WidgetsPage() {
           className="mb-10"
         >
           <div className="mb-3 flex items-center gap-2">
-            <h3 className="font-semibold text-white">Primjer koda za ugradnju</h3>
+            <h3 className="font-semibold text-foreground">Primjer koda za ugradnju</h3>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117]">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+          <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-[#0d1117]">
+            <div className="flex items-center justify-between border-b border-foreground/10 px-4 py-3">
               <span className="text-xs font-medium text-foreground/50">HTML</span>
-              <button className="text-foreground/50 transition-colors hover:text-white">
+              <button className="text-foreground/50 transition-colors hover:text-foreground">
                 <Copy className="h-4 w-4" />
               </button>
             </div>
@@ -95,7 +95,7 @@ export default function WidgetsPage() {
               className="card"
             >
               <feature.icon className="mb-3 h-6 w-6 text-emerald-400" />
-              <h4 className="font-semibold text-white">{feature.title}</h4>
+              <h4 className="font-semibold text-foreground">{feature.title}</h4>
               <p className="mt-1 text-sm text-foreground/50">
                 {feature.description}
               </p>
@@ -113,7 +113,7 @@ export default function WidgetsPage() {
           <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
           <div className="relative">
-            <h3 className="text-xl font-semibold text-white">Spremni za početak?</h3>
+            <h3 className="text-xl font-semibold text-foreground">Spremni za početak?</h3>
             <p className="mx-auto mt-3 max-w-md text-foreground/70">
               Prijavite svoju firmu i dobijte pristup widgetima i naprednoj
               analitici recenzija.

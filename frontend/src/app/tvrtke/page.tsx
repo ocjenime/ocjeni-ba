@@ -120,17 +120,17 @@ export default function TvrtkePage() {
       <section className="py-10">
         <div className="container mx-auto max-w-5xl px-4">
           <div className="mx-auto flex max-w-2xl items-center gap-3">
-            <div className="flex flex-1 items-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-colors focus-within:border-emerald-400/50">
+            <div className="flex flex-1 items-center overflow-hidden rounded-xl border border-foreground/10 bg-foreground/5 transition-colors focus-within:border-emerald-400/50">
               <Search className="ml-4 h-5 w-5 text-foreground/40" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Pretražite firme po imenu, kategoriji ili gradu..."
-                className="w-full bg-transparent px-4 py-4 text-white outline-none placeholder:text-foreground/40"
+                className="w-full bg-transparent px-4 py-4 text-foreground outline-none placeholder:text-foreground/40"
               />
             </div>
-            <button className="rounded-xl border border-white/10 bg-white/5 p-4 text-foreground/70 transition-colors hover:bg-white/10">
+            <button className="rounded-xl border border-foreground/10 bg-foreground/5 p-4 text-foreground/70 transition-colors hover:bg-foreground/10">
               <Filter className="h-5 w-5" />
             </button>
           </div>
@@ -156,15 +156,15 @@ export default function TvrtkePage() {
               >
                 <Link
                   href={`/tvrtke/${biz.slug}`}
-                  className="group flex flex-col rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                  className="group flex flex-col rounded-2xl border border-black/5 bg-black/[0.02] p-6 transition-all hover:border-emerald-500/30 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.04]"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5">
                       <Building2 className="h-8 w-8 text-emerald-400" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <h2 className="truncate text-lg font-semibold text-white transition-colors group-hover:text-emerald-400">
+                        <h2 className="truncate text-lg font-semibold text-foreground transition-colors group-hover:text-emerald-400">
                           {biz.name}
                         </h2>
                         {biz.verified && (
@@ -180,7 +180,7 @@ export default function TvrtkePage() {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-5 flex items-center gap-2 border-t border-white/5 pt-4">
+                  <div className="mt-5 flex items-center gap-2 border-t border-foreground/5 pt-4">
                     <span className="rounded-md bg-emerald-500 px-2.5 py-1 text-xs font-bold text-white">
                       {biz.rating.toFixed(1)}
                     </span>
@@ -191,7 +191,7 @@ export default function TvrtkePage() {
                           className={`h-4 w-4 ${
                             star <= Math.round(biz.rating)
                               ? "fill-amber-400 text-amber-400"
-                              : "fill-white/10 text-white/10"
+                              : "fill-foreground/10 text-foreground/10"
                           }`}
                         />
                       ))}
@@ -209,7 +209,7 @@ export default function TvrtkePage() {
           {filtered.length === 0 && (
             <div className="py-16 text-center">
               <Search className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
-              <h3 className="mb-2 text-lg font-semibold text-white">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
                 Nema rezultata
               </h3>
               <p className="text-foreground/50">
@@ -221,12 +221,12 @@ export default function TvrtkePage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-16">
+      <section className="border-t border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
             Pridružite se
           </span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
             Vaša firma nije na listi?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">

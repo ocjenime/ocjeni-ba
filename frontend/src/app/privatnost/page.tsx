@@ -22,14 +22,14 @@ export default function PrivatnostPage() {
       <section className="py-16">
         <div className="container mx-auto max-w-3xl px-4">
           <SlideUp>
-            <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 text-center">
+            <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-10 text-center dark:border-white/5 dark:bg-white/[0.02]">
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
               <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
               <div className="relative">
                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
                   <Shield className="h-8 w-8 text-emerald-400" />
                 </div>
-                <h2 className="text-2xl font-semibold text-white">
+                <h2 className="text-2xl font-semibold text-foreground">
                   Politika privatnosti platforme Ocjeni.ba
                 </h2>
                 <p className="mx-auto mt-4 max-w-lg leading-relaxed text-foreground/70">
@@ -46,13 +46,13 @@ export default function PrivatnostPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-16">
+      <section className="border-t border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <SlideUp>
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Imate pitanja?
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
               Imate pitanja o privatnosti?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">

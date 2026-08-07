@@ -55,7 +55,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 backdrop-blur-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -70,7 +70,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
-          className="font-[family-name:var(--font-space-grotesk)] text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          className="font-[family-name:var(--font-space-grotesk)] text-5xl font-semibold tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
           Pronađi.
           <br />
@@ -102,7 +102,7 @@ export default function HeroSection() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Pretraži tvrtke, kategorije, gradove..."
-              className="h-14 w-full rounded-full border border-white/15 bg-white/5 px-6 pr-12 text-white placeholder-foreground/40 outline-none backdrop-blur-sm transition-colors focus:border-emerald-400/50"
+              className="h-14 w-full rounded-full border border-foreground/15 bg-foreground/5 px-6 pr-12 text-foreground placeholder-foreground/40 outline-none backdrop-blur-sm transition-colors focus:border-emerald-400/50"
             />
             <Search className="absolute right-5 top-1/2 h-5 w-5 -translate-y-1/2 text-foreground/40" />
           </div>
@@ -114,7 +114,7 @@ export default function HeroSection() {
           </button>
           <Link
             href="/kategorije"
-            className="animated-border group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
+            className="animated-border group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full border border-foreground/15 bg-foreground/5 px-8 text-base font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-foreground/10"
           >
             <span className="relative z-10">Istraži kategorije</span>
           </Link>
@@ -129,7 +129,7 @@ export default function HeroSection() {
           <span className="flex items-center gap-1.5">
             <span className="text-amber-400">★★★★★</span> 4.8/5 prosječna ocjena
           </span>
-          <span className="hidden h-4 w-px bg-white/10 sm:inline-block" />
+          <span className="hidden h-4 w-px bg-foreground/10 sm:inline-block" />
           <span className="hidden sm:inline">10.000+ tvrtki</span>
         </motion.div>
       </div>
@@ -141,11 +141,11 @@ export default function HeroSection() {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
       >
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-foreground/20 p-1.5">
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="h-1.5 w-1.5 rounded-full bg-white/60"
+            className="h-1.5 w-1.5 rounded-full bg-foreground/60"
           />
         </div>
       </motion.div>

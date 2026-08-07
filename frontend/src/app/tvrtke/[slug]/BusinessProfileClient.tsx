@@ -65,7 +65,7 @@ function StarRating({ rating, size = "md" }: { rating: number; size?: "sm" | "md
           className={`${sizeClasses[size]} ${
             star <= rating
               ? "fill-amber-400 text-amber-400"
-              : "fill-white/10 text-white/10"
+              : "fill-foreground/10 text-foreground/10"
           }`}
         />
       ))}
@@ -90,9 +90,9 @@ export default function BusinessProfileClient({
       />
 
       <div className="container mx-auto -mt-16 px-4 pb-12 relative z-20">
-        <div className="rounded-3xl border border-white/5 bg-white/[0.03] p-6 backdrop-blur-sm shadow-2xl md:p-8">
+        <div className="rounded-3xl border border-black/5 bg-white/[0.03] p-6 backdrop-blur-sm shadow-2xl md:p-8 dark:border-white/5 dark:bg-white/[0.03]">
           <div className="flex flex-col gap-6 md:flex-row md:items-end">
-            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 shadow-2xl md:h-32 md:w-32">
+            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-foreground/10 bg-foreground/5 shadow-2xl md:h-32 md:w-32">
               <img
                 src={business.logoUrl}
                 alt={business.name}
@@ -130,7 +130,7 @@ export default function BusinessProfileClient({
 
             <div className="flex flex-col items-start gap-2 md:items-end">
               <div className="flex items-center gap-3">
-                <span className="text-4xl font-semibold text-white">
+                <span className="text-4xl font-semibold text-foreground">
                   {business.rating}
                 </span>
                 <div>
@@ -159,8 +159,8 @@ export default function BusinessProfileClient({
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
-            <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 md:p-8">
-              <h2 className="mb-4 text-xl font-semibold text-white">O nama</h2>
+            <section className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 md:p-8 dark:border-white/5 dark:bg-white/[0.02]">
+              <h2 className="mb-4 text-xl font-semibold text-foreground">O nama</h2>
               <div className="space-y-4">
                 {business.longDescription.split("\n\n").map((paragraph, i) => (
                   <p key={i} className="leading-relaxed text-foreground/70">
@@ -170,13 +170,13 @@ export default function BusinessProfileClient({
               </div>
             </section>
 
-            <section className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 md:p-8">
-              <h2 className="mb-4 text-xl font-semibold text-white">Usluge</h2>
+            <section className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 md:p-8 dark:border-white/5 dark:bg-white/[0.02]">
+              <h2 className="mb-4 text-xl font-semibold text-foreground">Usluge</h2>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {business.services.map((service, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3"
+                    className="flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.03] p-3 dark:border-white/5 dark:bg-white/5"
                   >
                     <CheckCircle className="h-5 w-5 flex-shrink-0 text-emerald-400" />
                     <span className="text-sm text-foreground/80">{service}</span>
@@ -185,14 +185,14 @@ export default function BusinessProfileClient({
               </div>
             </section>
 
-            <section id="recenzije" className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 md:p-8">
+            <section id="recenzije" className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 md:p-8 dark:border-white/5 dark:bg-white/[0.02]">
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-foreground">
                   Recenzije ({business.reviewCount})
                 </h2>
-                <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2">
+                <div className="flex items-center gap-2 rounded-lg border border-foreground/10 bg-foreground/5 px-4 py-2">
                   <Star className="h-5 w-5 fill-amber-400 text-amber-400" />
-                  <span className="text-lg font-semibold text-white">
+                  <span className="text-lg font-semibold text-foreground">
                     {business.rating}
                   </span>
                   <span className="text-sm text-foreground/50">/ 5.0</span>
@@ -203,7 +203,7 @@ export default function BusinessProfileClient({
                 {business.reviews.map((review, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-white/5 bg-white/5 p-5 transition-all hover:border-white/10"
+                    className="rounded-xl border border-black/5 bg-black/[0.03] p-5 transition-all hover:border-black/10 dark:border-white/5 dark:bg-white/5 dark:hover:border-white/10"
                   >
                     <div className="mb-3 flex items-start justify-between">
                       <div className="flex items-center gap-3">
@@ -213,7 +213,7 @@ export default function BusinessProfileClient({
                           </span>
                         </div>
                         <div>
-                          <p className="font-semibold text-white">{review.name}</p>
+                          <p className="font-semibold text-foreground">{review.name}</p>
                           <p className="text-xs text-foreground/50">{review.date}</p>
                         </div>
                       </div>
@@ -255,13 +255,13 @@ export default function BusinessProfileClient({
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-4 font-semibold text-white">Informacije</h3>
+            <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 dark:border-white/5 dark:bg-white/[0.02]">
+              <h3 className="mb-4 font-semibold text-foreground">Informacije</h3>
               <div className="grid grid-cols-2 gap-4">
                 {business.stats.map((stat, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-white/5 bg-white/5 p-3 text-center"
+                    className="rounded-xl border border-black/5 bg-black/[0.03] p-3 text-center dark:border-white/5 dark:bg-white/5"
                   >
                     <p className="text-lg font-semibold text-emerald-400">
                       {stat.value}
@@ -272,8 +272,8 @@ export default function BusinessProfileClient({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-4 flex items-center gap-2 font-semibold text-white">
+            <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 dark:border-white/5 dark:bg-white/[0.02]">
+              <h3 className="mb-4 flex items-center gap-2 font-semibold text-foreground">
                 <Clock className="h-5 w-5 text-emerald-400" />
                 Radno vrijeme
               </h3>
@@ -288,7 +288,7 @@ export default function BusinessProfileClient({
                       className={`font-medium ${
                         item.hours === "Zatvoreno"
                           ? "text-red-400"
-                          : "text-white"
+                          : "text-foreground"
                       }`}
                     >
                       {item.hours}
@@ -298,16 +298,16 @@ export default function BusinessProfileClient({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-4 font-semibold text-white">Kontakt</h3>
+            <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 dark:border-white/5 dark:bg-white/[0.02]">
+              <h3 className="mb-4 font-semibold text-foreground">Kontakt</h3>
               <div className="space-y-3">
                 <a
                   href={`tel:${business.phone.replace(/\s/g, "")}`}
-                  className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3 transition-colors hover:border-emerald-500/30"
+                  className="group flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.03] p-3 transition-colors hover:border-emerald-500/30 dark:border-white/5 dark:bg-white/5"
                 >
                   <Phone className="h-5 w-5 text-emerald-400" />
                   <div>
-                    <p className="text-sm font-medium text-white">{business.phone}</p>
+                    <p className="text-sm font-medium text-foreground">{business.phone}</p>
                     <p className="text-xs text-foreground/50">Pozovite nas</p>
                   </div>
                 </a>
@@ -315,7 +315,7 @@ export default function BusinessProfileClient({
                   href={business.website || "#"}
                   target={business.website ? "_blank" : undefined}
                   rel={business.website ? "noopener noreferrer" : undefined}
-                  className={`group flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3 transition-colors ${
+                  className={`group flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.03] p-3 transition-colors dark:border-white/5 dark:bg-white/5 ${
                     business.website
                       ? "hover:border-emerald-500/30"
                       : "cursor-not-allowed opacity-50"
@@ -323,7 +323,7 @@ export default function BusinessProfileClient({
                 >
                   <Globe className="h-5 w-5 text-emerald-400" />
                   <div>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-foreground">
                       {business.website
                         ? business.website.replace("https://", "")
                         : "Nema web stranice"}
@@ -339,11 +339,11 @@ export default function BusinessProfileClient({
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3 transition-colors hover:border-emerald-500/30"
+                  className="group flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.03] p-3 transition-colors hover:border-emerald-500/30 dark:border-white/5 dark:bg-white/5"
                 >
                   <MapPin className="h-5 w-5 text-emerald-400" />
                   <div>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-foreground">
                       {business.address}
                     </p>
                     <p className="text-xs text-foreground/50">Pogledajte na mapi</p>
@@ -352,8 +352,8 @@ export default function BusinessProfileClient({
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-4 font-semibold text-white">Društvene mreže</h3>
+            <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-6 dark:border-white/5 dark:bg-white/[0.02]">
+              <h3 className="mb-4 font-semibold text-foreground">Društvene mreže</h3>
               <div className="space-y-2">
                 {business.socialLinks.map((link, i) => (
                   <a
@@ -361,11 +361,11 @@ export default function BusinessProfileClient({
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3 transition-colors hover:border-emerald-500/30"
+                    className="group flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.03] p-3 transition-colors hover:border-emerald-500/30 dark:border-white/5 dark:bg-white/5"
                   >
                     <ExternalLink className="h-4 w-4 text-emerald-400" />
                     <div>
-                      <p className="text-sm font-medium text-white">
+                      <p className="text-sm font-medium text-foreground">
                         {link.platform}
                       </p>
                       <p className="text-xs text-foreground/50">{link.label}</p>

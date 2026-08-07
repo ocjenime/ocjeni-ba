@@ -53,7 +53,7 @@ export default function KontaktPage() {
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500">
                     <Send className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3 className="text-xl font-semibold text-foreground">
                     Poruka poslana!
                   </h3>
                   <p className="mt-2 text-foreground/70">
@@ -138,43 +138,43 @@ export default function KontaktPage() {
                 transition={{ duration: 0.5 }}
                 className="card"
               >
-                <h3 className="mb-4 font-semibold text-white">Kontakt podaci</h3>
+                <h3 className="mb-4 font-semibold text-foreground">Kontakt podaci</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5">
                       <Mail className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
                       <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Email
                       </div>
-                      <div className="font-medium text-white">
+                      <div className="font-medium text-foreground">
                         info@ocjeni.ba
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5">
                       <Phone className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
                       <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Telefon
                       </div>
-                      <div className="font-medium text-white">
+                      <div className="font-medium text-foreground">
                         +387 XX XXX XXX
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5">
                       <MapPin className="h-5 w-5 text-emerald-400" />
                     </div>
                     <div>
                       <div className="text-xs font-medium uppercase tracking-wider text-foreground/50">
                         Lokacija
                       </div>
-                      <div className="font-medium text-white">
+                      <div className="font-medium text-foreground">
                         Sarajevo, Bosna i Hercegovina
                       </div>
                     </div>
@@ -191,16 +191,16 @@ export default function KontaktPage() {
               >
                 <div className="mb-3 flex items-center gap-2">
                   <Clock className="h-5 w-5 text-emerald-400" />
-                  <h3 className="font-semibold text-white">Radno vrijeme</h3>
+                  <h3 className="font-semibold text-foreground">Radno vrijeme</h3>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-foreground/50">Ponedjeljak - Petak</span>
-                    <span className="font-medium text-white">09:00 - 17:00</span>
+                    <span className="font-medium text-foreground">09:00 - 17:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-foreground/50">Subota</span>
-                    <span className="font-medium text-white">10:00 - 14:00</span>
+                    <span className="font-medium text-foreground">10:00 - 14:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-foreground/50">Nedjelja</span>
@@ -218,7 +218,7 @@ export default function KontaktPage() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <MessageSquare className="h-5 w-5 text-emerald-400" />
-                  <h3 className="font-semibold text-white">Hitna podrška?</h3>
+                  <h3 className="font-semibold text-foreground">Hitna podrška?</h3>
                 </div>
                 <p className="text-sm text-foreground/70">
                   Za hitne probleme pošaljite email direktno na{" "}
@@ -233,12 +233,12 @@ export default function KontaktPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-16">
+      <section className="border-t border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
             Za firme
           </span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
             Želite registrovati firmu?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">

@@ -32,7 +32,7 @@ export default function TestimonialsSection() {
           </span>
           <h2
             id="testimonials-heading"
-            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl"
           >
             Šta kažu o{" "}
             <span className="gradient-text">ocijeni.ba</span>
@@ -47,13 +47,13 @@ export default function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 sm:p-12"
+              className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-8 sm:p-12 dark:border-white/5 dark:bg-white/[0.02]"
             >
               <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
               <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
 
               <blockquote className="relative z-10">
-                <p className="font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-relaxed text-white sm:text-3xl">
+                <p className="font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-relaxed text-foreground sm:text-3xl">
                   {testimonials[active].quote}
                 </p>
                 <footer className="mt-8 flex items-center gap-4">
@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
                     {testimonials[active].author.charAt(0)}
                   </div>
                   <div>
-                    <cite className="not-italic font-semibold text-white">
+                    <cite className="not-italic font-semibold text-foreground">
                       {testimonials[active].author}
                     </cite>
                     <p className="text-sm text-foreground/60">
@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
           <div className="mt-8 flex items-center justify-center gap-4">
             <button
               onClick={prev}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/10 bg-foreground/5 text-foreground transition-colors hover:bg-foreground/10"
               aria-label="Prethodna preporuka"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
                     "h-2 rounded-full transition-all",
                     active === index
                       ? "w-8 bg-gradient-to-r from-emerald-400 to-green-500"
-                      : "w-2 bg-white/20 hover:bg-white/30"
+                      : "w-2 bg-foreground/20 hover:bg-foreground/30"
                   )}
                   aria-label={`Idi na preporuku ${index + 1}`}
                   aria-current={active === index ? "true" : undefined}
@@ -99,7 +99,7 @@ export default function TestimonialsSection() {
             </div>
             <button
               onClick={next}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/10 bg-foreground/5 text-foreground transition-colors hover:bg-foreground/10"
               aria-label="Sljedeća preporuka"
             >
               <ChevronRight className="h-5 w-5" />

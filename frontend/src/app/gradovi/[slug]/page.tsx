@@ -49,7 +49,7 @@ export default function CityPage({ params }: CityPageProps) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <h1 className="mb-4 text-4xl font-semibold text-white">
+          <h1 className="mb-4 text-4xl font-semibold text-foreground">
             Grad nije pronađen
           </h1>
           <p className="mb-8 text-foreground/60">
@@ -68,7 +68,7 @@ export default function CityPage({ params }: CityPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="border-b border-white/5">
+      <div className="border-b border-black/5 dark:border-white/5">
         <div className="container mx-auto max-w-5xl px-4 py-4">
           <nav className="flex flex-wrap items-center gap-2 text-sm text-foreground/50">
             <Link href="/" className="transition-colors hover:text-emerald-400">
@@ -82,7 +82,7 @@ export default function CityPage({ params }: CityPageProps) {
               Gradovi
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="font-medium text-white">{city.name}</span>
+            <span className="font-medium text-foreground">{city.name}</span>
           </nav>
         </div>
       </div>
@@ -97,12 +97,12 @@ export default function CityPage({ params }: CityPageProps) {
       <section className="py-16">
         <div className="container mx-auto max-w-5xl px-4">
           <SlideUp>
-            <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 text-center md:p-14">
+            <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-10 text-center md:p-14 dark:border-white/5 dark:bg-white/[0.02]">
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
               <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
               <div className="relative">
                 <FolderOpen className="mx-auto mb-4 h-12 w-12 text-foreground/30" />
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-foreground">
                   Trenutno nema firmi u ovom gradu
                 </h2>
                 <p className="mx-auto mt-3 max-w-md text-foreground/60">

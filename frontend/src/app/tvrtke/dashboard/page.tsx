@@ -138,13 +138,13 @@ export default function BusinessDashboardPage() {
   return (
     <div className="min-h-screen bg-background pt-16 lg:pt-0">
       {/* Sidebar */}
-      <div className="fixed bottom-0 left-0 top-0 hidden w-64 border-r border-white/5 bg-white/[0.02] lg:block">
+      <div className="fixed bottom-0 left-0 top-0 hidden w-64 border-r border-black/5 bg-background lg:block dark:border-white/5 dark:bg-white/[0.02]">
         <div className="p-6">
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500">
               <span className="text-sm font-bold text-white">O</span>
             </div>
-            <span className="font-bold text-white">
+            <span className="font-bold text-foreground">
               ocijeni<span className="gradient-text">.ba</span>
             </span>
           </Link>
@@ -164,7 +164,7 @@ export default function BusinessDashboardPage() {
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                   activeTab === item.id
                     ? "bg-emerald-500/10 text-emerald-400"
-                    : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
+                    : "text-foreground/60 hover:bg-foreground/5 hover:text-foreground"
                 }`}
               >
                 <item.icon className="h-5 w-5" />
@@ -174,7 +174,7 @@ export default function BusinessDashboardPage() {
           </div>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/5 p-4">
+        <div className="absolute bottom-0 left-0 right-0 border-t border-black/5 p-4 dark:border-white/5">
           <div className="flex items-center gap-3 px-4 py-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500">
               <span className="text-sm font-bold text-white">
@@ -182,7 +182,7 @@ export default function BusinessDashboardPage() {
               </span>
             </div>
             <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-medium text-white">
+              <div className="truncate text-sm font-medium text-foreground">
                 {user?.name || "Vlasnik"}
               </div>
               <div className="text-xs text-foreground/50">Vlasnik</div>
@@ -214,7 +214,7 @@ export default function BusinessDashboardPage() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-white/10"
+                className="rounded-xl border border-black/5 bg-black/[0.02] p-5 transition-all hover:border-black/10 dark:border-white/5 dark:bg-white/[0.02] dark:hover:border-white/10"
               >
                 <div className="mb-3 flex items-center justify-between">
                   <stat.icon className="h-5 w-5 text-emerald-400" />
@@ -224,7 +224,7 @@ export default function BusinessDashboardPage() {
                     </span>
                   )}
                 </div>
-                <div className="text-2xl font-semibold text-white">
+                <div className="text-2xl font-semibold text-foreground">
                   {stat.value}
                 </div>
                 <div className="mt-1 text-sm text-foreground/50">{stat.label}</div>
@@ -243,11 +243,11 @@ export default function BusinessDashboardPage() {
                   else if (action.name === "Pogledaj widget") alert("Widget pregled će uskoro biti dostupan.");
                   else if (action.name === "Eksportuj izvještaj") alert("Eksport izvještaja će uskoro biti dostupan.");
                 }}
-                className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-left transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                className="flex items-center gap-3 rounded-xl border border-black/5 bg-black/[0.02] p-4 text-left transition-all hover:border-emerald-500/30 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.04]"
               >
                 <action.icon className="h-5 w-5 text-emerald-400" />
                 <div>
-                  <div className="text-sm font-medium text-white">
+                  <div className="text-sm font-medium text-foreground">
                     {action.name}
                   </div>
                   {action.count && (
@@ -264,17 +264,17 @@ export default function BusinessDashboardPage() {
           {activeTab === "reviews" && (
             <div>
               <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-                <h2 className="text-lg font-semibold text-white">
+                <h2 className="text-lg font-semibold text-foreground">
                   Posljednje recenzije
                 </h2>
                 <div className="flex gap-2">
                   <button className="rounded-lg bg-emerald-500/10 px-3 py-1.5 text-sm font-medium text-emerald-400">
                     Sve (4)
                   </button>
-                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-white/5">
+                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-foreground/5">
                     Na čekanju (2)
                   </button>
-                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-white/5">
+                  <button className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/50 hover:bg-foreground/5">
                     Odgovorene (2)
                   </button>
                 </div>
@@ -284,18 +284,18 @@ export default function BusinessDashboardPage() {
                 {mockReviews.map((review) => (
                   <div
                     key={review.id}
-                    className="rounded-xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10"
+                    className="rounded-xl border border-black/5 bg-black/[0.02] p-6 transition-all hover:border-black/10 dark:border-white/5 dark:bg-white/[0.02] dark:hover:border-white/10"
                   >
                     <div className="mb-4 flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5">
-                          <span className="font-medium text-white">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground/5">
+                          <span className="font-medium text-foreground">
                             {review.user.charAt(0)}
                           </span>
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-white">
+                            <span className="font-medium text-foreground">
                               {review.user}
                             </span>
                             {review.verified && (
@@ -319,7 +319,7 @@ export default function BusinessDashboardPage() {
                               className={`h-4 w-4 ${
                                 star <= review.rating
                                   ? "fill-amber-400 text-amber-400"
-                                  : "fill-white/10 text-white/10"
+                                  : "fill-foreground/10 text-foreground/10"
                               }`}
                             />
                           ))}
@@ -333,12 +333,12 @@ export default function BusinessDashboardPage() {
                       </div>
                     </div>
 
-                    <h3 className="mb-2 font-semibold text-white">{review.title}</h3>
+                    <h3 className="mb-2 font-semibold text-foreground">{review.title}</h3>
                     <p className="mb-4 text-sm text-foreground/70">{review.content}</p>
 
                     {review.response && (
-                      <div className="mb-4 rounded-lg border-l-4 border-emerald-500 bg-white/5 p-4">
-                        <div className="mb-1 flex items-center gap-2 text-sm font-medium text-white">
+                      <div className="mb-4 rounded-lg border-l-4 border-emerald-500 bg-foreground/5 p-4">
+                        <div className="mb-1 flex items-center gap-2 text-sm font-medium text-foreground">
                           <Building2 className="h-4 w-4 text-emerald-400" />
                           Odgovor firme
                         </div>
@@ -348,7 +348,7 @@ export default function BusinessDashboardPage() {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-4 border-t border-white/5 pt-4">
+                    <div className="flex items-center gap-4 border-t border-foreground/5 pt-4">
                       {respondingTo === review.id ? (
                         <div className="flex flex-1 gap-2">
                           <input
@@ -411,7 +411,7 @@ export default function BusinessDashboardPage() {
           {activeTab === "badges" && (
             <div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-white">Vaši bedževi</h2>
+                <h2 className="text-lg font-semibold text-foreground">Vaši bedževi</h2>
                 <p className="mt-1 text-sm text-foreground/50">
                   Bedževi povećavaju povjerenje kupaca
                 </p>
@@ -424,13 +424,13 @@ export default function BusinessDashboardPage() {
                     className={`rounded-xl border p-6 transition-all ${
                       badge.earned
                         ? "border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/40"
-                        : "border-white/5 bg-white/[0.02] opacity-60"
+                        : "border-black/5 bg-black/[0.02] opacity-60 dark:border-white/5 dark:bg-white/[0.02]"
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={`flex h-14 w-14 items-center justify-center rounded-xl ${
-                          badge.earned ? "bg-emerald-500/10" : "bg-white/5"
+                          badge.earned ? "bg-emerald-500/10" : "bg-foreground/5"
                         }`}
                       >
                         <badge.icon
@@ -440,7 +440,7 @@ export default function BusinessDashboardPage() {
                         />
                       </div>
                       <div>
-                        <div className="font-semibold text-white">
+                        <div className="font-semibold text-foreground">
                           {badge.name}
                         </div>
                         <div className="text-sm text-foreground/50">
@@ -455,9 +455,9 @@ export default function BusinessDashboardPage() {
                 ))}
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-8">
+              <div className="relative overflow-hidden rounded-2xl border border-black/5 bg-black/[0.02] p-8 dark:border-white/5 dark:bg-white/[0.02]">
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
-                <h3 className="relative mb-4 text-xl font-semibold text-white">
+                <h3 className="relative mb-4 text-xl font-semibold text-foreground">
                   Kako zaraditi bedževe?
                 </h3>
                 <div className="relative grid gap-4 md:grid-cols-2">
@@ -470,7 +470,7 @@ export default function BusinessDashboardPage() {
                     <div key={item.title} className="flex items-start gap-3">
                       <item.icon className="mt-0.5 h-5 w-5 text-emerald-400" />
                       <div>
-                        <div className="font-medium text-white">{item.title}</div>
+                        <div className="font-medium text-foreground">{item.title}</div>
                         <div className="text-sm text-foreground/60">{item.desc}</div>
                       </div>
                     </div>
@@ -482,9 +482,9 @@ export default function BusinessDashboardPage() {
 
           {/* Analytics placeholder */}
           {activeTab === "analytics" && (
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-12 text-center">
+            <div className="rounded-xl border border-black/5 bg-black/[0.02] p-12 text-center dark:border-white/5 dark:bg-white/[0.02]">
               <BarChart3 className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
-              <h3 className="text-lg font-semibold text-white">Analitika</h3>
+              <h3 className="text-lg font-semibold text-foreground">Analitika</h3>
               <p className="mt-2 text-foreground/50">
                 Detaljna analitika bit će dostupna uskoro.
               </p>
@@ -493,9 +493,9 @@ export default function BusinessDashboardPage() {
 
           {/* Settings placeholder */}
           {activeTab === "settings" && (
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-12 text-center">
+            <div className="rounded-xl border border-black/5 bg-black/[0.02] p-12 text-center dark:border-white/5 dark:bg-white/[0.02]">
               <Settings className="mx-auto mb-4 h-12 w-12 text-foreground/20" />
-              <h3 className="text-lg font-semibold text-white">Postavke</h3>
+              <h3 className="text-lg font-semibold text-foreground">Postavke</h3>
               <p className="mt-2 text-foreground/50">
                 Uređivanje profila firme bit će dostupno uskoro.
               </p>

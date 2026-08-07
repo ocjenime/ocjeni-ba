@@ -25,7 +25,7 @@ export default function PlansSection() {
           </span>
           <h2
             id="paketi-heading"
-            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl"
           >
             Istakni svoju{" "}
             <span className="gold-text">tvrtku</span>
@@ -48,7 +48,7 @@ export default function PlansSection() {
                 "relative flex flex-col overflow-hidden rounded-3xl border p-8 transition-all duration-300",
                 plan.featured
                   ? "border-green-500/40 bg-gradient-to-b from-green-500/10 to-transparent shadow-2xl shadow-green-500/10 lg:-mt-4 lg:mb-4"
-                  : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]"
+                  : "border-black/5 bg-black/[0.02] hover:border-black/10 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:border-white/10 dark:hover:bg-white/[0.04]"
               )}
             >
               {plan.featured && (
@@ -57,13 +57,13 @@ export default function PlansSection() {
                 </div>
               )}
 
-              <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold text-white">
+              <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold text-foreground">
                 {plan.name}
               </h3>
               <p className="mt-2 text-sm text-foreground/60">{plan.tagline}</p>
 
               <div className="mt-6">
-                <span className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold text-white">
+                <span className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold text-foreground">
                   {plan.price.split(" ")[0]}
                 </span>
                 <span className="text-foreground/50">
@@ -80,7 +80,7 @@ export default function PlansSection() {
                         "mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border text-xs",
                         plan.featured
                           ? "border-emerald-400/40 text-emerald-400"
-                          : "border-white/20 text-white/70"
+                          : "border-foreground/20 text-foreground/70"
                       )}
                     >
                       ✓
@@ -96,7 +96,7 @@ export default function PlansSection() {
                   "mt-8 inline-flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold transition-transform hover:scale-[1.02]",
                   plan.featured
                     ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white shadow-lg shadow-green-500/25"
-                    : "border border-white/15 bg-white/5 text-white hover:bg-white/10"
+                    : "border border-foreground/15 bg-foreground/5 text-foreground hover:bg-foreground/10"
                 )}
               >
                 {plan.id === "enterprise" ? "Kontaktirajte nas" : "Odaberi paket"}

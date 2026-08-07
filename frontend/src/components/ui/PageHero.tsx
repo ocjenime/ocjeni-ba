@@ -72,7 +72,7 @@ export default function PageHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -88,7 +88,7 @@ export default function PageHero({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
-          className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
         >
           {renderTitle()}
         </motion.h1>
@@ -124,11 +124,11 @@ export default function PageHero({
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
         >
-          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-foreground/20 p-1.5">
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="h-1.5 w-1.5 rounded-full bg-white/60"
+              className="h-1.5 w-1.5 rounded-full bg-foreground/60"
             />
           </div>
         </motion.div>

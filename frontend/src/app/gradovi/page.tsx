@@ -26,7 +26,7 @@ export default function CitiesPage() {
         <div className="container mx-auto max-w-5xl px-4">
           {Object.entries(FBIH_CANTON_CITIES).map(([canton, cities], groupIndex) => (
             <SlideUp key={canton} delay={groupIndex * 0.05} className="mb-12">
-              <h2 className="mb-5 flex items-center gap-2 text-xl font-semibold text-white">
+              <h2 className="mb-5 flex items-center gap-2 text-xl font-semibold text-foreground">
                 <MapPin className="h-5 w-5 text-emerald-400" />
                 {canton}
               </h2>
@@ -35,13 +35,13 @@ export default function CitiesPage() {
                   <SlideUp key={city} delay={index * 0.02}>
                     <Link
                       href={`/gradovi/${city.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="group flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] p-4 transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                      className="group flex items-center gap-3 rounded-2xl border border-black/5 bg-black/[0.02] p-4 transition-all hover:border-emerald-500/30 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.04]"
                     >
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5">
                         <Building2 className="h-5 w-5 text-emerald-400" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="truncate font-medium text-white transition-colors group-hover:text-emerald-400">
+                        <div className="truncate font-medium text-foreground transition-colors group-hover:text-emerald-400">
                           {city}
                         </div>
                         <div className="text-xs text-foreground/40">FBiH</div>
@@ -57,13 +57,13 @@ export default function CitiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-16">
+      <section className="border-t border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-3xl px-4 text-center">
           <SlideUp>
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Pridružite se
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
               Ne vidite svoj grad?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-foreground/60">

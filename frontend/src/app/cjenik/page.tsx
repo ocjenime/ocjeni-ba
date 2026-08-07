@@ -280,8 +280,8 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className={`relative flex flex-col rounded-3xl border p-6 transition-all duration-300 ${
                   plan.popular
-                    ? "border-emerald-500/30 bg-white/[0.03] shadow-2xl shadow-green-500/10"
-                    : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.03]"
+                    ? "border-emerald-500/30 bg-black/[0.03] shadow-2xl shadow-green-500/10 dark:bg-white/[0.03]"
+                    : "border-black/5 bg-black/[0.02] hover:border-black/10 hover:bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.02] dark:hover:border-white/10 dark:hover:bg-white/[0.03]"
                 }`}
               >
                 {plan.popular && (
@@ -297,24 +297,24 @@ export default function PricingPage() {
                     className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border ${
                       plan.popular
                         ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                        : "border-white/10 bg-white/5 text-foreground/70"
+                        : "border-foreground/10 bg-foreground/5 text-foreground/70"
                     }`}
                   >
                     <plan.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
+                  <h3 className="text-xl font-semibold text-foreground">{plan.name}</h3>
                   <p className="mt-1 text-sm text-foreground/50">{plan.tagline}</p>
                 </div>
 
                 <div className="mb-6 text-center">
                   {plan.price === "Po dogovoru" ? (
-                    <div className="text-2xl font-semibold text-white">
+                    <div className="text-2xl font-semibold text-foreground">
                       {plan.price}
                     </div>
                   ) : (
                     <div className="flex items-baseline justify-center gap-1">
                       <span className="text-lg text-foreground/50">od</span>
-                      <span className="text-5xl font-semibold text-white">
+                      <span className="text-5xl font-semibold text-foreground">
                         {plan.price}
                       </span>
                       <span className="text-lg font-medium text-foreground/50">
@@ -335,8 +335,8 @@ export default function PricingPage() {
                     plan.popular
                       ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white shadow-lg shadow-green-500/25 hover:scale-[1.02]"
                       : plan.name === "Business"
-                      ? "bg-white/10 text-white hover:bg-white/15"
-                      : "border border-white/15 bg-white/5 text-white hover:bg-white/10"
+                      ? "bg-foreground/10 text-foreground hover:bg-foreground/15"
+                      : "border border-foreground/15 bg-foreground/5 text-foreground hover:bg-foreground/10"
                   }`}
                 >
                   {plan.cta}
@@ -348,7 +348,7 @@ export default function PricingPage() {
                       {feature.included ? (
                         <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-400" />
                       ) : (
-                        <div className="h-5 w-5 flex-shrink-0 rounded-full border-2 border-white/10" />
+                        <div className="h-5 w-5 flex-shrink-0 rounded-full border-2 border-foreground/10" />
                       )}
                       <span
                         className={`text-sm ${
@@ -367,7 +367,7 @@ export default function PricingPage() {
       </section>
 
       {/* Trust Bar */}
-      <section className="border-y border-white/5 py-12">
+      <section className="border-y border-black/5 py-12 dark:border-white/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
@@ -384,7 +384,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="text-center"
               >
-                <div className="text-3xl font-semibold text-white md:text-4xl">
+                <div className="text-3xl font-semibold text-foreground md:text-4xl">
                   {stat.value}
                 </div>
                 <div className="mt-1 text-sm text-foreground/50">{stat.label}</div>
@@ -401,7 +401,7 @@ export default function PricingPage() {
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Usporedba
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
               Usporedite planove
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
@@ -409,24 +409,24 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02]">
+          <div className="overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] dark:border-white/5 dark:bg-white/[0.02]">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/5 bg-white/[0.03]">
-                    <th className="w-1/4 px-6 py-4 text-left font-semibold text-white">
+                  <tr className="border-b border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]">
+                    <th className="w-1/4 px-6 py-4 text-left font-semibold text-foreground">
                       Funkcionalnost
                     </th>
-                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-white">
+                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-foreground">
                       Free
                     </th>
                     <th className="w-1/6 bg-emerald-500/10 px-4 py-4 text-center font-semibold text-emerald-400">
                       Pro
                     </th>
-                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-white">
+                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-foreground">
                       Business
                     </th>
-                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-white">
+                    <th className="w-1/6 px-4 py-4 text-center font-semibold text-foreground">
                       Enterprise
                     </th>
                   </tr>
@@ -437,7 +437,7 @@ export default function PricingPage() {
                       <tr>
                         <td
                           colSpan={5}
-                          className="bg-white/[0.02] px-6 py-3 text-sm font-bold uppercase tracking-wider text-emerald-400"
+                          className="bg-black/[0.02] px-6 py-3 text-sm font-bold uppercase tracking-wider text-emerald-400 dark:bg-white/[0.02]"
                         >
                           {group.category}
                         </td>
@@ -445,7 +445,7 @@ export default function PricingPage() {
                       {group.features.map((feature) => (
                         <tr
                           key={feature.name}
-                          className="border-b border-white/5 transition-colors hover:bg-white/[0.02]"
+                          className="border-b border-black/5 transition-colors hover:bg-black/[0.02] dark:border-white/5 dark:hover:bg-white/[0.02]"
                         >
                           <td className="px-6 py-3 text-sm text-foreground/80">
                             {feature.name}
@@ -463,7 +463,7 @@ export default function PricingPage() {
                                   feature[plan as keyof typeof feature] ? (
                                     <CheckCircle2 className="mx-auto h-5 w-5 text-emerald-400" />
                                   ) : (
-                                    <div className="mx-auto h-5 w-5 rounded-full border-2 border-white/10" />
+                                    <div className="mx-auto h-5 w-5 rounded-full border-2 border-foreground/10" />
                                   )
                                 ) : (
                                   <span className="font-medium text-foreground/80">
@@ -485,13 +485,13 @@ export default function PricingPage() {
       </section>
 
       {/* Badges Showcase */}
-      <section className="border-y border-white/5 py-20">
+      <section className="border-y border-black/5 py-20 dark:border-white/5">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Značke
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
               Značke i bedževi
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
@@ -514,7 +514,7 @@ export default function PricingPage() {
                 >
                   <badge.icon className="h-10 w-10 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">{badge.title}</h3>
+                <h3 className="text-lg font-semibold text-foreground">{badge.title}</h3>
                 <p className="mt-2 text-sm text-foreground/50">
                   {badge.description}
                 </p>
@@ -531,7 +531,7 @@ export default function PricingPage() {
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Svjedočanstva
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
               Šta kažu naši korisnici
             </h2>
           </div>
@@ -559,7 +559,7 @@ export default function PricingPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
+                    <div className="font-semibold text-foreground">{testimonial.name}</div>
                     <div className="text-sm text-foreground/50">
                       {testimonial.role}, {testimonial.company}
                     </div>
@@ -575,13 +575,13 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-y border-white/5 py-20">
+      <section className="border-y border-black/5 py-20 dark:border-white/5">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               FAQ
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
               Često postavljana pitanja
             </h2>
           </div>
@@ -594,9 +594,9 @@ export default function PricingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02]"
+                className="group overflow-hidden rounded-2xl border border-black/5 bg-black/[0.02] dark:border-white/5 dark:bg-white/[0.02]"
               >
-                <summary className="flex cursor-pointer items-center justify-between px-6 py-5 font-semibold text-white transition-colors hover:bg-white/[0.02]">
+                <summary className="flex cursor-pointer items-center justify-between px-6 py-5 font-semibold text-foreground transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
                   {faq.question}
                   <ChevronRight className="h-5 w-5 text-foreground/40 transition-transform group-open:rotate-90" />
                 </summary>

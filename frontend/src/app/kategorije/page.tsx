@@ -245,17 +245,17 @@ export default function CategoriesPage() {
       {/* Pretraga */}
       <section className="py-8">
         <div className="container mx-auto max-w-5xl px-4">
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-4">
+          <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-4 dark:border-white/5 dark:bg-white/[0.02]">
             <div className="flex flex-col gap-3 sm:flex-row">
-              <div className="flex flex-1 items-center rounded-xl border border-white/10 bg-white/5 px-4">
+              <div className="flex flex-1 items-center rounded-xl border border-foreground/10 bg-foreground/5 px-4">
                 <Search className="h-4 w-4 text-foreground/40" />
                 <input
                   type="text"
                   placeholder="Pretraži kategorije..."
-                  className="flex-1 bg-transparent px-3 py-3 text-sm text-white outline-none placeholder:text-foreground/40"
+                  className="flex-1 bg-transparent px-3 py-3 text-sm text-foreground outline-none placeholder:text-foreground/40"
                 />
               </div>
-              <select className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground/70 outline-none">
+              <select className="rounded-xl border border-foreground/10 bg-foreground/5 px-4 py-3 text-sm text-foreground/70 outline-none">
                 <option value="">Svi gradovi</option>
                 {FBIH_CITIES.map((city) => (
                   <option key={city.name} value={city.name}>
@@ -279,18 +279,18 @@ export default function CategoriesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.03 }}
-                className="group rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:border-emerald-500/30 hover:bg-white/[0.03]"
+                className="group rounded-2xl border border-black/5 bg-black/[0.02] transition-all hover:border-emerald-500/30 hover:bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.03]"
               >
                 <Link
                   href={`/kategorije/${cat.slug}`}
                   className="flex items-center justify-between p-5"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/5">
                       <Building2 className="h-6 w-6 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="font-semibold text-white transition-colors group-hover:text-emerald-400">
+                      <div className="font-semibold text-foreground transition-colors group-hover:text-emerald-400">
                         {cat.name}
                       </div>
                       <div className="mt-0.5 text-sm text-foreground/50">
@@ -311,7 +311,7 @@ export default function CategoriesPage() {
                     <Link
                       key={sub.slug}
                       href={`/kategorije/${cat.slug}`}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-foreground/60 transition-colors hover:border-emerald-500/30 hover:text-emerald-400"
+                      className="rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1.5 text-xs text-foreground/60 transition-colors hover:border-emerald-500/30 hover:text-emerald-400"
                     >
                       {sub.name}
                     </Link>
@@ -329,12 +329,12 @@ export default function CategoriesPage() {
       </section>
 
       {/* Gradovi */}
-      <section className="border-y border-white/5 py-16">
+      <section className="border-y border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-5xl px-4">
           <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
             Prema gradu
           </span>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
+          <h2 className="mt-3 text-2xl font-semibold text-foreground">
             Gradovi Federacije BiH
           </h2>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
@@ -348,10 +348,10 @@ export default function CategoriesPage() {
               >
                 <Link
                   href={`/gradovi/${city.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="group flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-3 text-sm transition-all hover:border-emerald-500/30 hover:bg-white/[0.04]"
+                  className="group flex items-center gap-2 rounded-xl border border-black/5 bg-black/[0.02] p-3 text-sm transition-all hover:border-emerald-500/30 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.04]"
                 >
                   <MapPin className="h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
-                  <span className="truncate font-medium text-white transition-colors group-hover:text-emerald-400">
+                  <span className="truncate font-medium text-foreground transition-colors group-hover:text-emerald-400">
                     {city.name}
                   </span>
                 </Link>
@@ -373,7 +373,7 @@ export default function CategoriesPage() {
           <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
             Pridružite se
           </span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
             Vaša firma nije na listi?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-foreground/60">

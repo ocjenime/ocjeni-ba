@@ -561,7 +561,7 @@ export default function BusinessProfilePage({
       <div className="min-h-screen bg-background flex items-center justify-center px-4 pt-24">
         <div className="text-center">
           <Building2 className="w-16 h-16 text-foreground/20 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-2">
+          <h1 className="text-2xl font-bold text-foreground mb-2">
             Firma nije pronađena
           </h1>
           <p className="text-foreground/50 mb-6">

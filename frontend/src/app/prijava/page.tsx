@@ -53,7 +53,7 @@ export default function LoginPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-black/5 bg-white p-8 shadow-2xl dark:border-white/5 dark:bg-white/[0.02]"
           >
           <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
@@ -113,7 +113,7 @@ export default function LoginPage() {
                     type="checkbox"
                     checked={remember}
                     onChange={(e) => setRemember(e.target.checked)}
-                    className="h-4 w-4 rounded border-white/10 bg-white/5 text-emerald-500 focus:ring-emerald-500/20"
+                    className="h-4 w-4 rounded border-foreground/10 bg-foreground/5 text-emerald-500 focus:ring-emerald-500/20"
                   />
                   <span className="text-sm text-foreground/60">Zapamti me</span>
                 </label>
@@ -132,7 +132,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="relative z-10 mt-6 border-t border-white/5 pt-6 text-center">
+          <div className="relative z-10 mt-6 border-t border-foreground/5 pt-6 text-center">
             <p className="text-sm text-foreground/50">
               Još nemate račun?{" "}
               <Link

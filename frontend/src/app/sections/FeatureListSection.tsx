@@ -30,7 +30,7 @@ export default function FeatureListSection() {
           </span>
           <h2
             id="prednosti-heading"
-            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl"
           >
             Recenzije koje se{" "}
             <span className="gradient-text">mogu vjerovati</span>
@@ -49,13 +49,13 @@ export default function FeatureListSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-300 hover:border-green-500/30 hover:bg-white/[0.04]"
+              className="group relative overflow-hidden rounded-2xl border border-black/5 bg-black/[0.02] p-8 transition-all duration-300 hover:border-green-500/30 hover:bg-black/[0.04] dark:border-white/5 dark:bg-white/[0.02] dark:hover:bg-white/[0.04]"
             >
               <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-gradient-to-br from-green-500/10 to-transparent opacity-60 blur-2xl transition-opacity group-hover:opacity-100" />
-              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-emerald-400 shadow-inner shadow-green-500/10">
+              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5 text-emerald-400 shadow-inner shadow-green-500/10">
                 <feature.icon className="h-7 w-7" />
               </div>
-              <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-white">
+              <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-foreground">
                 {feature.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-foreground/60">

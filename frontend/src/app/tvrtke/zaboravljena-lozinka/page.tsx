@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-black/5 bg-white p-8 shadow-2xl dark:border-white/5 dark:bg-white/[0.02]"
           >
           <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10">
                   <CheckCircle className="h-8 w-8 text-emerald-400" />
                 </div>
-                <h2 className="text-lg font-semibold text-white">Email poslan</h2>
+                <h2 className="text-lg font-semibold text-foreground">Email poslan</h2>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                   Ako postoji račun sa ovom email adresom, primili ste upute za
                   resetovanje lozinke.
@@ -96,7 +96,7 @@ export default function ForgotPasswordPage() {
             )}
 
             {!submitted && (
-              <div className="mt-6 border-t border-white/5 pt-6 text-center">
+              <div className="mt-6 border-t border-foreground/5 pt-6 text-center">
                 <Link
                   href="/tvrtke/login"
                   className="inline-flex items-center gap-1 text-sm text-foreground/50 hover:text-foreground"

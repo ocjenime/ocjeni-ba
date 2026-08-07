@@ -84,7 +84,7 @@ function StarRating({ rating }: { rating: number }) {
           className={`h-4 w-4 ${
             star <= rating
               ? "fill-amber-400 text-amber-400"
-              : "fill-white/10 text-white/10"
+              : "fill-foreground/10 text-foreground/10"
           }`}
         />
       ))}
@@ -111,13 +111,13 @@ export default function NajnovijePage() {
                 <div className="card">
                   <div className="mb-4 flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-foreground/5">
                         <span className="text-sm font-bold text-emerald-400">
                           {review.author.charAt(0)}
                         </span>
                       </div>
                       <div>
-                        <div className="font-semibold text-white">
+                        <div className="font-semibold text-foreground">
                           {review.author}
                         </div>
                         <div className="text-xs text-foreground/50">{review.date}</div>
@@ -126,12 +126,12 @@ export default function NajnovijePage() {
                     <StarRating rating={review.rating} />
                   </div>
 
-                  <h3 className="mb-2 font-semibold text-white">{review.title}</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">{review.title}</h3>
                   <p className="mb-4 text-sm leading-relaxed text-foreground/70">
                     {review.content}
                   </p>
 
-                  <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                  <div className="flex items-center justify-between border-t border-foreground/5 pt-4">
                     <Link
                       href={`/tvrtke/${review.businessSlug}`}
                       className="flex items-center gap-2 text-sm text-foreground/50 transition-colors hover:text-emerald-400"
@@ -152,13 +152,13 @@ export default function NajnovijePage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/5 py-16">
+      <section className="border-t border-black/5 py-16 dark:border-white/5">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <SlideUp>
             <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
               Podijelite iskustvo
             </span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
               Podijelite svoje iskustvo
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/60">

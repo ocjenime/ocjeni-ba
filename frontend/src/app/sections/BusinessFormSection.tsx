@@ -100,7 +100,7 @@ export default function BusinessFormSection() {
           </span>
           <h2
             id="kontakt-heading"
-            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+            className="mt-3 font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl"
           >
             Pridruži se{" "}
             <span className="gradient-text">ocijeni.ba</span>
@@ -115,7 +115,7 @@ export default function BusinessFormSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-6 sm:p-10"
+          className="relative overflow-hidden rounded-3xl border border-black/5 bg-black/[0.02] p-6 sm:p-10 dark:border-white/5 dark:bg-white/[0.02]"
         >
           <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
@@ -132,7 +132,7 @@ export default function BusinessFormSection() {
                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500 text-3xl text-white">
                   <CheckCircle2 className="h-10 w-10" />
                 </div>
-                <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold text-white">
+                <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold text-foreground">
                   Hvala vam
                 </h3>
                 <p className="mt-3 max-w-md text-foreground/70">
@@ -154,7 +154,7 @@ export default function BusinessFormSection() {
                       message: "",
                     });
                   }}
-                  className="mt-8 inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  className="mt-8 inline-flex h-12 items-center justify-center rounded-full border border-foreground/15 bg-foreground/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/10"
                 >
                   Pošalji novi zahtjev
                 </button>
@@ -185,10 +185,10 @@ export default function BusinessFormSection() {
                         setForm({ ...form, businessName: e.target.value })
                       }
                       className={cn(
-                        "w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
+                        "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
                         errors.businessName
                           ? "border-red-400/50"
-                          : "border-white/10"
+                          : "border-foreground/10"
                       )}
                       placeholder="npr. Restoran Sarajevo"
                       aria-invalid={errors.businessName ? "true" : "false"}
@@ -215,10 +215,10 @@ export default function BusinessFormSection() {
                         setForm({ ...form, contactName: e.target.value })
                       }
                       className={cn(
-                        "w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
+                        "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
                         errors.contactName
                           ? "border-red-400/50"
-                          : "border-white/10"
+                          : "border-foreground/10"
                       )}
                       placeholder="npr. Amir Hadžić"
                       aria-invalid={errors.contactName ? "true" : "false"}
@@ -245,8 +245,8 @@ export default function BusinessFormSection() {
                         setForm({ ...form, email: e.target.value })
                       }
                       className={cn(
-                        "w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
-                        errors.email ? "border-red-400/50" : "border-white/10"
+                        "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
+                        errors.email ? "border-red-400/50" : "border-foreground/10"
                       )}
                       placeholder="amir@tvrtka.ba"
                       aria-invalid={errors.email ? "true" : "false"}
@@ -272,7 +272,7 @@ export default function BusinessFormSection() {
                       onChange={(e) =>
                         setForm({ ...form, phone: e.target.value })
                       }
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50"
+                      className="w-full rounded-xl border border-foreground/10 bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50"
                       placeholder="+387 61 123 456"
                     />
                   </div>
@@ -292,8 +292,8 @@ export default function BusinessFormSection() {
                         setForm({ ...form, city: e.target.value })
                       }
                       className={cn(
-                        "w-full rounded-xl border bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
-                        errors.city ? "border-red-400/50" : "border-white/10"
+                        "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50",
+                        errors.city ? "border-red-400/50" : "border-foreground/10"
                       )}
                       placeholder="Sarajevo"
                       aria-invalid={errors.city ? "true" : "false"}
@@ -319,21 +319,21 @@ export default function BusinessFormSection() {
                         setForm({ ...form, category: e.target.value })
                       }
                       className={cn(
-                        "w-full rounded-xl border bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-emerald-400/50",
+                        "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground outline-none transition-colors focus:border-emerald-400/50",
                         errors.category
                           ? "border-red-400/50"
-                          : "border-white/10"
+                          : "border-foreground/10"
                       )}
                       aria-invalid={errors.category ? "true" : "false"}
                     >
-                      <option value="" className="bg-[#0a0a0c]">
+                      <option value="" className="bg-background">
                         Odaberite kategoriju
                       </option>
                       {categoryOptions.map((option) => (
                         <option
                           key={option}
                           value={option}
-                          className="bg-[#0a0a0c]"
+                          className="bg-background"
                         >
                           {option}
                         </option>
@@ -361,8 +361,8 @@ export default function BusinessFormSection() {
                       setForm({ ...form, plan: e.target.value })
                     }
                     className={cn(
-                      "w-full rounded-xl border bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-emerald-400/50",
-                      errors.plan ? "border-red-400/50" : "border-white/10"
+                      "w-full rounded-xl border bg-foreground/5 px-4 py-3 text-foreground outline-none transition-colors focus:border-emerald-400/50",
+                      errors.plan ? "border-red-400/50" : "border-foreground/10"
                     )}
                     aria-invalid={errors.plan ? "true" : "false"}
                   >
@@ -370,7 +370,7 @@ export default function BusinessFormSection() {
                       <option
                         key={option.value}
                         value={option.value}
-                        className="bg-[#0a0a0c]"
+                        className="bg-background"
                       >
                         {option.label}
                       </option>
@@ -395,7 +395,7 @@ export default function BusinessFormSection() {
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
                     }
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50"
+                    className="w-full rounded-xl border border-foreground/10 bg-foreground/5 px-4 py-3 text-foreground placeholder-foreground/30 outline-none transition-colors focus:border-emerald-400/50"
                     placeholder="Recite nam nešto više o vašoj tvrtci..."
                   />
                 </div>

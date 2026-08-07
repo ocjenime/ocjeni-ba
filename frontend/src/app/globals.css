@@ -9,11 +9,26 @@
     --primary: #22c55e;
     --secondary: #0a0a0f;
     --accent: #facc15;
+    --background: #fafaf9;
+    --foreground: #0f172a;
+    --muted: rgba(15, 23, 42, 0.04);
+    --border: rgba(15, 23, 42, 0.1);
+    --muted-foreground: #64748b;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+  }
+
+  .dark {
+    --primary: #22c55e;
+    --secondary: #0a0a0f;
+    --accent: #facc15;
     --background: #030305;
     --foreground: #f8fafc;
     --muted: rgba(255, 255, 255, 0.03);
     --border: rgba(255, 255, 255, 0.08);
     --muted-foreground: #a1a1aa;
+    --card: #0a0a0c;
+    --card-foreground: #f8fafc;
   }
 
   * {
@@ -45,7 +60,13 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-colors;
+    border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--foreground) 10%, transparent);
   }
 
   .btn-outline {
@@ -54,20 +75,41 @@
 
   /* Cards */
   .card {
-    @apply rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10 hover:bg-white/[0.04];
+    @apply rounded-2xl p-6 transition-all;
+    border: 1px solid color-mix(in srgb, var(--foreground) 5%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 2%, transparent);
+  }
+
+  .card:hover {
+    border-color: color-mix(in srgb, var(--foreground) 10%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 4%, transparent);
   }
 
   .card-elevated {
-    @apply rounded-2xl border border-white/5 bg-white/[0.04] p-6 shadow-xl shadow-black/20;
+    @apply rounded-2xl p-6 shadow-xl;
+    border: 1px solid color-mix(in srgb, var(--foreground) 5%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 3%, transparent);
+    box-shadow: 0 20px 25px -5px color-mix(in srgb, var(--foreground) 10%, transparent);
   }
 
   /* Form elements */
   .input {
-    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition-colors placeholder:text-foreground/30 focus:border-emerald-400/50;
+    @apply w-full rounded-xl px-4 py-3 text-foreground outline-none transition-colors;
+    border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .input::placeholder {
+    color: color-mix(in srgb, var(--foreground) 30%, transparent);
+  }
+
+  .input:focus {
+    border-color: color-mix(in srgb, #34d399 50%, transparent);
   }
 
   .label {
-    @apply mb-2 block text-sm font-medium text-foreground/80;
+    @apply mb-2 block text-sm font-medium;
+    color: color-mix(in srgb, var(--foreground) 80%, transparent);
   }
 
   /* Stars */
@@ -76,7 +118,7 @@
   }
 
   .star-empty {
-    @apply text-white/10;
+    color: color-mix(in srgb, var(--foreground) 10%, transparent);
   }
 
   /* Gradient text (trust green) */
@@ -100,7 +142,9 @@
 
   /* Glass panels */
   .glass {
-    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+    @apply backdrop-blur-xl;
+    border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+    background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
   }
 
   .glass-dark {

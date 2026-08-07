@@ -92,21 +92,21 @@ export default function BusinessSignupPage() {
             className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
               step >= 1
                 ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white"
-                : "border border-white/10 bg-white/5 text-foreground/50"
+                : "border border-foreground/10 bg-foreground/5 text-foreground/50"
             }`}
           >
             1
           </div>
           <div
             className={`h-1 w-16 rounded-full ${
-              step >= 2 ? "bg-gradient-to-r from-emerald-400 to-teal-500" : "bg-white/10"
+              step >= 2 ? "bg-gradient-to-r from-emerald-400 to-teal-500" : "bg-foreground/10"
             }`}
           />
           <div
             className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
               step >= 2
                 ? "bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 text-white"
-                : "border border-white/10 bg-white/5 text-foreground/50"
+                : "border border-foreground/10 bg-foreground/5 text-foreground/50"
             }`}
           >
             2
@@ -118,7 +118,7 @@ export default function BusinessSignupPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+          className="relative overflow-hidden rounded-3xl border border-black/5 bg-white p-8 shadow-2xl dark:border-white/5 dark:bg-white/[0.02]"
         >
           <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
@@ -126,7 +126,7 @@ export default function BusinessSignupPage() {
           <form onSubmit={handleSubmit} className="relative z-10">
             {step === 1 ? (
               <>
-                <h2 className="mb-6 text-lg font-semibold text-white">
+                <h2 className="mb-6 text-lg font-semibold text-foreground">
                   Vaši podaci
                 </h2>
 
@@ -224,7 +224,7 @@ export default function BusinessSignupPage() {
               </>
             ) : (
               <>
-                <h2 className="mb-6 text-lg font-semibold text-white">
+                <h2 className="mb-6 text-lg font-semibold text-foreground">
                   Podaci o firmi
                 </h2>
 
