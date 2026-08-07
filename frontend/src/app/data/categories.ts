@@ -13,7 +13,7 @@ export const categories: Category[] = [
     name: "Restorani i kafići",
     count: 1240,
     description: "Od tradicionalnih bosanskih restorana do modernih kafića s najboljom kavom u gradu.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Meni i cijene", "Recenzije gostiju", "Rezervacije"],
   },
   {
@@ -21,7 +21,7 @@ export const categories: Category[] = [
     name: "Hoteli i smještaj",
     count: 856,
     description: "Boutique hoteli, planinski smještaj i apartmani koji su ocijenili stvarni gosti.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Fotografije soba", "Ocjene čistoće", "Lokacija"],
   },
   {
@@ -29,7 +29,7 @@ export const categories: Category[] = [
     name: "Ljepota i wellness",
     count: 642,
     description: "Frizerski saloni, kozmetički tretmani i spa centri preporučeni od strane korisnika.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Cjenik usluga", "Termini", "Ocjene osoblja"],
   },
   {
@@ -37,7 +37,7 @@ export const categories: Category[] = [
     name: "Auto servisi",
     count: 438,
     description: "Pouzdani mehaničari, autoelektričari i salonske usluge za vaše vozilo.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Cijene dijelova", "Garancija", "Hitne intervencije"],
   },
   {
@@ -45,7 +45,7 @@ export const categories: Category[] = [
     name: "Građevina i uređenje",
     count: 325,
     description: "Provjerene građevinske firme, majstori i dizajneri interijera za vaš dom.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Reference", "Ponude", "Rokovi"],
   },
   {
@@ -53,7 +53,7 @@ export const categories: Category[] = [
     name: "Tehnologija i servis",
     count: 512,
     description: "IT firme, servisi mobitela i računala te tehnološke trgovine u vašem gradu.",
-    image: "/images/hero-bg.svg",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
     highlights: ["Brzina odgovora", "Cjenik", "Dostava"],
   },
 ];

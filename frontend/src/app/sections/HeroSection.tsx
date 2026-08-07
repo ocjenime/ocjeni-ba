@@ -29,9 +29,9 @@ export default function HeroSection() {
       {/* SVG background image */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-bg.svg')" }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=80')" }}
         role="img"
-        aria-label="Apstraktna tamna pozadina grada"
+        aria-label="Gradska ulica noću"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />

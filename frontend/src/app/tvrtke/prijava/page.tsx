@@ -67,7 +67,7 @@ export default function BusinessSignupPage() {
         label="Registracija firme"
         title="Dodajte svoju firmu na Ocjeni.ba"
         subtitle="Besplatno. Bez kartice. Počnite primati recenzije danas."
-        backgroundImage="/images/hero-bg.svg"
+        backgroundImage="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=80"
         minHeight="min-h-[45vh]"
       />
 

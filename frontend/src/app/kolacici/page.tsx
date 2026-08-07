@@ -17,7 +17,7 @@ export default function CookiesPage() {
         label="Pravni dokumenti"
         title="Kolačići"
         subtitle="Politika kolačića platforme Ocjeni.ba"
-        backgroundImage="/images/hero-bg.svg"
+        backgroundImage="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=80"
       />
 
       <section className="py-16">
