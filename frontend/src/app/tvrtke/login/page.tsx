@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/lib/auth-context";
+import PageHero from "@/components/ui/PageHero";
 
 export default function BusinessLoginPage() {
   const { loginBusiness } = useAuth();
@@ -27,51 +28,36 @@ export default function BusinessLoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-24">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
-        <div
-          className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
-          style={{ animationDelay: "-4s", animationDuration: "16s" }}
-        />
-      </div>
+    <div className="min-h-screen bg-background">
+      <PageHero
+        label="Prijava firme"
+        title="Dobrodošli nazad!"
+        subtitle="Upravljajte recenzijama, analitikom i vašim profilom"
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,login"
+        minHeight="min-h-[50vh]"
+      />
 
-      <div className="w-full max-w-md">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 text-center"
-        >
-          <Link href="/" className="mb-6 inline-flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 shadow-lg shadow-green-500/20">
-              <span className="text-lg font-bold text-white">O</span>
-            </div>
-            <span className="text-xl font-bold text-white">
-              ocijeni<span className="gradient-text">.ba</span>
-            </span>
-          </Link>
-          <h1 className="text-2xl font-semibold text-white">
-            Dobrodošli nazad!
-          </h1>
-          <p className="mt-2 text-foreground/60">
-            Upravljajte recenzijama, analitikom i vašim profilom
-          </p>
-        </motion.div>
+      <div className="relative overflow-hidden px-4 py-16">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
+          <div
+            className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
+            style={{ animationDelay: "-4s", animationDuration: "16s" }}
+          />
+        </div>
 
-        {/* Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
-        >
-          <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
+        <div className="mx-auto w-full max-w-md">
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl"
+          >
+            <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl" />
+            <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
 
-          <form onSubmit={handleSubmit} className="relative z-10">
+            <form onSubmit={handleSubmit} className="relative z-10">
             <div className="space-y-4">
               {error && (
                 <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
@@ -168,5 +154,6 @@ export default function BusinessLoginPage() {
         </p>
       </div>
     </div>
+  </div>
   );
 }

@@ -19,6 +19,7 @@ import {
 import { motion } from "framer-motion";
 import { FBIH_CITIES } from "@/lib/constants";
 import { useAuth } from "@/lib/auth-context";
+import PageHero from "@/components/ui/PageHero";
 
 export default function BusinessSignupPage() {
   const { registerBusiness } = useAuth();
@@ -61,47 +62,32 @@ export default function BusinessSignupPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-24">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
-        <div
-          className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
-          style={{ animationDelay: "-4s", animationDuration: "16s" }}
-        />
-      </div>
+    <div className="min-h-screen bg-background">
+      <PageHero
+        label="Registracija firme"
+        title="Dodajte svoju firmu na Ocjeni.ba"
+        subtitle="Besplatno. Bez kartice. Počnite primati recenzije danas."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,register"
+        minHeight="min-h-[45vh]"
+      />
 
-      <div className="mx-auto max-w-2xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 text-center"
-        >
-          <Link href="/" className="mb-6 inline-flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 shadow-lg shadow-green-500/20">
-              <span className="text-lg font-bold text-white">O</span>
-            </div>
-            <span className="text-xl font-bold text-white">
-              ocijeni<span className="gradient-text">.ba</span>
-            </span>
-          </Link>
-          <h1 className="text-2xl font-semibold text-white">
-            Dodajte svoju firmu na Ocjeni.ba
-          </h1>
-          <p className="mt-2 text-foreground/60">
-            Besplatno. Bez kartice. Počnite primati recenzije danas.
-          </p>
-        </motion.div>
+      <div className="relative overflow-hidden px-4 py-16">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="aurora-blob absolute left-1/4 top-1/4 h-[40vh] w-[40vh] opacity-40" />
+          <div
+            className="aurora-blob absolute bottom-1/4 right-1/4 h-[35vh] w-[35vh] opacity-30"
+            style={{ animationDelay: "-4s", animationDuration: "16s" }}
+          />
+        </div>
 
-        {/* Progress */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-8 flex items-center justify-center gap-2"
-        >
+        <div className="mx-auto max-w-2xl">
+          {/* Progress */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-8 flex items-center justify-center gap-2"
+          >
           <div
             className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
               step >= 1
@@ -393,5 +379,6 @@ export default function BusinessSignupPage() {
         </p>
       </div>
     </div>
+  </div>
   );
 }

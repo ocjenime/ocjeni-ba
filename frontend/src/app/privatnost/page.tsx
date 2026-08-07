@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Shield } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/Motion";
+import PageHero from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Politika privatnosti | Ocjeni.ba",
@@ -10,26 +11,12 @@ export const metadata: Metadata = {
 export default function PrivatnostPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4">
-          <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
-              Pravni dokumenti
-            </span>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Politika privatnosti
-            </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
-              Kako štitimo i obrađujemo vaše osobne podatke na platformi
-              Ocjeni.ba.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        label="Pravni dokumenti"
+        title="Politika privatnosti"
+        subtitle="Kako štitimo i obrađujemo vaše osobne podatke na platformi Ocjeni.ba."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?privacy,security"
+      />
 
       {/* Content */}
       <section className="py-16">

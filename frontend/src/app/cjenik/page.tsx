@@ -18,6 +18,7 @@ import {
   Heart,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import PageHero from "@/components/ui/PageHero";
 
 const plans = [
   {
@@ -258,34 +259,13 @@ const badges = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/5 py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/4 top-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-teal-500/10 blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-foreground/80 backdrop-blur-sm">
-              <Sparkles className="h-4 w-4 text-emerald-400" />
-              Jednostavne cijene, bez skrivenih troškova
-            </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Odaberite plan koji
-              <br />
-              <span className="gradient-text">odgovara vašim potrebama</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/60">
-              Svi planovi su mjesečni. Otkažite kad god hoćete. Bez skrivenih troškova.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="Cjenik"
+        title="Odaberite plan koji odgovara vašim potrebama"
+        highlight="odgovara vašim potrebama"
+        subtitle="Svi planovi su mjesečni. Otkažite kad god hoćete. Bez skrivenih troškova."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?pricing,business"
+      />
 
       {/* Plans */}
       <section className="py-20">

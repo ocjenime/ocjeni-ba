@@ -15,6 +15,7 @@ import {
   Crown,
 } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/Motion";
+import PageHero from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Za firme | Ocjeni.ba",
@@ -98,139 +99,37 @@ const stats = [
 export default function ForBusinessPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/4 top-0 h-[50vh] w-[50vh] rounded-full bg-emerald-500/10 blur-3xl opacity-60" />
-          <div className="absolute bottom-0 right-1/4 h-[40vh] w-[40vh] rounded-full bg-teal-500/10 blur-3xl opacity-50" />
+      <PageHero
+        label="Za firme"
+        title="Vaša reputacija je vaš najjači alat"
+        highlight="vaš najjači alat"
+        subtitle="10,000+ firmi iz cijele BiH već koristi Ocjeni.ba da dobiju više klijenata."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,success"
+      >
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <Link href="/tvrtke/prijava" className="btn-primary">
+            Započnite besplatno
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+          <Link href="/cjenik" className="btn-secondary">
+            Pogledajte planove
+          </Link>
         </div>
-        <div className="container mx-auto px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <FadeIn>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
-                <Sparkles className="h-4 w-4" />
-                Besplatno za sve firme
-              </div>
-              <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-                Vaša reputacija je
-                <br />
-                <span className="gradient-text">vaš najjači alat</span>
-              </h1>
-              <p className="mt-6 max-w-lg text-lg text-foreground/60">
-                10,000+ firmi iz cijele BiH već koristi Ocjeni.ba da dobiju više klijenata.
-              </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link href="/tvrtke/prijava" className="btn-primary">
-                  Započnite besplatno
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link href="/cjenik" className="btn-secondary">
-                  Pogledajte planove
-                </Link>
-              </div>
-              <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-foreground/50">
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                  Bez kreditne kartice
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                  Bez ugovorne obveze
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                  Otkazivanje u bilo kojem trenutku
-                </span>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2} direction="left" className="hidden lg:block">
-              <div className="relative">
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-6 shadow-2xl">
-                  <div className="mb-6 flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600">
-                      <Building2 className="h-7 w-7 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">
-                        Restoran Stari Most
-                      </div>
-                      <div className="flex items-center gap-1 text-sm">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((s) => (
-                            <Star
-                              key={s}
-                              className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
-                            />
-                          ))}
-                        </div>
-                        <span className="font-medium text-white">4.9</span>
-                        <span className="text-foreground/50">(312)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-400">
-                      <Shield className="h-3 w-3" />
-                      Verificirano
-                    </span>
-                    <span className="flex items-center gap-1 rounded-full bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-400">
-                      <Crown className="h-3 w-3" />
-                      Top Rated
-                    </span>
-                    <span className="flex items-center gap-1 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400">
-                      <MessageSquare className="h-3 w-3" />
-                      Aktivno
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
-                      <div className="text-lg font-semibold text-white">312</div>
-                      <div className="text-xs text-foreground/50">Recenzija</div>
-                    </div>
-                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
-                      <div className="text-lg font-semibold text-white">98%</div>
-                      <div className="text-xs text-foreground/50">Preporučuju</div>
-                    </div>
-                    <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center">
-                      <div className="text-lg font-semibold text-emerald-400">
-                        +42%
-                      </div>
-                      <div className="text-xs text-foreground/50">Rast</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute -right-4 -top-4 rounded-2xl border border-white/5 bg-white/[0.04] p-4 shadow-xl backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-                      <TrendingUp className="h-5 w-5 text-emerald-400" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-foreground/50">Novi kupci</div>
-                      <div className="text-sm font-semibold text-emerald-400">
-                        +127 ovaj mjesec
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -left-4 rounded-2xl border border-white/5 bg-white/[0.04] p-4 shadow-xl backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10">
-                      <Star className="h-5 w-5 text-amber-400" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-foreground/50">Prosjek</div>
-                      <div className="text-sm font-semibold text-amber-400">
-                        4.9 ★ (312)
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-foreground/50">
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+            Bez kreditne kartice
+          </span>
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+            Bez ugovorne obveze
+          </span>
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+            Otkazivanje u bilo kojem trenutku
+          </span>
         </div>
-      </section>
+      </PageHero>
 
       {/* Stats */}
       <section className="border-y border-white/5 py-12">

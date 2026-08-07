@@ -6,6 +6,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/Motion";
+import PageHero from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Najnovije recenzije | Ocjeni.ba",
@@ -94,26 +95,12 @@ function StarRating({ rating }: { rating: number }) {
 export default function NajnovijePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4">
-          <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
-              Recenzije
-            </span>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Najnovije recenzije
-            </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
-              Iskustva stvarnih kupaca iz cijele Bosne i Hercegovine. Sve
-              recenzije su verificirane.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        label="Recenzije"
+        title="Najnovije recenzije"
+        subtitle="Iskustva stvarnih kupaca iz cijele Bosne i Hercegovine. Sve recenzije su verificirane."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?reviews,people"
+      />
 
       {/* Reviews */}
       <section className="py-16">

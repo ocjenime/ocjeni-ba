@@ -12,6 +12,7 @@ import {
   Filter,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import PageHero from "@/components/ui/PageHero";
 
 const businesses = [
   {
@@ -108,31 +109,12 @@ export default function TvrtkePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="relative overflow-hidden border-b border-white/5 py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
-              Directorij
-            </span>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Sve firme
-            </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground/60">
-              Pretražite sve verificirane firme u Bosni i Hercegovini. Pronađite
-              najbolje ocijenjene pružaoci usluga.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="Directorij"
+        title="Sve firme"
+        subtitle="Pretražite sve verificirane firme u Bosni i Hercegovini. Pronađite najbolje ocijenjene pružaoci usluga."
+        backgroundImage="https://source.unsplash.com/featured/2400x1400?business,directory"
+      />
 
       {/* Search */}
       <section className="py-10">

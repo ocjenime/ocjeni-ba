@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
 import {
   Star,
   MapPin,
@@ -15,11 +14,11 @@ import {
   ExternalLink,
   ChevronLeft,
   Building2,
-  TrendingUp,
   Award,
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import PageHero from "@/components/ui/PageHero";
 
 interface BusinessData {
   name: string;
@@ -82,29 +81,17 @@ export default function BusinessProfileClient({
   const [likedReviews, setLikedReviews] = useState<Record<number, boolean>>({});
 
   return (
-    <div className="min-h-screen bg-background pb-20 pt-24">
-      {/* Hero Cover */}
-      <div className="relative h-[50vh] min-h-[320px] w-full overflow-hidden">
-        <Image
-          src={`https://source.unsplash.com/featured/1600x900?${business.category.replace(/\s+/g, ",").toLowerCase()},business`}
-          alt={business.name}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+    <div className="min-h-screen bg-background pb-20">
+      <PageHero
+        label={business.category}
+        title={business.name}
+        subtitle={business.description}
+        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${business.category.replace(/\s+/g, ",").toLowerCase()},business`}
+        minHeight="min-h-[55vh]"
+      />
 
-        <div className="container relative z-10 mx-auto flex h-full flex-col justify-end px-4 pb-8">
-          <Link
-            href="/tvrtke"
-            className="absolute top-0 left-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-sm text-white backdrop-blur-md transition-colors hover:bg-white/10"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Sve firme
-          </Link>
-
+      <div className="container mx-auto -mt-16 px-4 pb-12 relative z-20">
+        <div className="rounded-3xl border border-white/5 bg-white/[0.03] p-6 backdrop-blur-sm shadow-2xl md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-end">
             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/10 bg-white/5 shadow-2xl md:h-32 md:w-32">
               <img
@@ -116,9 +103,6 @@ export default function BusinessProfileClient({
 
             <div className="flex-1">
               <div className="mb-2 flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-foreground/80">
-                  {business.category}
-                </span>
                 {business.verified && (
                   <span className="flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
                     <Shield className="h-3 w-3" />
@@ -132,10 +116,6 @@ export default function BusinessProfileClient({
                   </span>
                 )}
               </div>
-
-              <h1 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                {business.name}
-              </h1>
 
               <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-foreground/60">
                 <div className="flex items-center gap-1.5">

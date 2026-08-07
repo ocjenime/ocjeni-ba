@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/Motion";
 import { FBIH_CITIES } from "@/lib/constants";
+import PageHero from "@/components/ui/PageHero";
 
 interface CategoryPageProps {
   params: {
@@ -424,25 +425,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
-      {/* Hero sekcija */}
-      <section className="relative overflow-hidden border-b border-white/5 py-16">
-        <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
-          <div className="h-full w-full max-w-3xl bg-gradient-to-b from-green-500/5 via-transparent to-emerald-500/5 blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">
-              Kategorija
-            </span>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-              {category.name}
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg text-foreground/60">
-              {category.description}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        label="Kategorija"
+        title={category.name}
+        subtitle={category.description}
+        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${category.name.replace(/\s+/g, ",").toLowerCase()},business`}
+      />
 
       {/* Pretraga i filteri */}
       <section className="container mx-auto px-4 -mt-6">

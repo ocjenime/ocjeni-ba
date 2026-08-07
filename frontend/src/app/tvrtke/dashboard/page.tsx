@@ -31,6 +31,7 @@ import {
   Mail,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import PageHero from "@/components/ui/PageHero";
 
 const mockReviews = [
   {
@@ -199,36 +200,13 @@ export default function BusinessDashboardPage() {
 
       {/* Main content */}
       <div className="lg:ml-64">
-        {/* Header */}
-        <div className="border-b border-white/5 bg-white/[0.02] px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-xl font-semibold text-white">
-                {business?.businessName || "Moja firma"}
-              </h1>
-              <div className="mt-1 flex items-center gap-2 text-sm text-foreground/50">
-                <MapPin className="h-4 w-4" />
-                Sarajevo · Kafići
-                <CheckCircle className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">Verificirano</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <button className="relative rounded-full border border-white/10 bg-white/5 p-2 text-foreground/60 transition-colors hover:text-foreground">
-                <Bell className="h-5 w-5" />
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                  3
-                </span>
-              </button>
-              <Link
-                href={business?.businessName ? `/tvrtke/${business.businessName.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}` : "/tvrtke/arilux-doo"}
-                className="text-sm font-medium text-emerald-400 hover:text-emerald-300"
-              >
-                Pogledaj profil →
-              </Link>
-            </div>
-          </div>
-        </div>
+        <PageHero
+          label="Dashboard"
+          title={business?.businessName || "Moja firma"}
+          subtitle="Upravljajte recenzijama, analitikom i profilom vaše firme"
+          backgroundImage="https://source.unsplash.com/featured/2400x1400?dashboard,business"
+          minHeight="min-h-[35vh]"
+        />
 
         <div className="p-6">
           {/* Stats */}

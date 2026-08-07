@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/Motion";
 import { FBIH_CITIES } from "@/lib/constants";
+import PageHero from "@/components/ui/PageHero";
 
 interface CityPageProps {
   params: {
@@ -67,9 +68,9 @@ export default function CityPage({ params }: CityPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="border-b border-white/5 py-12">
-        <div className="container mx-auto max-w-5xl px-4">
-          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-foreground/50">
+      <div className="border-b border-white/5">
+        <div className="container mx-auto max-w-5xl px-4 py-4">
+          <nav className="flex flex-wrap items-center gap-2 text-sm text-foreground/50">
             <Link href="/" className="transition-colors hover:text-emerald-400">
               Početna
             </Link>
@@ -83,23 +84,16 @@ export default function CityPage({ params }: CityPageProps) {
             <ChevronRight className="h-4 w-4" />
             <span className="font-medium text-white">{city.name}</span>
           </nav>
-
-          <FadeIn className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-              <MapPin className="h-7 w-7 text-emerald-400" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-semibold text-white md:text-4xl">
-                {city.name}
-              </h1>
-              <p className="text-sm text-foreground/60">
-                {city.canton} · {city.population.toLocaleString("bs-BI")}{" "}
-                stanovnika
-              </p>
-            </div>
-          </FadeIn>
         </div>
-      </section>
+      </div>
+
+      <PageHero
+        label="Grad"
+        title={city.name}
+        subtitle={`${city.canton} · ${city.population.toLocaleString("bs-BI")} stanovnika`}
+        backgroundImage={`https://source.unsplash.com/featured/2400x1400?${city.name.toLowerCase().replace(/\s+/g, ",")},bosnia`}
+        minHeight="min-h-[50vh]"
+      />
 
       <section className="py-16">
         <div className="container mx-auto max-w-5xl px-4">
