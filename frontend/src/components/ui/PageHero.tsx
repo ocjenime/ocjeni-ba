@@ -49,8 +49,8 @@ export default function PageHero({
         role="img"
         aria-label=""
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/70" />
       </div>
 
       {/* Animated aurora blobs */}
@@ -72,13 +72,13 @@ export default function PageHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 backdrop-blur-sm"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            <span className="text-xs font-medium uppercase tracking-wide text-foreground/80">
+            <span className="text-xs font-medium uppercase tracking-wide text-white/80">
               {label}
             </span>
           </motion.div>
@@ -88,7 +88,7 @@ export default function PageHero({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
-          className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+          className="font-[family-name:var(--font-space-grotesk)] text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
         >
           {renderTitle()}
         </motion.h1>
@@ -98,7 +98,7 @@ export default function PageHero({
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl"
+            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl"
           >
             {subtitle}
           </motion.p>
@@ -124,11 +124,11 @@ export default function PageHero({
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
         >
-          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-foreground/20 p-1.5">
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="h-1.5 w-1.5 rounded-full bg-foreground/60"
+              className="h-1.5 w-1.5 rounded-full bg-white/60"
             />
           </div>
         </motion.div>
