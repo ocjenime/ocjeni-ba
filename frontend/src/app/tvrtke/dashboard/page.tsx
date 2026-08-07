@@ -141,12 +141,11 @@ export default function BusinessDashboardPage() {
       <div className="fixed bottom-0 left-0 top-0 hidden w-64 border-r border-black/5 bg-background lg:block dark:border-white/5 dark:bg-white/[0.02]">
         <div className="p-6">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500">
-              <span className="text-sm font-bold text-white">O</span>
-            </div>
-            <span className="font-bold text-foreground">
-              ocijeni<span className="gradient-text">.ba</span>
-            </span>
+            <img
+              src="/ocijenilogo.jpg"
+              alt="ocijeni.ba logo"
+              className="h-8 w-auto object-contain"
+            />
           </Link>
         </div>
 

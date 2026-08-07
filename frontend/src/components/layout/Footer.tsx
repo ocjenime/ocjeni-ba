@@ -39,12 +39,11 @@ export function Footer() {
           {/* Logo i opis */}
           <div className="lg:col-span-2">
             <Link href="/" className="mb-4 inline-flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500">
-                <span className="text-xl font-bold text-white">O</span>
-              </div>
-            <span className="text-xl font-bold text-foreground">
-              ocijeni<span className="gradient-text">.ba</span>
-            </span>
+              <img
+                src="/ocijenilogo.jpg"
+                alt="ocijeni.ba logo"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="mb-4 max-w-sm text-sm leading-relaxed text-foreground/50">
               Platforma broj 1 za recenzije u BiH. Hiljade provjerenih ocjena
